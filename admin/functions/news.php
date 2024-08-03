@@ -41,10 +41,10 @@ class News {
     $url = $this->generate_url($url);
 
     if ($image['error'] == 0) {
-        $uploads_dir = '../uploads/'; // Директория загрузки
+        $uploads_dir = '../uploads/news/'; // Директория загрузки
 
         if (!is_dir($uploads_dir)) {
-            mkdir($uploads_dir, 0755, true);
+            mkdir($uploads_dir, true);
         }
 
         $thumbnail = $uploads_dir . uniqid() . basename($image['name'] . '.png');

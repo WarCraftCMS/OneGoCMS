@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['submit'])) {
     $news = new News();
-    $news->add_news($_POST['news-title'], $_POST['news-content'], $_POST['news-url'],  $_POST['news-thumbnail'], $_SESSION['username']);
+    $news->add_news($_POST['news-title'], $_POST['news-content'], $_POST['news-url'],  $_FILES['news-thumbnail'], $_SESSION['username']);
 }
 
 if (isset($_POST['edit-submit'])) {
@@ -64,9 +64,11 @@ $news = new News();
                                                 <div class="row g-4">
                                                     <div class="col-lg-12">
                                                         <div class="form-group">
-                                                            <label for="news-title" class="form-label">Картика</label>
                                                             <div class="form-control-wrap">
-                                                                <input type="file" class="form-control" id="news-thumbnail" name="image" accept="image/*" required>
+                                                            
+                                                            <label for="file" class="form-label">Картика</label>
+                                                            <input type="file" name="file" id="file"><br>
+                                                            
                                                             </div>
                                                         </div>
                                                     </div>

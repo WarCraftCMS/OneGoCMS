@@ -1,14 +1,12 @@
 <?php
 $global->check_logged_in();
 $account = new Account($_SESSION['username']);
-
-if (isset($_POST['change_password'])) {
+if (isset($_POST['change_password'])) 
+{
    header("Location: ?page=changepassword");
    exit();
 }
 ?>
-
-
 <html lang="ru" class="js">
 <head>
     <meta charset="utf-8">
