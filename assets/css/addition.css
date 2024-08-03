@@ -1,0 +1,28 @@
+.invalid-feedback {
+    color: red;
+    font-size: 12px;
+    margin-bottom: 15px;
+    margin-top: -5px;
+}
+.alert {
+    margin-bottom: 15px;
+    color: red;
+}
+.emblem img {
+    width: 11px;
+}
+.header__link-text {
+    -webkit-text-fill-color: unset !important;
+}
+.email-resend {
+    text-decoration: underline;
+}
+.download__mirror-group {
+    text-align: center;
+}
+.download__mirror {
+    color: #c18c3b !important;
+}
+.download__mirror:hover {
+    color: #fff392 !important;
+}

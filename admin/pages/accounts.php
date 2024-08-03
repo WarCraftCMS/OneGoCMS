@@ -1,0 +1,97 @@
+<?php
+$account = new adminAccounts();
+$pageNum = isset($_GET['pg']) ? $_GET['pg'] : 1; // Get the current page number from the URL
+$perPage = 10; // Number of accounts to display per page
+$accounts = $account->get_accounts($pageNum, $perPage);
+?>
+                            <div class="nk-content-body">
+                                <div class="nk-block-head nk-block-head-sm">
+                                    <div class="nk-block-between">
+                                        <div class="nk-block-head-content">
+                                            <h3 class="nk-block-title page-title">Пользователи</h3>
+                                            <div class="nk-block-des text-soft">
+                                                <p>Список пользователей.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+    <div class="nk-block">
+        <div class="row g-gs">
+            <div class="col-12">
+                <div class="card card-bordered">
+
+                    <div class="card-inner p-0 border-top">
+                        <div class="nk-tb-list nk-tb-ulist is-compact">
+                            
+                            <div class="nk-tb-item nk-tb-head">
+                                <div class="nk-tb-col"><span class="sub-text">Логин</span></div>
+                                <div class="nk-tb-col"><span class="sub-text">Бонусы</span></div>
+                                <div class="nk-tb-col"><span class="sub-text">E-mail</span></div>
+                                <div class="nk-tb-col"><span class="sub-text">Дата регистрации</span></div>
+                                <div class="nk-tb-col"><span class="sub-text">Последний вход</span></div>
+                                <div class="nk-tb-col"><span class="sub-text">Последний IP</span></div>
+                                
+                                
+                            </div>
+                            <!-- .nk-tb-item -->
+                            <?php foreach ($accounts as $user) : ?>
+                             <div class="nk-tb-item">
+                                
+                                    <div class="nk-tb-col">
+                                        <div class="user-card">
+                                            <div class="user-avatar xs bg-primary">
+                                                <span class="text-uppercase"> De </span>
+                                            </div>
+                                            <div class="user-name">
+                                                <span class="tb-lead"><?php echo $user['username']; ?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="nk-tb-col"> <span><?php echo $user['bonuses']; ?></span> </div>
+                                    <div class="nk-tb-col"> <span><?php echo $user['email']; ?></span> </div>
+                                    <div class="nk-tb-col"> <span><?php echo $user['joindate']; ?></span> </div>
+                                    <div class="nk-tb-col"> <span><?php echo $user['last_login']; ?></span> </div>
+                                    <div class="nk-tb-col"> <span><?php echo $user['last_ip']; ?></span> </div>
+                                    
+                                
+                                </div>
+                                <?php endforeach; ?>
+                        </div>
+                    </div>
+
+<div class="card-inner">
+                        <nav>
+        <ul class="pagination">
+                            
+            
+                            
+                           
+                                        <?php
+    // Calculate total number of pages
+    $totalAccounts = $account->get_total_accounts();
+    $totalPages = ceil($totalAccounts / $perPage);
+
+    // Display pagination links
+    for ($i = 1; $i <= $totalPages; $i++) {
+        $isActive = $i == $pageNum ? "active" : "";
+        echo "<li class='page-item $isActive'><a class='page-link' href='?page=accounts&pg=$i'>$i</a></li>";
+    }
+    ?>
+
+
+                                                                        
+                    </ul>
+    </nav>
+
+                    </div>
+                                            </div>
+                    </div>
+                                            </div>
+                    </div>
+
+
+
+                    <!-- Pagination navigation links -->
+<div class="pagination">
+
+</div>
