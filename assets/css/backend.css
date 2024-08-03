@@ -29413,7 +29413,6 @@ h6 .badge {
 
 .user-avatar, [class^=user-avatar]:not([class*=-group]) {
     align-items: center;
-    background: #de4f16;
     border-radius: 50%;
     color: #fff;
     display: flex;
@@ -29449,7 +29448,6 @@ h6 .badge {
 
 .user-avatar .edit, [class^=user-avatar]:not([class*=-group]) .edit {
     align-items: center;
-    background-color: rgba(30, 30, 30, .5);
     border-radius: 50%;
     bottom: 0;
     color: #fff;

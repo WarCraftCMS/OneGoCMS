@@ -166,7 +166,7 @@ $stats = new Dashboard();
                                 <li class="dropdown user-dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <div class="user-toggle">
-            <div class="user-avatar sm"></div>
+            <img class="user-avatar sm" src="../assets/images/1.png">
             <div class="user-info d-none d-md-block">
                                     <div class="user-status">Администратор</div>
                                 <div class="user-name"><?= $_SESSION['username'] ?></div>
@@ -176,8 +176,7 @@ $stats = new Dashboard();
     <div class="dropdown-menu dropdown-menu-md dropdown-menu-right dropdown-menu-s1">
         <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
             <div class="user-card">
-                <div class="user-avatar">
-                </div>
+                <img class="user-avatar" src="../assets/images/1.png">
                 <div class="user-info">
                     <span class="lead-text"><?= $_SESSION['username'] ?></span>
                     <span class="sub-text"></span>
