@@ -119,7 +119,7 @@ try {
                    </div>
                 </div>
             <!-- END SERVERS -->
-
+<!-- NEWS -->
          <?php
             $newsHome = new news_home();
             $newsList = $newsHome->get_news();
@@ -136,7 +136,7 @@ try {
                     <img class='border-icon-top' src='assets/images/border-icon-top.png' alt='border icon top'>
                 </div>
                <?php if($news['thumbnail'] != null) : ?>
-                <a href='?page=news' target='_blank' class='header__news-item-img'>
+                <a href='<?= $news['url'] ?>' target='_blank' class='header__news-item-img'>
                     <img src='<?= $news['thumbnail'] ?>' alt=''>
                 </a>
                <?php endif; ?>
@@ -164,6 +164,7 @@ try {
                echo '';
             }
             ?>
+<!-- NEWS -->
       </div>
       <!-- Add pagination support -->
    </div>   </div>

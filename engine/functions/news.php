@@ -9,9 +9,9 @@ class news_home {
     }
 
     public function get_news() {
-        $stmt = $this->connection->prepare("SELECT id, title, content, author, created_at, thumbnail FROM news ORDER BY id DESC LIMIT 3");
+        $stmt = $this->connection->prepare("SELECT id, title, content, author, created_at, thumbnail, url FROM news ORDER BY id DESC LIMIT 3");
         $stmt->execute();
-        $stmt->bind_result($id, $title, $content, $author, $created_at, $thumbnail);
+        $stmt->bind_result($id, $title, $content, $author, $created_at, $thumbnail, $url);
         $news = array();
         while ($stmt->fetch()) {
             $news[] = array(
@@ -20,7 +20,8 @@ class news_home {
                 'content' => $content,
                 'author' => $author,
                 'date' => $created_at,
-                'thumbnail' => $thumbnail  // Include the thumbnail field in the news array
+                'thumbnail' => $thumbnail,  // Include the thumbnail field in the news array
+                'url' => $url
             );
         }
         $stmt->close();
