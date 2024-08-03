@@ -179,7 +179,7 @@ $stats = new Dashboard();
                 <img class="user-avatar" src="../assets/images/1.png">
                 <div class="user-info">
                     <span class="lead-text"><?= $_SESSION['username'] ?></span>
-                    <span class="sub-text"></span>
+                    <span class="sub-text"><?= $_SESSION['Email'] ?></span>
                 </div>
             </div>
         </div>

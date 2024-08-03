@@ -66,7 +66,7 @@ $news = new News();
                                                         <div class="form-group">
                                                             <label for="news-title" class="form-label">Картика</label>
                                                             <div class="form-control-wrap">
-                                                                <input type="text" class="form-control" id="news-thumbnail" name="news-thumbnail">
+                                                                <input type="file" class="form-control" id="news-thumbnail" name="image" accept="image/*" required>
                                                             </div>
                                                         </div>
                                                     </div>
