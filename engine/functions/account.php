@@ -16,7 +16,7 @@ class Account
 
     private function get_account()
     {
-        $stmt = $this->connection->prepare("SELECT id, username, email, joindate, last_ip, last_login  FROM account WHERE username = ?");
+        $stmt = $this->connection->prepare("SELECT id, username, email, joindate, last_ip, last_login, bonuses, votes  FROM account WHERE username = ?");
         $stmt->bind_param("s", $this->username);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -27,7 +27,9 @@ class Account
                 "email" => $row['email'],
                 "joindate" => $row['joindate'],
                 "last_ip" => $row['last_ip'],
-                "last_login" => $row['last_login']
+                "last_login" => $row['last_login'],
+                "bonuses" => $row['bonuses'],
+                "votes" => $row['votes']
             );
 
             return $account;
@@ -50,44 +52,6 @@ class Account
         } else {
             // return 0 if no rank is found
             return 'Player';
-        }
-    }
-
-    public function get_bonuses_currency()
-    {
-        $account = $this->get_account();
-        $stmt = $this->connection->prepare("SELECT `bonuses` FROM account WHERE id = ?");
-        $stmt->bind_param("i", $account['id']);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $row = $result->fetch_assoc();
-        $stmt->close();
-
-        if ($row) {
-            return [
-                'bonuses' => $row['bonuses']
-            ];
-        } else {
-            return 0;
-        }
-    }
-
-    public function get_vote_currency()
-    {
-        $account = $this->get_account();
-        $stmt = $this->connection->prepare("SELECT `votes` FROM account WHERE id = ?");
-        $stmt->bind_param("i", $account['id']);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $row = $result->fetch_assoc();
-        $stmt->close();
-
-        if ($row) {
-            return [
-                'votes' => $row['votes']
-            ];
-        } else {
-            return 0;
         }
     }
 
@@ -144,9 +108,9 @@ class Account
         $stmt->close();
 
         if ($row) {
-            return "<font color='green'>Активирован</font>";
+            return "Активирован";
         } else {
-            return "<font color='red'>Не активирован</font>";
+            return "Не активирован";
         }
     }
 
@@ -217,5 +181,17 @@ class Account
     {
         $account = $this->get_account();
         return $account['last_login'];
+    }
+
+    public function get_bonuses()
+    {
+        $account = $this->get_account();
+        return $account['bonuses'];
+    }
+
+    public function get_votes()
+    {
+        $account = $this->get_account();
+        return $account['votes'];
     }
 }

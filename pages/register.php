@@ -9,144 +9,48 @@ if (isset($_SESSION['error'])) {
     unset($_SESSION['error']);
 }
 ?>
-
-<!-- HEADER -->
-    <header class="header header--start">
-        <div class="content-area">
-            <div class="auth">
-
-                                <div class="auth__box">
-                    <div class="auth__box-border">
-                        <img class="auth__box-border-top" src="assets/images/border-icon-top.png" alt="">
-                    </div>
-                    <h2 class="auth__box-title">Создайте аккаунт</h2>
-                    <div class="auth__box-content">
-                
-                <form class="form" method="POST">                
-                    <div class="form__group">
-                        <label>Логин</label>
-                        <div class="form__group-input">
-                                    <input type="text" id="name" name="username" placeholder="Введите свой логин" required>
-                                </div>
-                                    
-                                            </div>
-                    <div class="form__group">
-                        <label>E-mail</label>
-                        <div class="form__group-input">
-                        <input type="text" class="form-control form-control-lg "
-                               id="email" name="email" placeholder="Введите E-Mail" value="">
-                                            </div>
-                    </div>
-
-                    <div class="form__group">
-                        <label>Пароль</label>
-                                <small>( используйте латинские буквы и введите не менее 8 символов )</small>
-                        <div class="form__group-input">
-                            <a tabindex="-1" href="#" class="form-icon form-icon-right passcode-switch is-hidden" data-target="password">
-                                <em class="passcode-icon icon-show icon ni ni-eye"></em>
-                                <em class="passcode-icon icon-hide icon ni ni-eye-off"></em>
-                            </a>
-                            <input type="password" id="password" name="password" placeholder="Введите пароль">
-                                                    </div>
-                    </div>
-
-                    <div class="form__group">
-                                <label>Подтвердите пароль</label>
-                                <small>( используйте латинские буквы и введите не менее 8 символов )</small>
-                        <div class="form__group-input">
-                            <a tabindex="-1" href="#" data-target="password_confirmation">
-                                <em class="passcode-icon icon-show icon ni ni-eye"></em>
-                                <em class="passcode-icon icon-hide icon ni ni-eye-off"></em>
-                            </a>
-                            <input type="password"
-                                   id="password_confirmation" name="password_confirmation"
-                                   placeholder="Введите пароль ещё раз">
-                                                    </div>
-                                                    <br />
-                            <div class="checkbox-block">
-                                <input name="ok" type="checkbox" value="1" checked="checked" id="privacy-policy" required>
-                                <label class="checked" for="privacy-policy">
-                                    <div class="square"></div>
-                                    Я согласен с <a tabindex="-1" href="">пользовательским соглашением</a> &amp;
-                                <a tabindex="-1" href="">политикой конфиденциальности</a>.
-                                </label>
-                            </div>                        </div>
-                            <div class="form__group">
-                                <div class="form__links">
-                                    У Вас уже есть аккаунт? <a href="?page=login">Авторизоваться</a><br></div>
-                            </div>
-                         <div class="form-group">
-                            <button type="submit" name="submit" class="btn btn-primary mx-auto d-block mt-3 change-password-button"><span>Зарегистрироваться</span></button>
-                                                                       
+<div class="hero min-h-screen hero8">
+    <div class="hero-overlay bg-opacity-70"></div>
+    <div class="hero-content text-center text-neutral-content">
+        <div class="container">
+            <div class="max-w-full mt-36 2xl:pt-0">
+                <h1 class="mb-5 text-4xl font-bold text-white text-shadow_dark">
+                    Регистрация
+                </h1>
+                <div class="text-white bg-slate-950/60 p-9 rounded-lg text-left leading-loose">
+                    <form method="post" action="">
+                        <div class="mt-2">
+                            <label class="input input-bordered flex items-center gap-2 bg-zinc-900/40">
+                                <span class="mr-2 text-center">Логин</span>
+                                <input type="text" id="username" name="username" class="grow w-48 md:w-auto" placeholder="Введите свой логин" required>
+                            </label>
                         </div>
-                         <p class="msg none"></p>
-
-                         
-                </form>
-                        
-
-                    </div>
-                </div>
-                
-                <div class="auth__box">
-                    <div class="auth__box-border">
-                        <img class="auth__box-border-top" src="../template/indra/images/border-icon-top.png" alt="">
-                    </div>
-                    <h2 class="auth__box-title">Скачай файлы</h2>
-                    <div class="auth__box-content">
-                        <div class="download">
-                            <a class="download__button" href="https://wow.net.kg/Launcher.zip">
-                                <img src="assets/images/start__item-download.png">
-                                <div>
-                                    <span>Игровой Лаунчер v1.0</span>
-                                </div>
-                            </a>
-                            <a class="download__button" href="https://wow.net.kg/world-of-warcraft-wrath-of-the-lich-king.torrent">
-                                <img src="assets/images/start__item-download.png">
-                                <div>
-                                    <span>Скачать клиент игры</span>
-                                    <span>Торрент файл</span>
-                                </div>
-                            </a>
-
-                            <h3>КАК НАЧАТЬ ИГРАТЬ В WoW 3.3.5?</h3>
-
-<ol>
-    <li>Создайте мастер аккаунт</li>
-    <li>Войдите в личный кабинет</li>
-    <li>Скачайте Launcher и распакуйте его в любое для вас место</li>
-    <li>Запустите Launcher и укажите папку с клиентов wow 3.3.5</li>
-</ol>
+                        <div class="mt-2">
+                            <label class="input input-bordered flex items-center gap-2 bg-zinc-900/40">
+                                <span class="mr-2 text-center">E-mail</span>
+                                <input type="email" id="email" name="email" class="grow w-48 md:w-auto" placeholder="Введите E-Mail"  required>
+                            </label>
                         </div>
+                        <div class="mt-2">
+                            <label class="input input-bordered flex items-center gap-2 bg-zinc-900/40">
+                                <span class="mr-2 text-center">Пароль</span>
+                                <input type="password" id="password" name="password" class="grow w-48 md:w-auto" placeholder="Введите пароль"  required>
+                            </label>
+                        </div>
+                        <div class="mt-2">
+                            <label class="input input-bordered flex items-center gap-2 bg-zinc-900/40">
+                                <span class="mr-2 text-center">Подтвердите пароль</span>
+                                <input type="password" id="password_confirmation" name="password_confirmation" class="grow w-48 md:w-auto" placeholder="Введите пароль ещё раз"  required>
+                            </label>
+                        </div>
+                        <div class="mx-auto text-center">
+                            <button type="submit" name="submit" class="btn mx-auto bg-blue-500/70 hover:bg-blue-700 text-white mt-2">
+                                Зарегистрироваться
+                            </button>
+                        </div>
+                        </form>                                    
                     </div>
-                </div>
-
             </div>
         </div>
-    </header>
-    <!-- END HEADER -->
-
-<!--<div class="custom-container">
-    <div class="custom-card mx-auto mt-4">
-        <div class="card-body px-4 py-3">
-            <h2 class="text-center title text-white mb-4" style="color:var(--title-text)!important;">REGISTER ACCOUNT</h2>
-            <hr class="custom-hr mb-4" style="border-color: var(--main-border);">
-            <form method="post">
-                <div class="form-group mx-auto mt-2">
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
-                </div>
-                <div class="form-group mx-auto mt-2">
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
-                </div>
-                <div class="form-group mx-auto mt-2">
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
-                </div>
-                <div class="form-group mx-auto mt-2">
-                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm password" required>
-                </div>
-                <button type="submit" name="submit" class="btn btn-primary mx-auto d-block mt-3 change-password-button" style="width:43%;">Register Account</button>
-            </form>
-            <p class="text-center text-white mt-3">Already have an account? Login <a href="?page=login" style="color: var(--page-text)">Here</a></p>
-        </div>
     </div>
-</div>-->
+</div>

@@ -1,0 +1,212 @@
+.hero1 {
+  background-image: url("../images/bg1.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+.hero2 {
+  background-image: url("../images/bg-xalatath.webp");
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+.hero3 {
+  background-image: url("../images/bg-dis.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+.hero4 {
+  background-image: url("../images/bg2.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+.hero5 {
+  background-image: url("../images/bg3.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+.hero6 {
+  background-image: url("../images/bg4.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+.hero7 {
+  background-image: url("../images/bg5.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+.hero8 {
+  background-image: url("../images/bg6.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+.hero9 {
+  background-image: url("../images/bg7.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+.hero10 {
+  background-image: url("../images/bg10.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+.hero11 {
+  background-image: url("../images/bg11.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+.hero12 {
+  background-image: url("../images/bg12.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+.hero13 {
+  background-image: url("../images/bg13.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+.hero14 {
+  background-image: url("../images/bg14.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+.hero15 {
+  background-image: url("../images/bg15.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+.hero16 {
+  background-image: url("../images/bg16.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+.hero17 {
+  background-image: url("../images/bg17.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+.hero18 {
+  background-image: url("../images/bg18.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+.hero-404 {
+  background-image: url("../images/bg404.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+.hero-500 {
+  background-image: url("../images/bg500.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+iframe {
+  margin: auto;
+}
+.text-shadow_dark {
+  text-shadow: 1px 1px 1px black, 0 0 1px black, 0 1px 1px black,
+    1px 0px 1px black;
+}
+
+.text-shadow_none {
+  text-shadow: none;
+}
+.navbar {
+  position: absolute;
+  z-index: 2;
+}
+
+.tabs-lifted
+  > .tab:is(.tab-active, [aria-selected="true"]):not(.tab-disabled):not(
+    [disabled]
+  ),
+.tabs-lifted > .tab:is(input:checked) {
+  background-color: rgb(55 48 163 / 0.15);
+}
+
+.tab-content {
+  margin-top: 0px;
+}
+
+@font-face {
+  font-family: "Popins";
+  src: url("fonts/Poppins-Regular.ttf");
+}
+
+.class-paladin {
+  color: #f58cba;
+}
+
+.class-warrior {
+  color: #c79c6e;
+}
+
+.class-hunter {
+  color: #abd473;
+}
+
+.class-rogue {
+  color: #fff569;
+}
+
+.class-priest {
+  color: #ffffff;
+}
+
+.class-deathknight {
+  color: #c41f3b;
+}
+
+.class-shaman {
+  color: #0070de;
+}
+
+.class-mage {
+  color: #69ccf0;
+}
+
+.class-warlock {
+  color: #9482c9;
+}
+
+.class-druid {
+  color: #ff7d0a;
+}

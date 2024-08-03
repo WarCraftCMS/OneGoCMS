@@ -16,59 +16,52 @@
    
    ?>
 
-<!-- HEADER -->
-    <header class="header header--auth">
-        <div class="content-area">
-            <div class="auth">
-                <div class="auth__box auth__box--big">
-                    <div class="auth__box-border">
-                        <img class="auth__box-border-top" src="../template/indra/images/border-icon-top.png" alt="">
-                    </div>
-                    <h2 class="auth__box-title">Вход в аккаунт</h2>
-                    <div class="auth__box-content">
 
-                        <form class="form" method="POST">                                        
-                                            <div class="form-group">
-                                                <div class="form__group">
-                                                    <label>Логин</label>
-                                                <div class="form__group-input">
-                                                <input type="text" class="form-control form-control-lg"
-                                                       id="username" name="username" placeholder="Введите Логин" value="">
-                                            </div>
-                                            </div>
-                                           <br />
-                                            <div class="form__group">
-                                                <div class="form-label-group">
-                                                    <label>Пароль</label>
-                                                    <small>( используйте латинские буквы и введите не менее 8 символов )</small>
-                                                <div class="form__group-input">
-                                                    <a tabindex="-1" href="#" class="form-icon form-icon-right passcode-switch is-hidden" data-target="password">
-                                                        <em class="passcode-icon icon-show icon ni ni-eye"></em>
-                                                        <em class="passcode-icon icon-hide icon ni ni-eye-off"></em>
-                                                    </a>
-                                                    <input type="password" name="password" placeholder="Введите свой пароль" required>
-                                                    
-                                                </div>
-                                            </div>
-                                            </div>
-                                            <br />
-                                                <div class="form__group">
-                                                   <button type="submit" name="submit" class="btn btn-primary btn-block d-block mt-3 change-password-button"><span>Авторизоваться</span></button>
-                                                   
-                                                </div>
-                                                <br />
-                                                <div class="form__group">
-                                <div class="form__links">
-                                    Нет аккаунта? <a href="?page=register">Зарегистрироваться</a><br>
-                                    Забыли пароль? <a class="link link-primary link-sm" tabindex="-1" href="?page=changepasswordp">Восстановить</a><br>
-                                </div>
-                            </div>
-                            <p class="msg none"></p>
-                                        </form>
 
+    <div class="hero min-h-screen hero4">
+    <div class="hero-overlay bg-opacity-70"></div>
+    <div class="hero-content text-center text-neutral-content">
+        <div class="container">
+            <div class="max-w-full mt-36 2xl:pt-0">
+                <h1 class="mb-5 text-4xl font-bold text-white text-shadow_dark">
+                    Login to your account
+                </h1>
+                <div class="text-white bg-slate-950/60 p-9 rounded-lg text-left leading-loose">
+                <form class="form" method="POST">  
+                        <input type="hidden" name="xc_cv2" value="db9d5fca33cfe05e67440626abc4d5ee">                    <div>
+                        <label class="input input-bordered flex items-center gap-2 bg-zinc-900/40">
+                            <span class="mr-2 text-center"><i class="fa-regular fa-user mr-1"></i> Username</span>
+                            <input type="text" name="username" id="username" class="grow w-48 md:w-auto" placeholder="Введите Логин" />
+                        </label>
                     </div>
+                    <div class="mt-2">
+                        <label class="input input-bordered flex items-center gap-2 bg-zinc-900/40">
+                            <span class="mr-2 text-center"><i class="fa-regular fa-key mr-1"></i> Password</span>
+                            <input type="password" name="password" class="grow w-48 md:w-auto" placeholder="Введите свой пароль" />
+                        </label>
+                    </div>
+                    <div class="mx-auto text-center mt-2 items-center">
+                        <div class="cf-turnstile mx-auto" data-sitekey="0x4AAAAAAAaFmg0qOjUrGNSk"></div>                    </div>
+                    <div class="mx-auto text-center">
+                        <button type="submit" name="submit" class="btn mx-auto bg-blue-500/70 hover:bg-blue-700 text-white mt-2">
+                            Авторизоваться
+                        </button>
+                    </div>
+                    <div style="display:none"><label>What is your code?</label><input type="text" name="code_v2" value=""></div></form>
+                </div>
+                <div class="divider text-center mt-5">
+                    OR
+                </div>
+                <div class="mx-auto text-center mt-5">
+                    <a href="https://masterwow.net/sign-up" class="btn bg-teal-500/70 hover:bg-teal-700 text-white">
+                        Register
+                    </a>
+                    <a href="https://masterwow.net/restore-password"
+                        class="btn bg-rose-500/70 hover:bg-rose-700 text-white">
+                        Forgot Password
+                    </a>
                 </div>
             </div>
         </div>
-    </header>
-    <!-- END HEADER -->          
+    </div>
+</div>

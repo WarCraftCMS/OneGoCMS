@@ -2,6 +2,6 @@
 // Improve the logout functionality later
 
 session_destroy();
-header("Location: ?page=home");
+header("Location: ../?page=home");
 exit;
 ?>

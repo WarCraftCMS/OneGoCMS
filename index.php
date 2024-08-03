@@ -30,103 +30,101 @@
    $config_object = new gen_config();
    $config = $config_object->get_config();
    ?>
+
 <!DOCTYPE html>
-<html lang="en">
-   <head>
-      <meta charset="UTF-8" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>OneGo WoW</title>
-      
-    <link rel="shortcut icon" href="assets/images/favicon.png">
-    <link rel="apple-touch-icon" sizes="256x256" href="assets/images/favicon.png">
+<html class="bg-custom-dark1">
 
-    <link rel="stylesheet" href="assets/css/all.min.css" type="text/css">
-    <link rel="stylesheet" href="assets/css/main.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/slick.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/slick-theme.css">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0WKXNHKSLR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-0WKXNHKSLR');
+    </script>
 
-    <link rel="stylesheet" type="text/css" href="assets/css/addition.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="assets/css/main.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="assets/css/all.css" rel="stylesheet" />
+    <title>OneGo WoW - Free WoW Private Haste Server (2024) | Home</title>
 
-   </head>
-   <body>
-<div class="wrapper">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "url": "",
+        "logo": "",
+        "contactPoint": [{
+            "@type": "ContactPoint",
+            "email": "support@masterwow.net",
+            "contactType": "customer service",
+            "availableLanguage": ["en"]
+        }],
+        "sameAs": [
+            ""
+        ]
+    }
+    </script>
+</head>
 
-    <!-- NAVIGATION -->
-<nav class="nav">
-    <div class="content-area">
-
-        <a href="/" class="nav__logo">
-            <img src="assets/images/logo.png" alt="logo">
-        </a>
-
-        <div class="nav__links">
-
-    <div class="nav__item">
-        <a href="/" class="nav__item-text">
-            <span>Аккаунт</span>
-        </a>
-    </div>
-
-    <div class="nav__item">
-        <a href="/Launcher.zip" class="nav__item-text">
-            <span>Лаунчер</span>
-        </a>
-    </div>
-
-    <div class="nav__item">
-        <div class="nav__item-text">
-        <a href="https://discord.gg/QD6x24Re" class="nav__item-text">
-            <span>Дискорд</span>
-        </a>
-        </div>
-    </div>
-
-
-</div>
-
-
-        <div class="langs flex-cc">
-</div>
+<body class="bg-custom-dark1">
+    <div class="container mx-auto">
+        <div class="container top-3 md:top-8 navbar bg-base-100 rounded-lg bg-indigo-950/90 z-auto">
+            <div class="w-full hidden md:flex">
+                <div class="flex-1">
+                    <a href="?page=home" class="btn btn-ghost hover:bg-indigo-900/50 text-xl text-white">
+                        <img src="https://masterwow.net/images/logo_sm.webp" alt="logo" class="h-10" />
+                        OneGo WoW
+                    </a>
+                </div>
+                <div class="flex-none">
+                    <ul class="menu menu-horizontal px-1">
+                        <li>
          <?php // Check if the user is logged in
             if (!isset($_SESSION['username'])) {
                 // User is logged in, display the "Once logged in" box
             ?>
-        <a href="?page=login" class="nav__auth flex-cc">
-        <i class="fas fa-sign-in-alt"></i>
-        <span>Кабинет</span>
-    </a>
-    <a href="?page=register" class="gray-btn nav__account-btn">
-        <i class="fas fa-user-plus"></i>
-        <span>Создать аккаунт</span>
-    </a>
+                            <details>
+                                <summary class="hover:bg-indigo-600 hover:text-white focus:bg-indigo-700">
+                                    Аккаунт
+                                </summary>
+                                <ul class="p-2 bg-indigo-950 rounded-t-none min-w-40">
+                                    <li><a href="?page=login" class="hover:bg-indigo-900/80">Вход</a></li>
+                                    <li><a href="?page=register" class="hover:bg-indigo-900/80">Регистрация</a></li>
+                                </ul>
+                            </details>
          <?php
             } else {
                 ?>
-        <div class="nav__panel">
-        <a href="?page=account" class="gray-btn nav__account-btn">
-            <i class="fa-solid fa-user"></i>
-            <span><?= $_SESSION['username'] ?></span>
-        </a>
-        <a href="?page=logout" class="nav__panel-out">
-            <i class="fa-solid fa-plus"></i>
-        </a>
-    </div>
+                         <details>
+                                <summary class="hover:bg-indigo-600 hover:text-white focus:bg-indigo-700">
+                                    Аккаунт
+                                </summary>
+                                <ul class="p-2 bg-indigo-950 rounded-t-none min-w-40">
+                                    <li><a href="?page=account" class="hover:bg-indigo-900/80">Кабинет</a></li>
+                                    <li><a href="?page=logout" class="hover:bg-indigo-900/80">Выход</a></li>
+                                </ul>
+                            </details>
          <?php
             }
             ?>
-
-
-        <div class="open-main-menu">
-            <div class="open-main-menu__item"></div>
+                        </li>
+                        <li>
+                            <a href="" class="bg-rose-700 hover:bg-rose-900 text-white mx-2">
+                                Как начать играть?
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-
     </div>
-</nav>
-<!-- END NAVIGATION -->
-      
-      <!-- Content Starts -->
-      <?php
+
+                  <?php
          $page = $_GET['page'] ?? 'home'; // Default to home if no page parameter is set
          $page_parts = explode('/', $page);
          
@@ -143,33 +141,37 @@
              include 'pages/404.php';
          }
          ?>
-        </div> 
 
-    <footer class="footer">
-            <div class="content-area flex-ss">
-        <div class="footer__cpr">
-            <div class="footer__cpr-years">© 2024 OneGo WoW</div>
-            
-<div class="footer__cpr-text">World of Warcraft © и Blizzard Entertainment © являются товарными знаками или зарегистрированными товарными знаками Blizzard Entertainment в США и/или других странах. Настоящие условия и все связанные с ними материалы, логотипы и изображения защищены авторским правом © Blizzard Entertainment. Этот сайт никоим образом не связан и не одобрен Blizzard Entertainment ©</div>
-          
-</footer>
 
-</div>
+    <footer class="footer p-10 bg-slate-950 text-base-content">
+        <aside class="text-center mx-auto">
+            <img src="assets/images/logo_sm.webp" alt="logo" class="h-20 mx-auto" />
+            <p>
+                Powered and Designed by
+                <a href="https://masterking32.com" target="_blank" class="text-amber-600">
+                    MasterkinG32
+                </a>
+                <br />&copy; 2024 MasterWoW. All rights reserved.
+            </p>
+        </aside>
+        <nav>
+            <h6 class="footer-title">Services</h6>
+            <a href="https://masterwow.net/how-to-play" class="link link-hover">How to Play</a>
+        </nav>
+        <nav>
+            <h6 class="footer-title">Account</h6>
+            <a href="https://masterwow.net/sign-in" class="link link-hover">Sign In</a>
+            <a href="https://masterwow.net/sign-up" class="link link-hover">Sing Up</a>
+            <a href="https://masterwow.net/restore-password" class="link link-hover">Restore Password</a>
+            <a href="https://masterwow.net/account-management" class="link link-hover">Account management</a>
+        </nav>
+        <nav>
+            <h6 class="footer-title">MasterWoW</h6>
+            <a href="https://masterwow.net/contact" class="link link-hover">Contact</a>
+            <a href="https://masterwow.net/terms-of-use" class="link link-hover">Terms of use</a>
+            <a href="https://masterwow.net/privacy-policy" class="link link-hover">Privacy policy</a>
+        </nav>
+    </footer>
+</body>
 
-<!-- SCRIPTS -->
-<script>
-function ChangeColor(Element) {
-    if (Element.style.color == 'red') Element.style.color = 'red';
-    else Element.style.color = 'red';
-    return false;
-}
-</script>
-<!-- SCRIPTS -->
-<script src="assets/js/onego/jquery.min.js"></script>
-<script src="assets/js/onego/navigation.js"></script>
-<script src="assets/js/onego/slick.js" type="text/javascript"></script>
-<script src="assets/js/onego/MVisionToggleClass.js"></script>
-<script src="assets/js/onego/timer.js"></script>
-<script src="assets/js/onego/scripts.js"></script>
-   </body>
 </html>
