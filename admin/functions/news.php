@@ -36,18 +36,20 @@ class News {
         return $result;
     }
 
-    public function add_news($title, $content, $author, $thumbnail, $url) {
-        $stmt = $this->connection->prepare("INSERT INTO news (title, content, author, created_at, thumbnail, url) VALUES (?, ?, ?, NOW(), ?, ?)");
-        $stmt->bind_param("sssss", $title, $content, $author, $thumbnail, $url);
-        if ($stmt->execute()) {
-            $news_id = $this->connection->insert_id;
-            $this->create_news_page($news_id, $title, $content, $author, $url);
-            $stmt->close();
-            return true;
-        }
+    public function add_news($title, $content, $url, $thumbnail, $author) 
+    {
+    $url = $this->generate_url($url);
+    $stmt = $this->connection->prepare("INSERT INTO news (title, content, url, created_at, thumbnail, author) VALUES (?, ?, ?, NOW(), ?, ?)");
+    $stmt->bind_param("sssss", $title, $content, $url, $thumbnail, $author);
+    if ($stmt->execute()) {
+        $news_id = $this->connection->insert_id;
+        $this->create_news_page($news_id, $title, $content, $url, $thumbnail, $author);
         $stmt->close();
-        return false;
+        return true;
     }
+    $stmt->close();
+    return false;
+}
 
     public function update_news($id, $title, $content) {
         $stmt = $this->connection->prepare("UPDATE news SET title = ?, content = ?, created_at = NOW() WHERE id = ?");
@@ -56,25 +58,35 @@ class News {
         $stmt->close();
     }
 
-    private function create_news_page($news_id, $title, $content, $author, $url) {
-        $news_folder = 'pages/news'; // Путь
+
+    private function generate_url($url) {
+        $slug = preg_replace('/[^A-Za-z0-9а-яА-ЯёЁ-]+/', '-', strtolower(trim($url)));
+        $slug = preg_replace('/-+/', '-', $slug);
+        $slug = trim($slug, '-');
+
+    return '../pages/news/' . urlencode($slug);
+}
+
+    private function create_news_page($title, $content, $thumbnail, $url, $author) {
+        $news_folder = '../pages/news/'; // Путь
         if (!is_dir($news_folder)) {
             mkdir($news_folder, 0755, true);
         }
 
 // Имя файла для страницы новости
-        $filename = $news_folder . 'news_' . $news_id . '.php';
+        $filename = $news_folder . basename($url) . '.php';
 // Содержимое страницы
         $page_content = "<?php
 ";
         $page_content .= "\$title = '{$title}';\n";
         $page_content .= "\$content = '{$content}';\n";
         $page_content .= "\$author = '{$author}';\n";
+        $page_content .= "\$thumbnail = '{$thumbnail}';\n";
         $page_content .= "\$url = '{$url}';\n";
         $page_content .= "?>\n<!DOCTYPE html>\n<html>\n<head>\n<title><?php echo \$title; ?></title>\n</head>\n<body>\n";
         $page_content .= "<h1><?php echo \$title; ?></h1>\n";
         $page_content .= "<p><strong>Автор:</strong> <?php echo \$author; ?></p>\n";
-        $page_content .= "<p><strong>Ссылка:</strong> <a href='<?php echo \$url; ?>'>Читать больше</a></p>\n"
+        $page_content .= "<p><strong>Ссылка:</strong> <a href='<?php echo \$url; ?>'>Читать больше</a></p>\n";
         $page_content .= "<div><?php echo \$content; ?></div>\n";
         $page_content .= "</body>\n</html>";
 

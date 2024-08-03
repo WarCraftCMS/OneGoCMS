@@ -120,50 +120,54 @@ try {
                 </div>
             <!-- END SERVERS -->
 <!-- NEWS -->
-         <?php
-            $newsHome = new news_home();
-            $newsList = $newsHome->get_news();
-            
-            $count = 0;
-            
-            foreach ($newsList as $news) :
-               if ($count % 3 === 0) {
-                  echo '<div class="header__news">';
-               }
-            ?>
-            <div class='header__news-item'>
-                <div class='header__news-item-border'>
-                    <img class='border-icon-top' src='assets/images/border-icon-top.png' alt='border icon top'>
-                </div>
-               <?php if($news['thumbnail'] != null) : ?>
-                <a href='<?= $news['url'] ?>' target='_blank' class='header__news-item-img'>
-                    <img src='<?= $news['thumbnail'] ?>' alt=''>
-                </a>
-               <?php endif; ?>
-               <div class="header__news-item-date">
-                    <?= $news['date'] ?>
-               </div>
-               <div class='header__news-item-title'>
-                    <?= $news['title'] ?>
-                </div>
-                <br />
-                <div class="header__news-item-text">
-                    <?= $news['content'] ?>
-                </div>
+        <?php
+$newsHome = new news_home();
+$newsList = $newsHome->get_news();
+$count = 0;
 
-                </div>
-                      
-         <?php
-            $count++;
-            if ($count % 3 === 0) {
-               echo '</div>';
-            }
-            endforeach;
+if (!empty($newsList)) {
+    foreach ($newsList as $news) {
+        if ($count % 3 === 0) {
+            echo '<div class="header__news">';
+        }
+?>
+        <div class='header__news-item'>
+            <div class='header__news-item-border'>
+                <img class='border-icon-top' src='assets/images/border-icon-top.png' alt='border icon top'>
+            </div>
             
-            if ($count % 3 !== 0) {
-               echo '';
-            }
-            ?>
+            <?php if (!empty($news['thumbnail'])) : ?>
+                <a href='<?= htmlspecialchars($news['url']) ?>' target='_blank' class='header__news-item-img'>
+                    <img src='<?= htmlspecialchars($news['thumbnail']) ?>' alt=''>
+                </a>
+            <?php endif; ?>
+
+            <div class="header__news-item-date">
+                <?= htmlspecialchars(date('d.m.Y', strtotime($news['created_at']))) ?>
+            </div>
+            <div class='header__news-item-title'>
+                <?= htmlspecialchars($news['title']) ?>
+            </div>
+            <br />
+            <div class="header__news-item-text">
+                <?= htmlspecialchars($news['content']) ?>
+            </div>
+        </div>
+
+<?php
+        $count++;
+        if ($count % 3 === 0) {
+            echo '</div>';
+        }
+    }
+
+    if ($count % 3 !== 0) {
+        echo '</div>';
+    }
+} else {
+    echo '<p>Нет новостей для отображения.</p>';
+}
+?>
 <!-- NEWS -->
       </div>
       <!-- Add pagination support -->

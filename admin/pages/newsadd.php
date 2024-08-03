@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['submit'])) {
     $news = new News();
-    $news->add_news($_POST['news-title'], $_POST['news-content'], $_SESSION['username']);
+    $news->add_news($_POST['news-title'], $_POST['news-content'], $_POST['news-url'],  $_POST['news-thumbnail'], $_SESSION['username']);
 }
 
 if (isset($_POST['edit-submit'])) {
@@ -47,6 +47,26 @@ $news = new News();
                                                             <label for="news-title" class="form-label">Заголовок</label>
                                                             <div class="form-control-wrap">
                                                                 <input type="text" class="form-control" id="news-title" name="news-title">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row g-4">
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group">
+                                                            <label for="news-title" class="form-label">Ссылка</label>
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" class="form-control" id="news-url" name="news-url">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row g-4">
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group">
+                                                            <label for="news-title" class="form-label">Картика</label>
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" class="form-control" id="news-thumbnail" name="news-thumbnail">
                                                             </div>
                                                         </div>
                                                     </div>
