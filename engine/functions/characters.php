@@ -164,7 +164,7 @@ class Character
             $silver_image = 'assets/images/fraction/silver.webp';
             $copper_image = 'assets/images/fraction/copper.webp';
             
-            $guild_text = !empty($guild_name) ? $guild_name : 'Не состоит в гильдии';
+            $guild_text = !empty($guild_name) ? $guild_name : 'Без гильдии';
 
         $character = array(
             'guid' => $guid,
