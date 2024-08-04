@@ -23,7 +23,8 @@ class Character
             c.`money`, 
             c.`totalHonorPoints`, 
             c.`arenaPoints`, 
-            c.`totalKills`,  
+            c.`totalKills`, 
+            c.`rankPoints`, 
             c.`online`,
             (SELECT COUNT(*) FROM character_achievement WHERE guid = c.guid) AS achievement_count,
             (SELECT g.`name` FROM guild_member gm JOIN guild g ON gm.guildId = g.guildId WHERE gm.guid = c.guid) AS guild_name
@@ -39,7 +40,7 @@ class Character
 
     $stmt->bind_param("i", $account_id);
     $stmt->execute();
-    $stmt->bind_result($guid, $name, $race, $class, $gender, $level, $money, $totalHonorPoints, $arenaPoints, $totalKills, $online, $achievement_count, $guild_name);
+    $stmt->bind_result($guid, $name, $race, $class, $gender, $level, $money, $totalHonorPoints, $arenaPoints, $totalKills, $rankPoints, $online, $achievement_count, $guild_name);
     
     $characters = array();
 
@@ -128,6 +129,99 @@ class Character
         11 => 'Дреней',
     );
 
+    if ($rankPoints <= 0)
+        $rankLevel = 0;
+    elseif ($rankPoints < 250)
+        $rankLevel = 1;
+    elseif ($rankPoints < 500)
+        $rankLevel = 2;
+    elseif ($rankPoints < 1000)
+        $rankLevel = 3;
+    elseif ($rankPoints < 2000)
+        $rankLevel = 4;
+    elseif ($rankPoints < 4000)
+        $rankLevel = 5;
+    elseif ($rankPoints < 8000)
+        $rankLevel = 6;
+    elseif ($rankPoints < 16000)
+        $rankLevel = 7;
+    elseif ($rankPoints < 32000)
+        $rankLevel = 8;
+    elseif ($rankPoints < 60000)
+        $rankLevel = 9;
+    elseif ($rankPoints < 80000)
+        $rankLevel = 10;
+    elseif ($rankPoints < 100000)
+        $rankLevel = 11;
+    elseif ($rankPoints < 125000)
+        $rankLevel = 12;
+    elseif ($rankPoints < 150000)
+        $rankLevel = 13;
+    elseif ($rankPoints < 175000)
+        $rankLevel = 14;
+    elseif ($rankPoints < 200000)
+        $rankLevel = 15;
+    elseif ($rankPoints < 225000)
+        $rankLevel = 16;
+    elseif ($rankPoints < 250000)
+        $rankLevel = 17;
+    elseif ($rankPoints < 275000)
+        $rankLevel = 18;
+
+    $rankIcon = array(
+        0 => 'Нет звания',
+        1 => 'Рядовой',
+        2 => 'Капрал',
+        3 => 'Сержант',
+        4 => 'Старший сержант',
+        5 => 'Старшина',
+        6 => 'Рыцарь',
+        7 => 'Рыцарь-лейтенант',
+        8 => 'Рыцарь-капитан',
+        9 => 'Рыцарь-защитник',
+        10 => 'Лейтенант-командор',
+        11 => 'Командор',
+        12 => 'Маршал',
+        13 => 'Фельдмаршал',
+        14 => 'Главнокомандующий',
+        15 => 'Городской Защитник',
+        16 => 'Страж',
+        17 => 'Богоподобный',
+        18 => 'Королевский гвардеец',
+        19 => 'Страж Короля',
+        20 => 'Страж Короля',
+        21 => 'Страж Короля',
+        22 => 'Страж Короля',
+        23 => 'Страж Короля',
+        24 => 'Страж Короля',
+        25 => 'Страж Короля',
+        26 => 'Страж Короля',
+        27 => 'Страж Короля',
+        28 => 'Страж Короля',
+        29 => 'Страж Короля',
+        30 => 'Страж Короля',
+        31 => 'Страж Короля',
+        32 => 'Страж Короля',
+        33 => 'Страж Короля',
+        34 => 'Страж Короля',
+        35 => 'Страж Короля',
+        36 => 'Страж Короля',
+        37 => 'Страж Короля',
+        38 => 'Страж Короля',
+        39 => 'Страж Короля',
+        40 => 'Страж Короля',
+        41 => 'Страж Короля',
+        42 => 'Страж Короля',
+        43 => 'Страж Короля',
+        44 => 'Страж Короля',
+        45 => 'Страж Короля',
+        46 => 'Страж Короля',
+        47 => 'Страж Короля',
+        48 => 'Страж Короля',
+        49 => 'Страж Короля',
+        50 => 'Страж Короля'
+      );
+
     while ($stmt->fetch()) {
         if (in_array($race, [1, 3, 4, 7, 11])) {
             $faction = 'assets/images/fraction/alliance.webp';
@@ -183,7 +277,8 @@ class Character
             'silver_image' => $silver_image,
             'copper_image' => $copper_image,
             'copper_image' => $copper_image,
-            'guild_name' => $guild_text
+            'guild_name' => $guild_text,
+            'rankPoints' => $rankLevel
         );
         
         $characters[] = $character;

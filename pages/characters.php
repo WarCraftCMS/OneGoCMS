@@ -66,7 +66,7 @@ if (isset($_POST['change_password'])) {
                                             <span><img class="h-5 inline rounded-full" src="<?= $character['honor_image']; ?>" class="mr-2"> <?= $character['totalHonorPoints']; ?></span>
                                         </td>
                                         <td class='text-center'>
-                                            <span><img class="h-5 inline rounded-full" src="" class="mr-2"> </span>
+                                            <span><img class="h-5 inline rounded-full" src="" class="mr-2"> <?= $character['rankPoints']; ?></span>
                                         </td>
                                         <td class='text-center'>
                                             <span><img class="h-5 inline rounded-full" src="<?= $character['achievement_image']; ?>" class="mr-2"> <?= $character['achievement_count']; ?></span>
