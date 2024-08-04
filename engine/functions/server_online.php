@@ -189,7 +189,9 @@ class Online
                 'class_color' => $classColors[$class],
                 'guild_name' => $guild_text,
                 'rank' => $rank,
-                'rank_title' => $rank_title
+                'rank_title' => $rank_title,
+                'rankPoints' => $rankPoints
+
             );
 
             $characters[] = $character;

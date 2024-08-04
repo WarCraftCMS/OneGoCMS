@@ -194,7 +194,7 @@
                                                 </td>
                                                 <td class="text-center text-white"><?= htmlspecialchars($character['level']); ?></td>
                                                 <td class="text-center text-white"><?= htmlspecialchars($character['guild_name']); ?></td>
-                                                <td class="text-center text-white"><?= htmlspecialchars($character['rank']); ?></td>
+                                                <td class="text-center text-white"><?= htmlspecialchars($character['rankPoints']); ?></td>
                                             </tr>
                                     <?php
                                         }
