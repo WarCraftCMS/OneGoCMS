@@ -161,49 +161,52 @@
                 <div class="w-full lg:w-4/6 mx-auto">
                     <div role="tablist" class="tabs tabs-lifted">
                         <input type="radio" name="my_tabs_2" role="tab" class="tab text-xs sm:text-md"
-                            aria-label="Play time" checked />
+                            aria-label="Онлайн Игроки" checked />
                         <div role="tabpanel" class="tab-content bg-indigo-800/15 rounded-box p-6">
                             <div class="overflow-x-scroll">
                                 <table class="table-auto sm:table mx-auto">
                                     <thead>
                                         <tr>
-                                            <th class="text-center text-white">Rank</th>
-                                            <th class="text-center text-white">Name</th>
+                                            <th class="text-center text-white">№</th>
+                                            <th class="text-center text-white">Имя</th>
                                             <th class="text-center text-white sm:block hidden">Type</th>
-                                            <th class="text-center text-white">Status</th>
-                                            <th class="text-center text-white">Play Time</th>
+                                            <th class="text-center text-white">Уровень</th>
+                                            <th class="text-center text-white">Гильдия</th>
+                                            <th class="text-center text-white">Хонор</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                    <tr class="hover:bg-indigo-900/30">
-                                            <th class="text-center text-white">1</th>
-                                            <td class="text-center">
-                                                <span
-                                                    class="text-white class-paladin">Ikki</span>
-                                            </td>
-                                            <td class="text-center text-white sm:block hidden">
-                                                <div class="tooltip"
-                                                    data-tip="Horde - Blood Elf - Paladin">
-                                                    <img class="h-5 inline"
-                                                        src="https://masterwow.net/images/factions/horde.webp" />
-                                                    <img class="h-5 inline rounded-full"
-                                                        src="https://masterwow.net/images/races/bloodelf_male.webp" />
-                                                    <img class="h-5 inline rounded-full"
-                                                        src="https://masterwow.net/images/classes/paladin.webp" />
+         <?php
+                                    $onlineClass = new Online();
+                                    $onlineCharacters = $onlineClass->get_online_characters();
+                                    $rank = 1;
+                                    if (!empty($onlineCharacters)) {
+                                        foreach ($onlineCharacters as $character) {
+                                    ?>
+                                            <tr class="hover:bg-indigo-900/30">
+                                                <td class="text-center text-white"><?= $rank++; ?></td>
+                                                <td class="text-center text-white"><font color="<?= htmlspecialchars($character['class_color']); ?>"><?= htmlspecialchars($character['name']); ?></font></td>
+                                                <td class="text-center text-white">
+                                                <div class="tooltip" data-tip="<?= htmlspecialchars($character['faction_text']); ?> - <?= htmlspecialchars($character['class_name']); ?> - <?= htmlspecialchars($character['race_name']); ?>">
+                                                    <img class="h-5 inline" src="<?= htmlspecialchars($character['faction']); ?>" />
+                                                    <img class="h-5 inline" src="<?= htmlspecialchars($character['class_image']); ?>" />
+                                                    <img class="h-5 inline" src="<?= htmlspecialchars($character['race_image']); ?>" />
                                                 </div>
-
-                                            </td>
-                                            <td class="text-center text-white">
-                                                                                                    <span class="badge bg-red-800">
-                                                        <i class="fa-solid fa-wifi-slash sm:mr-2"></i>
-                                                        <span class="hidden sm:block">Offline</span>
-                                                    </span>
-                                                                                                </td>
-                                            <td class="text-center text-cyan-200">
-                                                232h                                                <i class="fa-light fa-clock-eight ml-1.5"></i>
-                                            </td>
+                                                </td>
+                                                <td class="text-center text-white"><?= htmlspecialchars($character['level']); ?></td>
+                                                <td class="text-center text-white"><?= htmlspecialchars($character['guild_name']); ?></td>
+                                                <td class="text-center text-white"><?= htmlspecialchars($character['rank']); ?></td>
+                                            </tr>
+                                    <?php
+                                        }
+                                    } else {
+                                    ?>
+                                        <tr>
+                                            <td colspan="5" class="text-center text-white">Онлайн-игроков не найдено.</td>
                                         </tr>
-                               </tbody>
+                                    <?php
+                                    }
+                                    ?>
+                                </tbody>
                                 </table>
                             </div>
                         </div>

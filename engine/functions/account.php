@@ -55,45 +55,29 @@ class Account
         }
     }
 
-    private $voteSites = [
-        'mmotop' => 'https://wow.mmotop.ru/servers/38047/votes/new',
-        //'сайт2' => 'https://сайт2.com/vote',
-        //'сайт3' => 'https://сайт3.com/vote'
-    ];
-
-    public function vote($site)
+    public function get_vote_mmotop()
     {
-        if (!array_key_exists($site, $this->voteSites)) {
-            return "Недопустимый сайт для голосования.";
-        }
-
         $account = $this->get_account();
         $username = $account['username'];
 
-        $stmt = $this->connection->prepare("SELECT * FROM votes WHERE username = ? AND site = ? AND DATE(vote_date) = CURDATE()");
-        $stmt->bind_param("ss", $username, $site);
+        $stmt = $this->connection->prepare("SELECT * FROM account WHERE username = ? AND DATE(last_voted) = CURDATE()");
+        $stmt->bind_param("s", $username);
         $stmt->execute();
         $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
-            return "Вы уже голосовали сегодня на сайте $site. Попробуйте снова завтра.";
+            return "Вы уже голосовали сегодня. Попробуйте завтра.";
         } else {
-            $stmt = $this->connection->prepare("INSERT INTO votes (username, site, vote_date) VALUES (?, ?, NOW())");
-            $stmt->bind_param("ss", $username, $site);
+            $stmt = $this->connection->prepare("UPDATE account SET votes = votes + 1, last_voted = NOW() WHERE username = ?");
+            $stmt->bind_param("s", $username);
             
             if ($stmt->execute() === TRUE) {
-                $stmt = $this->connection->prepare("UPDATE account SET votes = votes + 1 WHERE username = ?");
-                $stmt->bind_param("s", $username);
-                $stmt->execute();
-                
-                header("Location: " . $this->voteSites[$site]);
+                header("Location: https://wow.mmotop.ru/servers/38047/votes/new");
                 exit();
             } else {
                 return "Ошибка: " . $this->connection->error;
             }
         }
-
-        $stmt->close();
     }
 
     public function is_banned()
