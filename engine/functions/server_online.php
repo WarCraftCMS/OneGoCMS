@@ -23,8 +23,8 @@ class Online
                 c.`money`, 
                 c.`totalHonorPoints`, 
                 c.`arenaPoints`, 
-                c.`rankPoints`, 
-                c.`totalKills`,  
+                c.`totalKills`, 
+                c.`rankPoints`,                 
                 c.`online`,
                 (SELECT COUNT(*) FROM character_achievement WHERE guid = c.guid) AS achievement_count,
                 (SELECT g.`name` FROM guild_member gm JOIN guild g ON gm.guildId = g.guildId WHERE gm.guid = c.guid) AS guild_name
@@ -109,6 +109,32 @@ class Online
             19 => 'Ранг 19',
         );
 
+    $raceName = array(
+        1 => 'Человек',
+        2 => 'Орк',
+        3 => 'Дварф',
+        4 => 'Ночной Эльф',
+        5 => 'Нежить',
+        6 => 'Таурен',
+        7 => 'Гном',
+        8 => 'Троль',
+        10 => 'Эльф Крови',
+        11 => 'Дреней',
+    );
+
+    $className = array(
+        1 => 'Воин',
+        2 => 'Паладин',
+        3 => 'Охотник',
+        4 => 'Разбойник',
+        5 => 'Жрец',
+        6 => 'Рыцарь Смерти',
+        7 => 'Шаман',
+        8 => 'Маг',
+        9 => 'Чернокнижник',
+        11 => 'Друид',
+    );
+
         while ($stmt->fetch()) {
             if (in_array($race, [1, 3, 4, 7, 11])) {
                 $faction = 'assets/images/fraction/alliance.webp';
@@ -162,8 +188,14 @@ class Online
                 $rank = 17;
             } elseif ($rankPoints < 275000) {
                 $rank = 18;
-            } else {
+            } elseif ($rankPoints < 275000) {
                 $rank = 19;
+            } elseif ($rankPoints < 275000) {
+                $rank = 20;
+            } elseif ($rankPoints < 275000) {
+                $rank = 21;
+            } else {
+                $rank = 51;
             }
 
             $rank_title = $rank_titles[$rank];
@@ -176,22 +208,24 @@ class Online
                 'gender' => $gender_text,
                 'level' => $level,
                 'faction' => $faction,
+                'faction_text' => $faction_text,
                 'class_image' => $class_image[$class],
                 'race_image' => $race_image[$race][$gender],
+                'class_name' => $className[$class],
+                'race_name' => $raceName[$race],
                 'gold' => $gold,
                 'silver' => $silver,
                 'copper' => $copper,
                 'totalHonorPoints' => $totalHonorPoints,
                 'arenaPoints' => $arenaPoints,
                 'totalKills' => $totalKills,
+                'rankPoints' => $rankPoints,
                 'online' => $online,
                 'achievement_count' => $achievement_count,
                 'class_color' => $classColors[$class],
                 'guild_name' => $guild_text,
                 'rank' => $rank,
-                'rank_title' => $rank_title,
-                'rankPoints' => $rankPoints
-
+                'rank_title' => $rank_title
             );
 
             $characters[] = $character;
