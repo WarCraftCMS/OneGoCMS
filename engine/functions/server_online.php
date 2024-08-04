@@ -150,55 +150,49 @@ class Online
             $silver = floor(($money % 10000) / 100);
             $copper = $money % 100;
             $gender_text = ($gender == 0) ? 'Мужчина' : 'Женщина';
-            $guild_text = !empty($guild_name) ? $guild_name : 'Не состоит в гильдии';
+            $guild_text = !empty($guild_name) ? $guild_name : 'Без гильдии';
 
-            if ($rankPoints <= 0) {
-                $rank = 0; // Нет ранга
-            } elseif ($rankPoints < 250) {
-                $rank = 1;
-            } elseif ($rankPoints < 500) {
-                $rank = 2;
-            } elseif ($rankPoints < 1000) {
-                $rank = 3;
-            } elseif ($rankPoints < 2000) {
-                $rank = 4;
-            } elseif ($rankPoints < 4000) {
-                $rank = 5;
-            } elseif ($rankPoints < 8000) {
-                $rank = 6;
-            } elseif ($rankPoints < 16000) {
-                $rank = 7;
-            } elseif ($rankPoints < 32000) {
-                $rank = 8;
-            } elseif ($rankPoints < 60000) {
-                $rank = 9;
-            } elseif ($rankPoints < 80000) {
-                $rank = 10;
-            } elseif ($rankPoints < 100000) {
-                $rank = 11;
-            } elseif ($rankPoints < 125000) {
-                $rank = 12;
-            } elseif ($rankPoints < 150000) {
-                $rank = 13;
-            } elseif ($rankPoints < 175000) {
-                $rank = 14;
-            } elseif ($rankPoints < 200000) {
-                $rank = 15;
-            } elseif ($rankPoints < 225000) {
-                $rank = 16;
-            } elseif ($rankPoints < 250000) {
-                $rank = 17;
-            } elseif ($rankPoints < 275000) {
-                $rank = 18;
-            } elseif ($rankPoints < 275000) {
-                $rank = 19;
-            } elseif ($rankPoints < 275000) {
-                $rank = 20;
-            } elseif ($rankPoints < 275000) {
-                $rank = 21;
-            } else {
-                $rank = 51;
-            }
+
+/*   1    2     3     4      5    6     7       8     9     10      11     12 
+    250, 500, 1000, 2000, 4000, 8000, 16000, 32000, 60000, 80000, 100000, 125000,
+    13     14      15        16     17     18        19    20       21     22    
+  150000, 175000, 200000, 225000, 250000, 275000, 300000, 350000, 400000, 450000,
+    23      24      25       26     27     28        29     30      31      32     
+  500000, 550000, 600000, 650000, 700000, 750000, 800000, 850000, 900000, 950000,
+    33         34       35      36       37        38      39        40      41       42   
+ 1000000, 1100000, 1200000, 1300000, 1400000, 1500000, 1600000, 1700000, 1800000, 1900000,
+    43       44     45       46         47      48      49       50(MAX)  
+ 2000000, 2100000, 2200000, 2300000, 2400000, 2500000, 2600000, 3000000*/
+
+if ($rankPoints <= 0) {
+    $rank = 0; // Нет ранга
+} elseif ($rankPoints < 250) {
+    $rank = 1;
+} elseif ($rankPoints < 500) {
+    $rank = 2;
+} elseif ($rankPoints < 1000) {
+    $rank = 3;
+} elseif ($rankPoints < 2000) {
+    $rank = 4;
+} elseif ($rankPoints < 4000) {
+    $rank = 5;
+} elseif ($rankPoints < 8000) {
+    $rank = 6;
+} elseif ($rankPoints < 16000) {
+    $rank = 7;
+} elseif ($rankPoints < 32000) {
+    $rank = 8;
+} elseif ($rankPoints < 60000) {
+    $rank = 9;
+} elseif ($rankPoints < 80000) {
+    $rank = 10;
+} else {
+    $basePoints = 100000;
+    $increment = 25000;
+
+    // Расчет ранга
+    $rank = 11 + floor(($rankPoints - $basePoints) / $increment);
+}
 
             $rank_title = $rank_titles[$rank];
 
