@@ -138,8 +138,10 @@ class Online
         while ($stmt->fetch()) {
             if (in_array($race, [1, 3, 4, 7, 11])) {
                 $faction = 'assets/images/fraction/alliance.webp';
+                $faction_text = 'Альянс';
             } elseif (in_array($race, [2, 5, 6, 8, 10])) {
                 $faction = 'assets/images/fraction/horde.webp';
+                $faction_text = 'Орда';
             } else {
                 $faction = 'Неизвестно';
             }
