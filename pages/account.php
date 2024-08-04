@@ -84,7 +84,7 @@ if (isset($_POST['change_password']))
                                     </div>
                                 </div>
                             </a>
-                            <a href="">
+                            <a href="?page=vote">
                                 <div
                                     class="card card-side bg-slate-950/40 border hover:bg-slate-950 border-slate-950 h-full transition duration-300">
                                     <figure class="p-5">

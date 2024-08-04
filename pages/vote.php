@@ -14,88 +14,117 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['vote'])) {
 }
 
 ?>
-<html lang="ru" class="js">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Личный кабинет</title>
-    <meta name="description" content="">
-    <link rel="stylesheet" href="../assets/css/panel.css">
-    <link rel="stylesheet" href="../assets/css/panel_mobile.css">
-    </head> 
+
+    <div class="hero min-h-screen hero14">
+    <div class="hero-overlay bg-opacity-70"></div>
+    <div class="hero-content text-center text-neutral-content">
+        <div class="container">
+            <div class="max-w-3xl mt-36 2xl:pt-0">
+                <h1 class="mb-5 text-4xl font-bold text-white text-shadow_dark">
+                    Vote for us
+                </h1>
+                <div class="text-white bg-slate-950/60 p-9 rounded-lg text-left leading-loose">
 
 
+                    <div class="mt-2">
+                                                <div class="divider mb-5">Vote Sites</div>
 
-<body>
-
-<!--header-->
-    <div class="header">         
-        <div class="header__video-wrapp">
-        <div class="header__video-box">
-           <video class="header__video" autoplay loop muted>
-              <source src="assets/images/bg.webm" type="video/webm">
-          </video>
-        </div>
-    </div>             
-<div class="content-bg">
-    <div class="content inner-content flex-ss">
-        <div class="cp-nav">
-            <div class="user-info">
-                <div class="balance coins">Бонусов: <span><?= $account->get_bonuses_currency()['bonuses'] ?> монет</span></div>
-                <div class="balance">Голосований: <span><?= $account->get_vote_currency()['votes'] ?> монет</span></div>
-                <div class="balance">Премиум: <?= $account->is_premium(); ?><span></span></div>
-            </div>
-            <div class="navv flex-cc">
-                <a class="flex-sc" href="?page=account"><div class="icon flex-cc"><i class="fa fa-user" aria-hidden="true"></i></div>Информация</a>                
-                <a class="flex-sc" href="?page=changepassword"><div class="icon flex-cc"><i class="fa fa-key" aria-hidden="true"></i></div>Сменить пароль</a>  
-                <a class="flex-sc" href="?page=characters"><div class="icon flex-cc"><i class="fa fa-plus-circle" aria-hidden="true"></i></div>Персонажи</a>          
-                <a class="flex-sc" href=""><div class="icon flex-cc"><i class="fa fa-plus-circle" aria-hidden="true"></i></div>Пополнить баланс</a>                               
-                <a class="flex-sc" href="?page=vote"><div class="icon flex-cc"><i class="fa fa-thumbs-up" aria-hidden="true"></i></div>Голосование</a>                      
-            </div>      
-        </div>
-        <div class="cp-content">
-            <div class="cp-title flex-cc">Панель пользователя</div>
-
-<div>
-                <br>
-                <center> 
-                <table>
-                    <tbody><tr>
-                        <td><img alt="wow.png" src="../assets/img/icons/wow.png"><font color="orange"> Примечание:</font> Раз в день вы можете голосовать за сервер и получать по 1 голосу. </td>
-                    </tr>
-                    <tr>
-                        <td> </td>
-                    </tr>
-                    
-                </tbody></table>
-                </center> 
-                <br>
-            </div>
-<div class="shop_top">  
+                        <div role="alert" class="alert shadow-lg bg-cyan-950/40">
+                            <div>
+                                <h3 class="font-bold">Rewards</h3>
+                                <div class="text-sm">
+                                    <p class="sm:inline leading-loose">
+                                        By voting for us, you will receive Vote Points (VP) that can be used in-game.
+                                    </p>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table w-full">
+                            <thead>
+                                <tr>
+                                    <th class='text-center text-white'>Site</th>
+                                    <th class='text-center text-white'>Status</th>
+                                    <th class='text-center text-white'>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class='text-center'>
+                                        <img src="https://www.top100arena.com/hit/100738/small" alt="Top100Arena"
+                                            class="max-w-20 max-h-20">
+                                    </td>
+                                    <td class='text-center'>
+                                        <span class="text-green-500">Voted</span>
+                                    </td>
+                                    <td class='text-center'>
+                                    <button class="btn bg-indigo-900/20 hover:bg-indigo-900/20 text-white cursor-not-allowed">
+                                            10h 22m                                        
+                                    </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class='text-center'>
+                                        <img src="https://www.xtremeTop100.com/votenew.jpg" alt="XtremeTop100"
+                                            class="max-w-20 max-h-20">
+                                    </td>
+                                    <td class='text-center'>
+                                        <span class="text-cyan-500">Ready to vote</span>                                    </td>
+                                    <td class='text-center'>
+                                        <a href=""
+                                            target="_blank" class="btn bg-teal-600 hover:bg-teal-700 text-white">
+                                            Vote Now
+                                        </a>
+                                                                            </td>
+                                </tr>
+                                                                <tr>
+                                    <td class='text-center'>
+                                        <img src="https://topg.org/topg2.gif" alt="TopG"
+                                            class="max-w-20 max-h-20">
+                                    </td>
+                                    <td class='text-center'>
+                                        <span class="text-cyan-500">Ready to vote</span>                                    </td>
+                                    <td class='text-center'>
+                                        <a href=""
+                                            target="_blank" class="btn bg-teal-600 hover:bg-teal-700 text-white">
+                                            Vote Now
+                                        </a>
+                                                                            </td>
+                                </tr>
+                                                                <tr>
+                                    <td class='text-center'>
+                                        <img src="https://gtop100.com/assets/images/votebutton.jpg" alt="GTop100"
+                                            class="max-w-20 max-h-20">
+                                    </td>
+                                    <td class='text-center'>
+                                        <span class="text-cyan-500">Ready to vote</span>                                    </td>
+                                    <td class='text-center'>
+                                        <a href=""
+                                            target="_blank" class="btn bg-teal-600 hover:bg-teal-700 text-white">
+                                            Vote Now
+                                        </a>
+                                                                            </td>
+                                </tr>
+                                                                <tr>
+                                    <td class='text-center'>
+                                        <img src="https://www.arena-top100.com/images/vote/wow-private-servers.png" alt="Arena-Top100"
+                                            class="max-w-20 max-h-20">
+                                    </td>
+                                    <td class='text-center'>
+                                        <span class="text-cyan-500">Ready to vote</span>                                    </td>
+                                    <td class='text-center'>
+                                        <a href=""
+                                            target="_blank" class="btn bg-teal-600 hover:bg-teal-700 text-white">
+                                            Vote Now
+                                        </a>
+                                                                            </td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="vote-buttons flex-sbs">
-                        <?php
-                        $vote_status = $account->is_banned();
-                        if ($vote_status === "Good standing") {
-                        ?>
-                            <form method="POST" action="">
-                                <button type="submit" name="vote" class="blue-button flex-cc">
-                        <i><img src="../assets/img/vote/mmotop.png" height="56" width="88"></i></button>
-                            </form>
-                        <?php
-                        } else {
-                            echo '<p>Вы не можете голосовать, так как ваш аккаунт забанен.</p>';
-                        }
-
-                        if (isset($vote_result)) {
-                            echo '<p>' . $vote_result . '</p>';
-                        }
-                        ?>
-                </div>
             </div>
         </div>
- </div>
-  </div>
-        <!--end header-->
-</body>
-</html>
+    </div>
+</div>
