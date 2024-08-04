@@ -56,7 +56,7 @@ if (isset($_POST['change_password']))
                     </div>
                     <div class="mt-2">
                         <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-                            <a href="">
+                            <a href="?page=changepassword">
                                 <div
                                     class="card card-side bg-slate-950/40 border hover:bg-slate-950 border-slate-950 h-full transition duration-300">
                                     <figure class="p-5">
@@ -64,10 +64,8 @@ if (isset($_POST['change_password']))
                                             class="mask mask-hexagon max-h-32 max-w-32" />
                                     </figure>
                                     <div class="card-body">
-                                        <h2 class="card-title text-teal-400">Account Management</h2>
-                                        <p class="text-gray-300 text-sm">Manage your account settings, change your
-                                            password, and
-                                            more.</p>
+                                        <h2 class="card-title text-teal-400">Управление учетными записями</h2>
+                                        <p class="text-gray-300 text-sm">Управляйте настройками своей учетной записи, меняйте пароль и многое другое.</p>
                                     </div>
                                 </div>
                             </a>
