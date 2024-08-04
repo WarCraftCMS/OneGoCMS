@@ -7,83 +7,83 @@ if (isset($_POST['change_password'])) {
    exit();
 }
 ?>
+    <div class="hero min-h-screen hero13">
+    <div class="hero-overlay bg-opacity-70"></div>
+    <div class="hero-content text-center text-neutral-content">
+        <div class="container">
+            <div class="max-w-full mt-36 2xl:pt-0">
+                <h1 class="mb-5 text-4xl font-bold text-white text-shadow_dark">
+                    Your Characters
+                </h1>
+                <div class="text-white bg-slate-950/60 p-9 rounded-lg text-left leading-loose">
+                    <div class="mt-2">
+                        <table class="table w-full">
+                            <thead>
+                                <tr>
+                                    <th class='text-center text-white'>Name</th>
+                                    <th class='text-center text-white'>  </th>
+                                    <th class='text-center text-white'>Уровень</th>
+                                    <th class='text-center text-white'>Гильдия</th>
+                                    <th class='text-center text-white'>Золото</th>
+                                    <th class='text-center text-white'>Арена</th>
+                                    <th class='text-center text-white'>Честь</th>
+                                    <th class='text-center text-white'>Ранг</th>
+                                    <th class='text-center text-white'>Достижения</th>
+                                </tr>
+                            </thead>
 
-<html lang="ru" class="js">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Личный кабинет</title>
-    <meta name="description" content="">
-    <link rel="stylesheet" href="../assets/css/panel.css">
-    <link rel="stylesheet" href="../assets/css/panel_mobile.css">
-    </head> 
-
-
-
-<body>
-
-<!--header-->
-    <div class="header">         
-        <div class="header__video-wrapp">
-        <div class="header__video-box">
-           <video class="header__video" autoplay loop muted>
-              <source src="assets/images/bg.webm" type="video/webm">
-          </video>
-        </div>
-    </div>       
-<div class="content-bg">
-    <div class="content inner-content flex-ss">
-        <div class="cp-nav">
-            <div class="user-info">
-                <div class="balance coins">Бонусов: <span><?= $account->get_bonuses_currency()['bonuses'] ?> монет</span></div>
-                <div class="balance">Голосований: <span> монет</span></div>
-                <div class="balance">Премиум: <?= $account->is_premium(); ?><span></span></div>
-            </div>
-            <div class="navv flex-cc">
-                <a class="flex-sc" href="?page=account"><div class="icon flex-cc"><i class="fa fa-user" aria-hidden="true"></i></div>Информация</a>                
-                <a class="flex-sc" href="?page=changepassword"><div class="icon flex-cc"><i class="fa fa-key" aria-hidden="true"></i></div>Сменить пароль</a>  
-                <a class="flex-sc" href="?page=characters"><div class="icon flex-cc"><i class="fa fa-plus-circle" aria-hidden="true"></i></div>Персонажи</a>                 
-                <a class="flex-sc" href=""><div class="icon flex-cc"><i class="fa fa-plus-circle" aria-hidden="true"></i></div>Пополнить баланс</a>                               
-                <a class="flex-sc" href="?page=vote"><div class="icon flex-cc"><i class="fa fa-thumbs-up" aria-hidden="true"></i></div>Голосование</a>                      
-            </div>      
-        </div>
-        <div class="cp-content">
-            <div class="cp-title flex-cc">Панель пользователя</div>
-            <div class="cp-banners flex-sbc">
-                <a class="banner flex-cc" href=""><img class="bg" src="../assets/img/banner_1_bg.png"><span class="text">МАГАЗИН</span></a>
-                <a class="banner flex-cc" href=""><img class="bg" src="../assets/img/banner_2_bg.png"><span class="text">ГОЛОСОВАНИЕ</span></a>
-                <a class="banner flex-cc" href=""><img class="bg" src="../assets/img/banner_3_bg.png"><span class="text">ПОПОЛНИТЬ</span></a>            </div>
-            <div class="cp-form-block">
          <?php
             $character = new Character();
             $characters = $character->get_characters($_SESSION['account_id']);
             foreach ($characters as $character) {
-            ?>
-<table _ngcontent-cpw-c6="" cellpadding="0" cellspacing="0" class="inner-table main-table" width="100%">
+            ?><tbody>
+                                <tr>
+                                        <td class='text-center'>
+                                            <span><font color="<?= $character['class_color']; ?>"><?= $character['name']; ?></font></span>
+                                        </td>
+                                        <td class='text-center text-white sm:block hidden'>
+                                            <div class="tooltip" data-tip="">
+                                            <img class="h-5 inline" src="<?= $character['faction']; ?>" />
+                                            <img class="h-5 inline rounded-full" src="<?= $character['class_image']; ?>">
+                                            <img class="h-5 inline rounded-full" src="<?= $character['race_image']; ?>" class="mr-2">
+                                            </div>
+                                        </td>
+                                        <td class='text-center'>
+                                            <span><?= $character['level']; ?></span>
+                                        </td>
+                                        <td class='text-center'>
+                                            <span><?= $character['guild_name']; ?></span>
+                                        </td>
+                                        <td class='text-center'>
+                                            <span><?= $character['gold']; ?> <img class="h-5 inline rounded-full" src="<?= $character['gold_image']; ?>" class="mr-2">
+                                            <?= $character['silver']; ?> <img class="h-5 inline rounded-full" src="<?= $character['silver_image']; ?>" class="mr-2"> 
+                                            <?= $character['copper']; ?> <img class="h-5 inline rounded-full" src="<?= $character['copper_image']; ?>" class="mr-2"></span>
+                                        </td>
+                                        <td class='text-center'>
+                                            <span><img class="h-5 inline rounded-full" src="<?= $character['arena_image']; ?>" class="mr-2"> <?= $character['arenaPoints']; ?></span>
+                                        </td>
+                                        <td class='text-center'>
+                                            <span><img class="h-5 inline rounded-full" src="<?= $character['honor_image']; ?>" class="mr-2"> <?= $character['totalHonorPoints']; ?></span>
+                                        </td>
+                                        <td class='text-center'>
+                                            <span><img class="h-5 inline rounded-full" src="" class="mr-2"> </span>
+                                        </td>
+                                        <td class='text-center'>
+                                            <span><img class="h-5 inline rounded-full" src="<?= $character['achievement_image']; ?>" class="mr-2"> <?= $character['achievement_count']; ?></span>
+                                        </td>
 
-<tr _ngcontent-cpw-c6="">
-   <?= $character['name']; ?>
-      <img src="assets/images/race/<?= $character['race']; ?>.png" alt="<?= $character['race']; ?>">
-               <img src="assets/images/class/<?= $character['class']; ?>.png" alt="<?= $character['class']; ?>">
-               <?= $character['class']; ?>
-               <?= $character['level']; ?>
-</tr>
+                                        <td>
+                                            <button onclick="" class="btn bg-rose-900 hover:bg-rose-700 text-white btn-sm">
+                                                Застрял
+                                            </button>
+                                            </td>
+                                    </tr>
 
-
-</table>
-         <?php
-            }
-            ?>    
-    
-    
-    </div>
+                            </tbody><?php } ?>   
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</div>
-     
-            <!--end header-->
-
-
-</body>
-</html>
+</div> 

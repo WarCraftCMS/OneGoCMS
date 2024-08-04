@@ -69,7 +69,7 @@ if (isset($_POST['change_password']))
                                     </div>
                                 </div>
                             </a>
-                            <a href="">
+                            <a href="?page=characters">
                                 <div
                                     class="card card-side bg-slate-950/40 border hover:bg-slate-950 border-slate-950 h-full transition duration-300">
                                     <figure class="p-5">
@@ -78,10 +78,9 @@ if (isset($_POST['change_password']))
                                     </figure>
                                     <div class="card-body">
                                         <h2 class="card-title text-teal-400">
-                                            Characters Management
+                                            Управление персонажами
                                         </h2>
-                                        <p class="text-gray-300 text-sm">Manage your characters, unstuck them, and
-                                            more.</p>
+                                        <p class="text-gray-300 text-sm">Управляйте своими персонажами, раскручивайте их и многое другое.</p>
                                     </div>
                                 </div>
                             </a>
