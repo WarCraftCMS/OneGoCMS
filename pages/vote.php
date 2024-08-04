@@ -51,74 +51,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['vote'])) {
                             <tbody>
                                 <tr>
                                     <td class='text-center'>
-                                        <img src="https://www.top100arena.com/hit/100738/small" alt="Top100Arena"
+                                        <img src="https://mmotop.ru/uploads/rating_img/mmo_38047.png" alt="Top100Arena"
                                             class="max-w-20 max-h-20">
                                     </td>
                                     <td class='text-center'>
-                                        <span class="text-green-500">Voted</span>
+                                        <span class="text-cyan-500">Ready to vote</span>
                                     </td>
                                     <td class='text-center'>
-                                    <button class="btn bg-indigo-900/20 hover:bg-indigo-900/20 text-white cursor-not-allowed">
-                                            10h 22m                                        
-                                    </button>
+                                                            <?php
+                        $vote_status = $account->is_banned();
+                        if ($vote_status === "Good standing") {
+                        ?>
+                            <form method="POST" action="">
+                                        <a href="https://wow.mmotop.ru/servers/38047/votes/new"
+                                            target="_blank" class="btn bg-teal-600 hover:bg-teal-700 text-white">
+                                            Vote Now
+                                        </a>
+                            </form>
+                        <?php
+                        } else {
+                            echo '<p>Вы не можете голосовать, так как ваш аккаунт забанен.</p>';
+                        }
+
+                        if (isset($vote_result)) {
+                            echo '<p>' . $vote_result . '</p>';
+                        }
+                        ?>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class='text-center'>
-                                        <img src="https://www.xtremeTop100.com/votenew.jpg" alt="XtremeTop100"
-                                            class="max-w-20 max-h-20">
-                                    </td>
-                                    <td class='text-center'>
-                                        <span class="text-cyan-500">Ready to vote</span>                                    </td>
-                                    <td class='text-center'>
-                                        <a href=""
-                                            target="_blank" class="btn bg-teal-600 hover:bg-teal-700 text-white">
-                                            Vote Now
-                                        </a>
-                                                                            </td>
-                                </tr>
-                                                                <tr>
-                                    <td class='text-center'>
-                                        <img src="https://topg.org/topg2.gif" alt="TopG"
-                                            class="max-w-20 max-h-20">
-                                    </td>
-                                    <td class='text-center'>
-                                        <span class="text-cyan-500">Ready to vote</span>                                    </td>
-                                    <td class='text-center'>
-                                        <a href=""
-                                            target="_blank" class="btn bg-teal-600 hover:bg-teal-700 text-white">
-                                            Vote Now
-                                        </a>
-                                                                            </td>
-                                </tr>
-                                                                <tr>
-                                    <td class='text-center'>
-                                        <img src="https://gtop100.com/assets/images/votebutton.jpg" alt="GTop100"
-                                            class="max-w-20 max-h-20">
-                                    </td>
-                                    <td class='text-center'>
-                                        <span class="text-cyan-500">Ready to vote</span>                                    </td>
-                                    <td class='text-center'>
-                                        <a href=""
-                                            target="_blank" class="btn bg-teal-600 hover:bg-teal-700 text-white">
-                                            Vote Now
-                                        </a>
-                                                                            </td>
-                                </tr>
-                                                                <tr>
-                                    <td class='text-center'>
-                                        <img src="https://www.arena-top100.com/images/vote/wow-private-servers.png" alt="Arena-Top100"
-                                            class="max-w-20 max-h-20">
-                                    </td>
-                                    <td class='text-center'>
-                                        <span class="text-cyan-500">Ready to vote</span>                                    </td>
-                                    <td class='text-center'>
-                                        <a href=""
-                                            target="_blank" class="btn bg-teal-600 hover:bg-teal-700 text-white">
-                                            Vote Now
-                                        </a>
-                                                                            </td>
-                                </tr>
                                 
                             </tbody>
                         </table>
