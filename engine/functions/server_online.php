@@ -73,18 +73,41 @@ class Online
             11 => '#FF7D0A',
         );
 
-    $raceName = array(
-        1 => 'Человек',
-        2 => 'Орк',
-        3 => 'Дварф',
-        4 => 'Ночной Эльф',
-        5 => 'Нежить',
-        6 => 'Таурен',
-        7 => 'Гном',
-        8 => 'Троль',
-        10 => 'Эльф Крови',
-        11 => 'Дреней',
-    );
+        $race_image = array(
+            '1' => array('0' => 'assets/images/race/1-0.png', '1' => 'assets/images/race/1-1.png'),
+            '2' => array('0' => 'assets/images/race/2-0.png', '1' => 'assets/images/race/2-1.png'),
+            '3' => array('0' => 'assets/images/race/3-0.png', '1' => 'assets/images/race/3-1.png'),
+            '4' => array('0' => 'assets/images/race/4-0.png', '1' => 'assets/images/race/4-1.png'),
+            '5' => array('0' => 'assets/images/race/5-0.png', '1' => 'assets/images/race/5-1.png'),
+            '6' => array('0' => 'assets/images/race/6-0.png', '1' => 'assets/images/race/6-1.png'),
+            '7' => array('0' => 'assets/images/race/7-0.png', '1' => 'assets/images/race/7-1.png'),
+            '8' => array('0' => 'assets/images/race/8-0.png', '1' => 'assets/images/race/8-1.png'),
+            '10' => array('0' => 'assets/images/race/10-0.png', '1' => 'assets/images/race/10-1.png'),
+            '11' => array('0' => 'assets/images/race/11-0.png', '1' => 'assets/images/race/11-1.png')
+        );
+
+        $rank_titles = array(
+            0 => 'Нет ранга',
+            1 => 'Ранг 1',
+            2 => 'Ранг 2',
+            3 => 'Ранг 3',
+            4 => 'Ранг 4',
+            5 => 'Ранг 5',
+            6 => 'Ранг 6',
+            7 => 'Ранг 7',
+            8 => 'Ранг 8',
+            9 => 'Ранг 9',
+            10 => 'Ранг 10',
+            11 => 'Ранг 11',
+            12 => 'Ранг 12',
+            13 => 'Ранг 13',
+            14 => 'Ранг 14',
+            15 => 'Ранг 15',
+            16 => 'Ранг 16',
+            17 => 'Ранг 17',
+            18 => 'Ранг 18',
+            19 => 'Ранг 19',
+        );
 
     $className = array(
         1 => 'Воин',
@@ -99,18 +122,18 @@ class Online
         11 => 'Друид',
     );
 
-        $race_image = array(
-            '1' => array('0' => 'assets/images/race/1-0.png', '1' => 'assets/images/race/1-1.png'),
-            '2' => array('0' => 'assets/images/race/2-0.png', '1' => 'assets/images/race/2-1.png'),
-            '3' => array('0' => 'assets/images/race/3-0.png', '1' => 'assets/images/race/3-1.png'),
-            '4' => array('0' => 'assets/images/race/4-0.png', '1' => 'assets/images/race/4-1.png'),
-            '5' => array('0' => 'assets/images/race/5-0.png', '1' => 'assets/images/race/5-1.png'),
-            '6' => array('0' => 'assets/images/race/6-0.png', '1' => 'assets/images/race/6-1.png'),
-            '7' => array('0' => 'assets/images/race/7-0.png', '1' => 'assets/images/race/7-1.png'),
-            '8' => array('0' => 'assets/images/race/8-0.png', '1' => 'assets/images/race/8-1.png'),
-            '10' => array('0' => 'assets/images/race/10-0.png', '1' => 'assets/images/race/10-1.png'),
-            '11' => array('0' => 'assets/images/race/11-0.png', '1' => 'assets/images/race/11-1.png')
-        );
+    $raceName = array(
+        1 => 'Человек',
+        2 => 'Орк',
+        3 => 'Дварф',
+        4 => 'Ночной Эльф',
+        5 => 'Нежить',
+        6 => 'Таурен',
+        7 => 'Гном',
+        8 => 'Троль',
+        10 => 'Эльф Крови',
+        11 => 'Дреней',
+    );
 
         while ($stmt->fetch()) {
             if (in_array($race, [1, 3, 4, 7, 11])) {
@@ -129,6 +152,37 @@ class Online
             $gender_text = ($gender == 0) ? 'Мужчина' : 'Женщина';
             $guild_text = !empty($guild_name) ? $guild_name : 'Без гильдии';
 
+if ($rankPoints <= 0) {
+    $rank = 0; // Нет ранга
+} elseif ($rankPoints < 250) {
+    $rank = 1;
+} elseif ($rankPoints < 500) {
+    $rank = 2;
+} elseif ($rankPoints < 1000) {
+    $rank = 3;
+} elseif ($rankPoints < 2000) {
+    $rank = 4;
+} elseif ($rankPoints < 4000) {
+    $rank = 5;
+} elseif ($rankPoints < 8000) {
+    $rank = 6;
+} elseif ($rankPoints < 16000) {
+    $rank = 7;
+} elseif ($rankPoints < 32000) {
+    $rank = 8;
+} elseif ($rankPoints < 60000) {
+    $rank = 9;
+} elseif ($rankPoints < 80000) {
+    $rank = 10;
+} else {
+    $basePoints = 100000;
+    $increment = 25000;
+
+    // Расчет ранга
+    $rank = 11 + floor(($rankPoints - $basePoints) / $increment);
+}
+
+            $rank_title = $rank_titles[$rank];
 
             $character = array(
                 'guid' => $guid,
@@ -163,57 +217,6 @@ class Online
 
         return $characters;
     }
-
-    public function getRank($rankPoints) {
-    if ($rankPoints <= 0) {
-        return 0; // Нет ранга
-    } elseif ($rankPoints < 250) {
-        return 1;
-    } elseif ($rankPoints < 500) {
-        return 2;
-    } elseif ($rankPoints < 1000) {
-        return 3;
-    } elseif ($rankPoints < 2000) {
-        return 4;
-    } elseif ($rankPoints < 4000) {
-        return 5;
-    } elseif ($rankPoints < 8000) {
-        return 6;
-    } elseif ($rankPoints < 16000) {
-        return 7;
-    } elseif ($rankPoints < 32000) {
-        return 8;
-    } elseif ($rankPoints < 60000) {
-        return 9;
-    } elseif ($rankPoints < 80000) {
-        return 10;
-    } elseif ($rankPoints < 10000) {
-        return 11;
-    }
-
-    $basePoints = 100000;
-    $rankOffset = 25000;
-    $nextBreakpoint = 11;
-
-    while (true) {
-        if ($rankPoints < $basePoints + $rankOffset) {
-            return $nextBreakpoint;
-        }
-        $basePoints += $rankOffset;
-
-        if ($nextBreakpoint >= 19) {
-            if ($nextBreakpoint < 33) {
-                $rankOffset = 50000;
-            } elseif ($nextBreakpoint < 50) {
-                $rankOffset = 100000;
-            }
-        }
-
-        $nextBreakpoint++;
-    }
-}
-
-
 }
 
 

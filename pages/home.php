@@ -172,7 +172,7 @@
                                             <th class="text-center text-white sm:block hidden">Type</th>
                                             <th class="text-center text-white">Уровень</th>
                                             <th class="text-center text-white">Гильдия</th>
-                                            <th class="text-center text-white">Хонор</th>
+                                            <th class="text-center text-white">Ранг</th>
                                         </tr>
                                     </thead>
          <?php
