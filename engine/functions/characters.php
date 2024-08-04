@@ -9,46 +9,6 @@ class Character
         $config = new Configuration();
         $this->character_connection = $config->getDatabaseConnection('characters');
     }
-    
-    public function teleportCharacter($account_id, $guid) {
-        $stmt = $this->character_connection->prepare("
-            SELECT guid FROM characters WHERE account = ? AND guid = ? AND online = '0' LIMIT 1
-        ");
-
-        if ($stmt === false) {
-            die('Ошибка подготовки запроса: ' . $this->character_connection->error);
-        }
-
-        $stmt->bind_param("ii", $account_id, $guid);
-        $stmt->execute();
-        $stmt->store_result();
-
-        if ($stmt->num_rows === 0) {
-            return "<span class=\"red\">Персонаж не найден или он онлайн</span>";
-        }
-
-        $stmt->close();
-
-        $stmt = $this->character_connection->prepare("SELECT posX, posY, posZ, mapId FROM character_homebind WHERE guid = ?");
-        $stmt->bind_param("i", $guid);
-        $stmt->execute();
-        $stmt->bind_result($coord_x, $coord_y, $coord_z, $map_id);
-        $stmt->fetch();
-        $stmt->close();
-
-        $sql = "UPDATE characters SET position_x = ?, position_y = ?, position_z = ?, map = ? WHERE account = ? AND guid = ?";
-        $stmt = $this->character_connection->prepare($sql);
-        if ($stmt === false) {
-            die('Ошибка подготовки запроса: ' . $this->character_connection->error);
-        }
-
-        $stmt->bind_param("ddiii", $coord_x, $coord_y, $coord_z, $map_id, $account_id, $guid);
-        if ($stmt->execute()) {
-            return "<span class=\"green\">Персонаж успешно телепортирован!</span>";
-        } else {
-            return "<span class=\"red\">Ошибка при телепортации: " . $stmt->error . "</span>";
-        }
-    }
 
     public function get_characters($account_id)
 {
@@ -109,6 +69,19 @@ class Character
         11 => '#FF7D0A',
     );
 
+    $className = array(
+        1 => 'Воин',
+        2 => 'Паладин',
+        3 => 'Охотник',
+        4 => 'Разбойник',
+        5 => 'Жрец',
+        6 => 'Рыцарь Смерти',
+        7 => 'Шаман',
+        8 => 'Маг',
+        9 => 'Чернокнижник',
+        11 => 'Друид',
+    );
+
     $race_image = array(
         '1' => array(
             '0' => 'assets/images/race/1-0.png', '1' => 'assets/images/race/1-1.png'
@@ -142,11 +115,26 @@ class Character
         )
     );
 
+    $raceName = array(
+        1 => 'Человек',
+        2 => 'Орк',
+        3 => 'Дварф',
+        4 => 'Ночной Эльф',
+        5 => 'Нежить',
+        6 => 'Таурен',
+        7 => 'Гном',
+        8 => 'Троль',
+        10 => 'Эльф Крови',
+        11 => 'Дреней',
+    );
+
     while ($stmt->fetch()) {
         if (in_array($race, [1, 3, 4, 7, 11])) {
             $faction = 'assets/images/fraction/alliance.webp';
+            $faction_text = 'Альянс';
         } elseif (in_array($race, [2, 5, 6, 8, 10])) {
             $faction = 'assets/images/fraction/horde.webp';
+            $faction_text = 'Орда';
         } else {
             $faction = 'Неизвестно';
         }
@@ -174,6 +162,7 @@ class Character
             'gender' => $gender_text,
             'level' => $level,
             'faction' => $faction,
+            'faction_text' => $faction_text,
             'class_image' => $class_image[$class],
             'race_image' => $race_image[$race][$gender],
             'gold' => $gold,
@@ -185,6 +174,8 @@ class Character
             'online' => $online,
             'achievement_count' => $achievement_count,
             'class_color' => $classColors[$class],
+            'class_name' => $className[$class],
+            'race_name' => $raceName[$race],
             'honor_image' => $honor_image,
             'arena_image' => $arena_image,
             'achievement_image' => $achievement_image,
