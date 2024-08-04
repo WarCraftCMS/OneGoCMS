@@ -85,12 +85,10 @@
             <div class="w-full mt-4 md:mt-0 md:w-1/3 text-center">
                 <a target="_blank" href=""
                     class="btn bg-blue-900 hover:bg-blue-700 text-white">
-                    <i class="fa-brands fa-discord"></i>
                     JOIN DISCORD
                 </a>
                 <a target="_blank" href=""
                     class="btn md:mt-2 bg-fuchsia-800 hover:bg-fuchsia-600 text-white">
-                    <i class="fa-brands fa-instagram"></i>
                     Follow us on Instagram
                 </a>
             </div>
@@ -117,11 +115,11 @@
                     </p>
 
                     <div class="card-actions justify-center">
-                        <a href="https://masterwow.net/how-to-play"
+                        <a href="?page=connect"
                             class="btn text-shadow_dark bg-pink-600/40 hover:bg-pink-900 text-white">
                             Read Guide to Connect!
                         </a>
-                        <a href="https://masterwow.net/sign-up"
+                        <a href="?page=register"
                             class="btn text-shadow_dark bg-cyan-600/40 hover:bg-cyan-900 text-white">
                             Register Account
                         </a>
@@ -142,7 +140,7 @@
                     </p>
 
                     <div class="card-actions justify-center">
-                        <a href="https://masterwow.net/account-management"
+                        <a href="?page=login"
                             class="btn text-shadow_dark bg-sky-600/40 hover:bg-sky-900 text-white">
                             Visit Account Panel
                         </a>
@@ -169,7 +167,7 @@
                                         <tr>
                                             <th class="text-center text-white">№</th>
                                             <th class="text-center text-white">Имя</th>
-                                            <th class="text-center text-white sm:block hidden">Type</th>
+                                            <th class="text-center text-white sm:block hidden"></th>
                                             <th class="text-center text-white">Уровень</th>
                                             <th class="text-center text-white">Гильдия</th>
                                             <th class="text-center text-white">Ранг</th>
