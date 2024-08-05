@@ -210,7 +210,7 @@
                         </div>
 
                         <input type="radio" name="my_tabs_2" role="tab" class="tab text-xs sm:text-md"
-                            aria-label="Votes" />
+                            aria-label="Топ" />
                         <div role="tabpanel" class="tab-content bg-indigo-800/15 rounded-box p-6">
                             <div class="overflow-x-scroll">
                                 <table class="table-auto sm:table mx-auto">
@@ -259,7 +259,7 @@
                         </div>
 
                         <input type="radio" name="my_tabs_2" role="tab" class="tab text-xs sm:text-md"
-                            aria-label="Kills" />
+                            aria-label="Пустое" />
                         <div role="tabpanel" class="tab-content bg-indigo-800/15 rounded-box p-6">
                             <div class="overflow-x-scroll">
                                 <table class="table-auto sm:table mx-auto">
@@ -306,7 +306,7 @@
                             </div>
                         </div>
                         <input type="radio" name="my_tabs_2" role="tab" class="tab text-xs sm:text-md"
-                            aria-label="New Players" />
+                            aria-label="Пустое" />
                         <div role="tabpanel" class="tab-content bg-indigo-800/15 rounded-box p-6">
                             <div class="overflow-x-scroll">
                                 <table class="table-auto sm:table mx-auto">

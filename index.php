@@ -102,7 +102,7 @@
                 ?>
                          <details>
                                 <summary class="hover:bg-indigo-600 hover:text-white focus:bg-indigo-700">
-                                    Аккаунт
+                                    <?= $_SESSION['username'] ?>
                                 </summary>
                                 <ul class="p-2 bg-indigo-950 rounded-t-none min-w-40">
                                     <li><a href="?page=account" class="hover:bg-indigo-900/80">Кабинет</a></li>
