@@ -24,7 +24,6 @@ class Character
             c.`totalHonorPoints`, 
             c.`arenaPoints`, 
             c.`totalKills`, 
-            c.`rankPoints`, 
             c.`online`,
             (SELECT COUNT(*) FROM character_achievement WHERE guid = c.guid) AS achievement_count,
             (SELECT g.`name` FROM guild_member gm JOIN guild g ON gm.guildId = g.guildId WHERE gm.guid = c.guid) AS guild_name
@@ -40,7 +39,7 @@ class Character
 
     $stmt->bind_param("i", $account_id);
     $stmt->execute();
-    $stmt->bind_result($guid, $name, $race, $class, $gender, $level, $money, $totalHonorPoints, $arenaPoints, $totalKills, $rankPoints, $online, $achievement_count, $guild_name);
+    $stmt->bind_result($guid, $name, $race, $class, $gender, $level, $money, $totalHonorPoints, $arenaPoints, $totalKills, $online, $achievement_count, $guild_name);
     
     $characters = array();
 
@@ -185,7 +184,6 @@ class Character
             'copper_image' => $copper_image,
             'copper_image' => $copper_image,
             'guild_name' => $guild_text,
-            'rankPoints' => $rankPoints
         );
         
         $characters[] = $character;
