@@ -49,7 +49,7 @@
                     Добро пожаловать на OneGoCMS
                 </h1>
                 <p class="mb-5 text-white bg-slate-950/20 p-9 rounded-lg text-shadow_dark">
-                    Бесплатная русская CMS плфторма для игровых серверов World Of Warcraft
+                    Бесплатная русская CMS платформа для игровых серверов World Of Warcraft
                 </p>
                 <p class="text-center mb-5">
                     <a href="" target="_blank">
