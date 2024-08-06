@@ -23,8 +23,7 @@ class Online
                 c.`money`, 
                 c.`totalHonorPoints`, 
                 c.`arenaPoints`, 
-                c.`totalKills`, 
-                c.`rankPoints`,                 
+                c.`totalKills`,  
                 c.`online`,
                 (SELECT COUNT(*) FROM character_achievement WHERE guid = c.guid) AS achievement_count,
                 (SELECT g.`name` FROM guild_member gm JOIN guild g ON gm.guildId = g.guildId WHERE gm.guid = c.guid) AS guild_name
@@ -43,7 +42,7 @@ class Online
 
         $stmt->bind_param("i", $limit);
         $stmt->execute();
-        $stmt->bind_result($guid, $name, $race, $class, $gender, $level, $money, $totalHonorPoints, $arenaPoints, $totalKills, $rankPoints, $online, $achievement_count, $guild_name);
+        $stmt->bind_result($guid, $name, $race, $class, $gender, $level, $money, $totalHonorPoints, $arenaPoints, $totalKills, $online, $achievement_count, $guild_name);
         
         $characters = array();
 
@@ -108,8 +107,9 @@ class Online
             18 => 'Ранг 18',
             19 => 'Ранг 19',
         );
-
-    $className = array(
+        
+        
+        $className = array(
         1 => 'Воин',
         2 => 'Паладин',
         3 => 'Охотник',
@@ -150,37 +150,49 @@ class Online
             $silver = floor(($money % 10000) / 100);
             $copper = $money % 100;
             $gender_text = ($gender == 0) ? 'Мужчина' : 'Женщина';
-            $guild_text = !empty($guild_name) ? $guild_name : 'Без гильдии';
+            $guild_text = !empty($guild_name) ? $guild_name : 'Не состоит в гильдии';
 
-if ($rankPoints <= 0) {
-    $rank = 0; // Нет ранга
-} elseif ($rankPoints < 250) {
-    $rank = 1;
-} elseif ($rankPoints < 500) {
-    $rank = 2;
-} elseif ($rankPoints < 1000) {
-    $rank = 3;
-} elseif ($rankPoints < 2000) {
-    $rank = 4;
-} elseif ($rankPoints < 4000) {
-    $rank = 5;
-} elseif ($rankPoints < 8000) {
-    $rank = 6;
-} elseif ($rankPoints < 16000) {
-    $rank = 7;
-} elseif ($rankPoints < 32000) {
-    $rank = 8;
-} elseif ($rankPoints < 60000) {
-    $rank = 9;
-} elseif ($rankPoints < 80000) {
-    $rank = 10;
-} else {
-    $basePoints = 100000;
-    $increment = 25000;
-
-    // Расчет ранга
-    $rank = 11 + floor(($rankPoints - $basePoints) / $increment);
-}
+            if ($totalHonorPoints <= 0) {
+                $rank = 0; // Нет ранга
+            } elseif ($totalHonorPoints < 500) {
+                $rank = 1;
+            } elseif ($totalHonorPoints < 1500) {
+                $rank = 2;
+            } elseif ($totalHonorPoints < 3000) {
+                $rank = 3;
+            } elseif ($totalHonorPoints < 5000) {
+                $rank = 4;
+            } elseif ($totalHonorPoints < 7500) {
+                $rank = 5;
+            } elseif ($totalHonorPoints < 10000) {
+                $rank = 6;
+            } elseif ($totalHonorPoints < 15000) {
+                $rank = 7;
+            } elseif ($totalHonorPoints < 20000) {
+                $rank = 8;
+            } elseif ($totalHonorPoints < 30000) {
+                $rank = 9;
+            } elseif ($totalHonorPoints < 40000) {
+                $rank = 10;
+            } elseif ($totalHonorPoints < 50000) {
+                $rank = 11;
+            } elseif ($totalHonorPoints < 75000) {
+                $rank = 12;
+            } elseif ($totalHonorPoints < 100000) {
+                $rank = 13;
+            } elseif ($totalHonorPoints < 150000) {
+                $rank = 14;
+            } elseif ($totalHonorPoints < 200000) {
+                $rank = 15;
+            } elseif ($totalHonorPoints < 300000) {
+                $rank = 16;
+            } elseif ($totalHonorPoints < 350000) {
+                $rank = 17;
+            } elseif ($totalHonorPoints < 400000) {
+                $rank = 18;
+            } else {
+                $rank = 19;
+            }
 
             $rank_title = $rank_titles[$rank];
 
@@ -201,12 +213,11 @@ if ($rankPoints <= 0) {
                 'totalHonorPoints' => $totalHonorPoints,
                 'arenaPoints' => $arenaPoints,
                 'totalKills' => $totalKills,
-                'rankPoints' => $rankPoints,
                 'online' => $online,
                 'achievement_count' => $achievement_count,
                 'class_color' => $classColors[$class],
-                'class_name' => $className[$class],
-                'race_name' => $raceName[$race],
+                'class_name' => $className[$class], //
+                'race_name' => $raceName[$race], //
                 'guild_name' => $guild_text,
                 'rank' => $rank,
                 'rank_title' => $rank_title

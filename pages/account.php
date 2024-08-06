@@ -39,15 +39,15 @@ if (isset($_POST['change_password']))
                                         <?= $account->get_last_login(); ?>                                    </div>
                                     <div class="sm:ml-2 block md:inline-block">
                                         <span class="font-bold">Бонусы:</span>
-                                        <span class="text-yellow-500"><?= $account->get_bonuses(); ?> €</span>
+                                        <span class="text-yellow-500">0 €</span>
                                     </div>
                                     <div class="sm:ml-2 block md:inline-block">
                                         <span class="font-bold">Голоса:</span>
-                                        <span class="text-blue-300"><?= $account->get_votes(); ?></span>
+                                        <span class="text-blue-300">0</span>
                                     </div>
                                     <div class="sm:ml-2 block md:inline-block">
                                         <span class="font-bold">ПРЕМИУМ:</span>
-                                        <span class="text-purple-400"><?= $account->is_premium(); ?></span>
+                                        <span class="text-purple-400">Нету</span>
                                     </div>
                                     </p>
                                 </div>
