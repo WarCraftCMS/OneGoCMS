@@ -52,23 +52,6 @@
     <link href="assets/css/all.css" rel="stylesheet" />
     <title>OneGo WoW - Free WoW Private Haste Server (2024) | Home</title>
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "url": "",
-        "logo": "",
-        "contactPoint": [{
-            "@type": "ContactPoint",
-            "email": "support@masterwow.net",
-            "contactType": "customer service",
-            "availableLanguage": ["en"]
-        }],
-        "sameAs": [
-            ""
-        ]
-    }
-    </script>
 </head>
 
 <body class="bg-custom-dark1">
@@ -77,7 +60,7 @@
             <div class="w-full hidden md:flex">
                 <div class="flex-1">
                     <a href="?page=home" class="btn btn-ghost hover:bg-indigo-900/50 text-xl text-white">
-                        <img src="https://masterwow.net/images/logo_sm.webp" alt="logo" class="h-10" />
+                        <img src="assets/images/logo.png" alt="logo" class="h-10" />
                         OneGo WoW
                     </a>
                 </div>
@@ -114,7 +97,7 @@
             ?>
                         </li>
                         <li>
-                            <a href="" class="bg-rose-700 hover:bg-rose-900 text-white mx-2">
+                            <a href="?page=howtoplay" class="bg-rose-700 hover:bg-rose-900 text-white mx-2">
                                 Как начать играть?
                             </a>
                         </li>
@@ -145,32 +128,11 @@
 
     <footer class="footer p-10 bg-slate-950 text-base-content">
         <aside class="text-center mx-auto">
-            <img src="assets/images/logo_sm.webp" alt="logo" class="h-20 mx-auto" />
+            <img src="assets/images/logo.png" alt="logo" class="h-20 mx-auto" />
             <p>
-                Powered and Designed by
-                <a href="https://masterking32.com" target="_blank" class="text-amber-600">
-                    MasterkinG32
-                </a>
-                <br />&copy; 2024 MasterWoW. All rights reserved.
+                <br />&copy; 2024 OneGo WoW. All rights reserved.
             </p>
         </aside>
-        <nav>
-            <h6 class="footer-title">Services</h6>
-            <a href="https://masterwow.net/how-to-play" class="link link-hover">How to Play</a>
-        </nav>
-        <nav>
-            <h6 class="footer-title">Account</h6>
-            <a href="https://masterwow.net/sign-in" class="link link-hover">Sign In</a>
-            <a href="https://masterwow.net/sign-up" class="link link-hover">Sing Up</a>
-            <a href="https://masterwow.net/restore-password" class="link link-hover">Restore Password</a>
-            <a href="https://masterwow.net/account-management" class="link link-hover">Account management</a>
-        </nav>
-        <nav>
-            <h6 class="footer-title">MasterWoW</h6>
-            <a href="https://masterwow.net/contact" class="link link-hover">Contact</a>
-            <a href="https://masterwow.net/terms-of-use" class="link link-hover">Terms of use</a>
-            <a href="https://masterwow.net/privacy-policy" class="link link-hover">Privacy policy</a>
-        </nav>
     </footer>
 </body>
 
