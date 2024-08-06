@@ -1,6 +1,6 @@
 <?php
 
-class InstallTinyCMS
+class InstallOneGoCMS
 {
     public function checkExtension($extensionName)
     {

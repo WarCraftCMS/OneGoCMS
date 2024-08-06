@@ -1,6 +1,6 @@
 <?php
 require_once("functions/install.php");
-$install = new InstallTinyCMS();
+$install = new InstallOneGoCMS();
 if (isset($_POST['install'])) {
     $install->install($_POST['db_host'], $_POST['db_port'], $_POST['db_username'], $_POST['db_password'], $_POST['db_auth'], $_POST['db_characters'], $_POST['db_website'], $_POST['soap_username'], $_POST['soap_password']);
 }
@@ -12,7 +12,7 @@ if (isset($_POST['install'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TinyCMS Install</title>
+    <title>OneGoCMS Install</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 
@@ -26,7 +26,7 @@ if (isset($_POST['install'])) {
 
 <body>
     <div class="container">
-        <h1 class="mt-4 text-white text-center">TinyCMS</h1>
+        <h1 class="mt-4 text-white text-center">OneGoCMS</h1>
         <p class="text-white text-center">World of Warcraft Content Management System</p>
         <hr style="border-color: white; width: 50%;">
         <form action="" method="post">
@@ -83,7 +83,7 @@ if (isset($_POST['install'])) {
             </div>
             <div class="form-group row">
                 <div class="col-sm-5 mx-auto text-center">
-                    <button type="submit" class="btn btn-primary" name="install">Install TinyCMS</button>
+                    <button type="submit" class="btn btn-primary" name="install">Install OneGoCMS</button>
                 </div>
             </div>
         </form>
@@ -93,7 +93,7 @@ if (isset($_POST['install'])) {
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <p class="text-center text-white">&copy; 2023 TinyCMS. All rights reserved.</p>
+                    <p class="text-center text-white">&copy; 2024 OneGoCMS. All rights reserved.</p>
                 </div>
             </div>
         </div>
