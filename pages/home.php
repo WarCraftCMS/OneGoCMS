@@ -49,25 +49,49 @@
                     Добро пожаловать на OneGoCMS
                 </h1>
                 <p class="mb-5 text-white bg-slate-950/20 p-9 rounded-lg text-shadow_dark">
-                    Бесплатная русская CMS платформа для игровых серверов World Of Warcraft
-                </p>
-                <p class="text-center mb-5">
-                    <a href="" target="_blank">
-                        <img src="assets/images/video.webp"
-                            class="max-w-full rounded-lg w-64 mx-auto border-2 border-sky-900 opacity-30 hover:opacity-100 transition duration-300 ease-in-out" />
-                    </a>
-                </p>
-
-                <p class="text-white mt-10">
-                    Прокрутите вниз, чтобы узнать больше о нашем сервере!
-                </p>
-                <div class="w-5 mx-auto mt-5 animate-bounce">
-                    <i class="fa-solid fa-chevrons-down text-4xl text-white"></i>
-                </div>
+                    Бесплатная русская CMS плфторма для игровых серверов World Of Warcraft
+                </p>         
             </div>
+            <div class="news">
+<?php
+            $newsHome = new news_home();
+            $newsList = $newsHome->get_news();
+            
+            $count = 0;
+            
+            foreach ($newsList as $news) :
+               if ($count % 3 === 0) {
+                  echo '';
+               }
+            ?>
+            <a href="<?= $news['url'] ?>">
+         <figure class="article">
+               <?php if($news['thumbnail'] != null) : ?>
+                <img src="<?= $news['thumbnail'] ?>" />
+               <?php endif; ?>
+               <figcaption>
+                <h3><?= $news['title'] ?></h3>
+                     <p><?= $news['content'] ?></p>
+                     
+            </figcaption>
+
+        </figure>
+        </a>
+         <?php
+            $count++;
+            if ($count % 3 === 0) {
+               echo '';
+            }
+            endforeach;
+            
+            if ($count % 3 !== 0) {
+               echo '';
+            }
+            ?></div>
         </div>
-    </div>
-</div>
+
+            </div>
+            </div>
 
 <div class="border-t border-b border-indigo-800 bg-indigo-950">
     <div class="container mx-auto py-10">
@@ -78,14 +102,14 @@
                 присоединитесь к нам!
             </div>
             <div class="w-full mt-4 md:mt-0 md:w-1/3 text-center">
-                <a target="_blank" href="https://discord.gg/DNsYBZ2z"
+                <a target="_blank" href=""
                     class="btn bg-blue-900 hover:bg-blue-700 text-white">
                     Вступить в DISCORD
                 </a>
-               <!-- <a target="_blank" href=""
+                <a target="_blank" href=""
                     class="btn md:mt-2 bg-fuchsia-800 hover:bg-fuchsia-600 text-white">
                     Наш Instagram
-                </a> -->
+                </a>
             </div>
         </div>
     </div>
@@ -123,7 +147,7 @@
             </div>
             <div class="card w-[32rem] bg-base-100 shadow-xl image-full max-w-full">
                 <figure>
-                    <img src="https://masterwow.net/images/b2.webp" />
+                    <img src="assets/images/b2.webp" />
                 </figure>
                 <div class="card-body">
                     <h2 class="card-title text-white text-center mx-auto text-shadow_dark">
