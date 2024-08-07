@@ -92,8 +92,8 @@ if (isset($_POST['change_password']))
                                             class="mask mask-hexagon max-h-32 max-w-32" />
                                     </figure>
                                     <div class="card-body">
-                                        <h2 class="card-title text-teal-400">Vote for us</h2>
-                                        <p class="text-gray-300 text-sm">Vote for us and earn rewards in-game.</p>
+                                        <h2 class="card-title text-teal-400">Голосуйте за нас</h2>
+                                        <p class="text-gray-300 text-sm">Голосуйте за нас и получайте награды в игре.</p>
                                     </div>
                                 </div>
                             </a>
@@ -106,10 +106,10 @@ if (isset($_POST['change_password']))
                                     </figure>
                                     <div class="card-body">
                                         <h2 class="card-title text-teal-400">
-                                            Shop and Donation
+                                            Магазин и пожертвование
                                         </h2>
                                         <p class="text-gray-300 text-sm">
-                                            Purchase items, credits, and VIP subscriptions to support the server.
+                                            Приобретайте предметы, донат и VIP-подписки для поддержки сервера.
                                         </p>
                                     </div>
                                 </div>
@@ -124,10 +124,10 @@ if (isset($_POST['change_password']))
                                     <div class="card-body">
                                         <h2 class="card-title text-teal-400">
                                             
-                                            Social Media
+                                            Социальные сети
                                         </h2>
                                         <p class="text-gray-300 text-sm">
-                                            Link your social media accounts to earn rewards in-game.
+                                            Свяжите свои аккаунты в социальных сетях, чтобы получать награды в игре.
                                         </p>
                                     </div>
                                 </div>
@@ -142,10 +142,10 @@ if (isset($_POST['change_password']))
                                     <div class="card-body">
                                         <h2 class="card-title text-teal-400">
                                             
-                                            Legacy Rewards
+                                            Награды за наследие
                                         </h2>
-                                        <p class="text-gray-300 text-sm">Claim rewards for your old accounts and
-                                            characters from our legacy server.</p>
+                                        <p class="text-gray-300 text-sm">Получите награды за свои старые аккаунты и
+                                            персонажей с нашего старого сервера.</p>
                                     </div>
                                 </div>
                             </a>

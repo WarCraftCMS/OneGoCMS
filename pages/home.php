@@ -46,15 +46,10 @@
         <div class="container">
             <div class="max-w-4xl pt-40 2xl:pt-0">
                 <h1 class="mb-5 text-4xl font-bold text-white text-shadow_dark">
-                    Welcome to MasterWoW Private Server
+                    Добро пожаловать на OneGoCMS
                 </h1>
                 <p class="mb-5 text-white bg-slate-950/20 p-9 rounded-lg text-shadow_dark">
-                    Hello Champion, your premier destination for a unique World of
-                    Warcraft experience. We're thrilled to have you here. Our private
-                    server, based on the Haste Server, offers a wealth of custom
-                    features and a vibrant community. We primarily focus on the WotLK
-                    expansion but also incorporate a plethora of content from other
-                    expansions, ensuring a diverse and engaging experience.
+                    Бесплатная русская CMS платформа для игровых серверов World Of Warcraft
                 </p>
                 <p class="text-center mb-5">
                     <a href="" target="_blank">
@@ -64,7 +59,7 @@
                 </p>
 
                 <p class="text-white mt-10">
-                    Scroll down to learn more about our server!
+                    Прокрутите вниз, чтобы узнать больше о нашем сервере!
                 </p>
                 <div class="w-5 mx-auto mt-5 animate-bounce">
                     <i class="fa-solid fa-chevrons-down text-4xl text-white"></i>
@@ -78,19 +73,19 @@
     <div class="container mx-auto py-10">
         <div class="md:flex mx-auto">
             <div class="w-full md:w-2/3 mt-3 text-center px-4 text-white text-shadow_dark">
-                Join our Discord server and follow us on Instagram, Ask your
-                questions, and engage with the community. We're excited to have you
-                join us!
+                Присоединяйтесь к нашему серверу Discord и следите за нами, задавайте свои
+                вопросы и общайтесь с сообществом. Мы рады, что вы
+                присоединитесь к нам!
             </div>
             <div class="w-full mt-4 md:mt-0 md:w-1/3 text-center">
-                <a target="_blank" href=""
+                <a target="_blank" href="https://discord.gg/DNsYBZ2z"
                     class="btn bg-blue-900 hover:bg-blue-700 text-white">
-                    JOIN DISCORD
+                    Вступить в DISCORD
                 </a>
-                <a target="_blank" href=""
+               <!-- <a target="_blank" href=""
                     class="btn md:mt-2 bg-fuchsia-800 hover:bg-fuchsia-600 text-white">
-                    Follow us on Instagram
-                </a>
+                    Наш Instagram
+                </a> -->
             </div>
         </div>
     </div>
@@ -106,22 +101,22 @@
                 </figure>
                 <div class="card-body">
                     <h2 class="card-title text-white text-center mx-auto text-shadow_dark">
-                        How to Connect
+                        Как подключиться
                     </h2>
                     <p class="text-white/80 text-shadow_dark">
-                        Discover how to establish a connection, download our custom
-                        patches, and utilize our launcher to access our server. Embark
-                        on your adventure today!
+                        Узнайте, как установить соединение, загрузить наши пользовательские
+                        патчи и использовать наш лаунчер для доступа к нашему серверу. Отправьтесь
+                        в свое приключение сегодня!
                     </p>
 
                     <div class="card-actions justify-center">
-                        <a href="?page=connect"
+                        <a href="?page=howtoplay"
                             class="btn text-shadow_dark bg-pink-600/40 hover:bg-pink-900 text-white">
-                            Read Guide to Connect!
+                            Прочитайте руководство по подключению!
                         </a>
                         <a href="?page=register"
                             class="btn text-shadow_dark bg-cyan-600/40 hover:bg-cyan-900 text-white">
-                            Register Account
+                            Регистрация Аккаунта
                         </a>
                     </div>
                 </div>
@@ -132,17 +127,16 @@
                 </figure>
                 <div class="card-body">
                     <h2 class="card-title text-white text-center mx-auto text-shadow_dark">
-                        Account Control Panel
+                        Панель управления аккаунтом
                     </h2>
                     <p class="text-white/80 text-shadow_dark">
-                        Here you can manage your account, vote for the server, and
-                        manage your characters.
+                        Здесь вы можете управлять своим аккаунтом, голосовать за сервер и управлять своими персонажами.
                     </p>
 
                     <div class="card-actions justify-center">
                         <a href="?page=login"
                             class="btn text-shadow_dark bg-sky-600/40 hover:bg-sky-900 text-white">
-                            Visit Account Panel
+                            Посетите панель управления аккаунтом
                         </a>
                     </div>
                 </div>

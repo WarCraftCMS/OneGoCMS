@@ -21,20 +21,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['vote'])) {
         <div class="container">
             <div class="max-w-3xl mt-36 2xl:pt-0">
                 <h1 class="mb-5 text-4xl font-bold text-white text-shadow_dark">
-                    Vote for us
+                    Голосуйте за нас
                 </h1>
                 <div class="text-white bg-slate-950/60 p-9 rounded-lg text-left leading-loose">
 
 
                     <div class="mt-2">
-                                                <div class="divider mb-5">Vote Sites</div>
+                                                <div class="divider mb-5">Сайты голосования</div>
 
                         <div role="alert" class="alert shadow-lg bg-cyan-950/40">
                             <div>
-                                <h3 class="font-bold">Rewards</h3>
+                                <h3 class="font-bold">Награды</h3>
                                 <div class="text-sm">
                                     <p class="sm:inline leading-loose">
-                                        By voting for us, you will receive Vote Points (VP) that can be used in-game.
+                                        Проголосовав за нас, вы получите баллы голосования (VP), которые можно использовать в игре.
                                     </p>
                                     </p>
                                 </div>
@@ -43,9 +43,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['vote'])) {
                         <table class="table w-full">
                             <thead>
                                 <tr>
-                                    <th class='text-center text-white'>Site</th>
-                                    <th class='text-center text-white'>Status</th>
-                                    <th class='text-center text-white'>Action</th>
+                                    <th class='text-center text-white'>Сайт</th>
+                                    <th class='text-center text-white'>Статус</th>
+                                    <th class='text-center text-white'>Действие</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['vote'])) {
                                             class="max-w-20 max-h-20">
                                     </td>
                                     <td class='text-center'>
-                                        <span class="text-cyan-500">Ready to vote</span>
+                                        <span class="text-cyan-500">Готов голосовать</span>
                                     </td>
                                     <td class='text-center'>
                                                             <?php
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['vote'])) {
                             <form method="POST" action="">
                                         <a href="https://wow.mmotop.ru/servers/38047/votes/new"
                                             target="_blank" class="btn bg-teal-600 hover:bg-teal-700 text-white">
-                                            Vote Now
+                                            Голосуйте сейчас
                                         </a>
                             </form>
                         <?php

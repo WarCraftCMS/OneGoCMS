@@ -13,7 +13,7 @@ if (isset($_POST['change_password'])) {
         <div class="container">
             <div class="max-w-full mt-36 2xl:pt-0">
                 <h1 class="mb-5 text-4xl font-bold text-white text-shadow_dark">
-                    Your Characters
+                    Мои Персонажи
                 </h1>
                 <div class="text-white bg-slate-950/60 p-9 rounded-lg text-left leading-loose">
                     <div class="mt-2">

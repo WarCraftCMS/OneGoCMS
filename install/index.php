@@ -4,7 +4,7 @@ if (file_exists('../engine/install.lock')) {
     exit;
 }
 require_once("functions/install.php");
-$check = new InstallTinyCMS();
+$check = new InstallOneGoCMS();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,13 +27,13 @@ $check = new InstallTinyCMS();
 
 <body>
     <div class="container">
-        <h1 class="mt-4 text-white text-center">TinyCMS</h1>
+        <h1 class="mt-4 text-white text-center">OneGoCMS</h1>
         <p class="text-white text-center">World of Warcraft Content Management System</p>
         <hr style="border-color: white; width: 50%;">
 
         <h4 class="text-white text-center">PHP Extensions</h4>
         <div class="d-flex justify-content-center mb-2">
-            <small class="text-white ">All the following extensions must be enabled for TinyCMS to work properly.</small>
+            <small class="text-white ">All the following extensions must be enabled for OneGoCMS to work properly.</small>
         </div>
 
         <p class="text-white text-center">MySQLI: <?= $check->checkExtension('mysqli'); ?></p>
@@ -50,7 +50,7 @@ $check = new InstallTinyCMS();
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <p class="text-center text-white">&copy; 2023 TinyCMS. All rights reserved.</p>
+                    <p class="text-center text-white">&copy; 2024 OneGoCMS. All rights reserved.</p>
                 </div>
             </div>
         </div>

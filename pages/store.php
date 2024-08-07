@@ -42,8 +42,8 @@ if (isset($_SESSION['error'])) {
                 <!-- Left Sidebar -->
                 <div class="col-md-3">
                     <div class="list-group">
-                        <h2 class="custom-card-text mb-2">Store</h2>
-                        <a href="?page=cart" class="list-group-item list-group-item-action">View Cart</a>
+                        <h2 class="custom-card-text mb-2">Магазин</h2>
+                        <a href="?page=cart" class="list-group-item list-group-item-action">Просмотреть корзину</a>
                         <?php while ($row = $categories->fetch_assoc()) : ?>
                             <a href="?page=store&category=<?= $row['id'] ?>" class="list-group-item list-group-item-action">
                                 <?= $row['title'] ?>
@@ -54,14 +54,14 @@ if (isset($_SESSION['error'])) {
 
                 <!-- Right Content -->
                 <div class="col-md-9">
-                    <h2 class="custom-card-text">Store</h2>
+                    <h2 class="custom-card-text">Магазин</h2>
                     <table class="table custom-card">
                         <thead class="thead-light">
                             <tr class="custom-card-text">
-                                <th>Item</th>
-                                <th>Vote Points</th>
-                                <th>Donor Points</th>
-                                <th>Buy</th>
+                                <th>Предмет</th>
+                                <th>Очки голосования</th>
+                                <th>Очки доната</th>
+                                <th>Купить</th>
                             </tr>
                         </thead>
                         <tbody class="text-white">
