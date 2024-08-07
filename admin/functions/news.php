@@ -36,7 +36,7 @@ class News {
         return $result;
     }
 
-    public function add_news($title, $content, $url, $thumbnail, $author) 
+    public function add_news($title, $content, $url, $image, $author) 
 {
     $url = $this->generate_url($url);
 
@@ -44,11 +44,14 @@ class News {
         $uploads_dir = '../uploads/news/'; // Директория загрузки
 
         if (!is_dir($uploads_dir)) {
-            mkdir($uploads_dir, true);
+            mkdir($uploads_dir, 0755, true);
         }
 
-        $thumbnail = $uploads_dir . uniqid() . basename($image['name'] . '.png');
-        move_uploaded_file($image['tmp_name'], $thumbnail);
+        $thumbnail = $uploads_dir . uniqid() . basename($image['name']);
+        
+        if (!move_uploaded_file($image['tmp_name'], $thumbnail)) {
+            return false;
+        }
     } else {
         $thumbnail = null;
     }
@@ -65,7 +68,6 @@ class News {
     $stmt->close();
     return false;
 }
-
 
     public function update_news($id, $title, $content) {
         $stmt = $this->connection->prepare("UPDATE news SET title = ?, content = ?, created_at = NOW() WHERE id = ?");

@@ -1,13 +1,14 @@
 <?php
 if (isset($_POST['submit'])) {
     $news = new News();
-    $news->add_news($_POST['news-title'], $_POST['news-content'], $_POST['news-url'],  $_FILES['news-thumbnail'], $_SESSION['username']);
+    $news->add_news($_POST['news-title'], $_POST['news-content'], $_POST['news-url'], $_FILES['file'], $_SESSION['username']);
 }
 
 if (isset($_POST['edit-submit'])) {
     $news = new News();
-    $news->update_news($_POST['news-id'], $_POST['news-title'], $_POST['news-content'], $_POST['news-thumbnail']);
+    $news->update_news($_POST['news-id'], $_POST['news-title'], $_POST['news-content']);
 }
+
 $news = new News();
 ?>
 
@@ -29,7 +30,7 @@ $news = new News();
             <div class="col-12">
                 <div class="card card-bordered">
                     <div class="card-inner">
-                        <form id="news-form" method="post" action="">
+                        <form id="news-form" method="post" action="" enctype="multipart/form-data">
 
 
                             <!-- Tabs -->
