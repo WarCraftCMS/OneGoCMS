@@ -101,17 +101,11 @@ class News {
     $page_content .= "\$author = '{$author}';\n";
     $page_content .= "\$thumbnail = '{$thumbnail}';\n";
     $page_content .= "\$url = '{$url}';\n";
-    $page_content .= "?>\n<!DOCTYPE html>\n<html>\n<head>\n<title><?php echo \$title; ?></title>\n</head>\n<body>\n";
     $page_content .= "<h1><?php echo \$title; ?></h1>\n";
     $page_content .= "<p><strong>Автор:</strong> <?php echo \$author; ?></p>\n";
     $page_content .= "<p><strong>Ссылка:</strong> <a href='<?php echo \$url; ?>'>Читать больше</a></p>\n";
     $page_content .= "<div><?php echo \$content; ?></div>\n";
 
-    if (!empty($thumbnail)) {
-        $page_content .= "<img src='<?php echo \$thumbnail; ?>' alt='News Image'/>\n";
-    }
-
-    $page_content .= "</body>\n</html>";
     
     file_put_contents($filename, $page_content);
 }

@@ -74,7 +74,6 @@
                      <p><?= $news['content'] ?></p>
                      
             </figcaption>
-
         </figure>
         </a>
          <?php

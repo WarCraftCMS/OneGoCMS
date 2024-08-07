@@ -21,7 +21,7 @@ require_once '../engine/functions/database.php';
 $account = new Account($_SESSION['username']);
 $rank = $account->get_rank();
 
-if ($rank < 1) {
+if ($rank < 3) {
     header("Location: /?page=home");
     exit();
 }
@@ -93,6 +93,7 @@ $stats = new Dashboard();
                                     <li class="nk-menu-item">
                                         <a href="/admin/?page=news" class="nk-menu-link ">
                                             <span class="nk-menu-text">Новости</span>
+                                            <span class="nk-menu-badge"><?php echo $stats->total_news(); ?></span>
                                         </a>
                                     </li>
 
