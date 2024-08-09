@@ -37,22 +37,22 @@ class Login
     }
 
 
-    // Insert account ID into the website->users table if the account ID isn't found to avoid possibly errors.
     private function insert_account_id($id)
-    {
-        $stmt = $this->website_connection->prepare("SELECT account_id FROM users WHERE account_id = ?");
+{
+    $stmt = $this->website_connection->prepare("SELECT account_id FROM users WHERE account_id = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $stmt->bind_result($account_id);
+    $stmt->fetch();
+    $stmt->close();
+    if ($account_id == null) {
+        // добавил значение vote_points и donor_points = 0 при первом входе в систему
+        $stmt = $this->website_connection->prepare("INSERT INTO users (account_id, vote_points, donor_points) VALUES (?, 0, 0)");
         $stmt->bind_param("i", $id);
         $stmt->execute();
-        $stmt->bind_result($account_id);
-        $stmt->fetch();
         $stmt->close();
-        if ($account_id == null) {
-            $stmt = $this->website_connection->prepare("INSERT INTO users (account_id) VALUES (?)");
-            $stmt->bind_param("i", $id);
-            $stmt->execute();
-            $stmt->close();
-        }
     }
+}
 
     public function login()
     {

@@ -38,12 +38,12 @@ if (isset($_POST['change_password']))
                                         <span class="font-bold">Последний вход:</span>
                                         <?= $account->get_last_login(); ?>                                    </div>
                                     <div class="sm:ml-2 block md:inline-block">
-                                        <span class="font-bold">Бонусы:</span>
-                                        <span class="text-yellow-500">0 €</span>
+                                        <span class="font-bold">Донат:</span>
+                                        <span class="text-yellow-500"><?= $account->get_donor_points(); ?></span>
                                     </div>
                                     <div class="sm:ml-2 block md:inline-block">
                                         <span class="font-bold">Голоса:</span>
-                                        <span class="text-blue-300">0</span>
+                                        <span class="text-blue-300"><?= $account->get_vote_points(); ?></span>
                                     </div>
                                     <div class="sm:ml-2 block md:inline-block">
                                         <span class="font-bold">ПРЕМИУМ:</span>
