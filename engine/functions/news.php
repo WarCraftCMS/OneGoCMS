@@ -9,7 +9,7 @@ class news_home {
     }
 
     public function get_news() {
-        $stmt = $this->connection->prepare("SELECT id, title, content, author, created_at, thumbnail, url FROM news ORDER BY id DESC LIMIT 3");
+        $stmt = $this->connection->prepare("SELECT id, title, content, author, created_at, thumbnail, url FROM news ORDER BY id DESC LIMIT 4");
         $stmt->execute();
         $stmt->bind_result($id, $title, $content, $author, $created_at, $thumbnail, $url);
         $news = array();

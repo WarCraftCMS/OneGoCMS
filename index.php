@@ -1,35 +1,44 @@
 <?php
-   // Redirect to install page if install.lock is not found.
-   if (!file_exists('engine/install.lock')) {
-       header('Location: install');
-       exit;
-   }
-   if (!isset($_SESSION)) {
-       session_start();
-   }
-   foreach (glob("engine/functions/*.php") as $filename) {
-       require_once $filename;
-   }
-   
-   foreach (glob("engine/configs/*.php") as $filename) {
-       require_once $filename;
-   }
-   
-   if (!isset($_GET['page'])) {
-       $page = 'home';
-   } else {
-       if (preg_match('/[^a-zA-Z]/', $_GET['page'])) {
-           $page = 'home';
-       } else {
-           $page = $_GET['page'];
-       }
-   }
-   
-   $global = new GlobalFunctions();
-   
-   $config_object = new gen_config();
-   $config = $config_object->get_config();
-   ?>
+if (!file_exists('engine/install.lock')) {
+    header('Location: install');
+    exit;
+}
+
+if (!isset($_SESSION)) {
+    session_start();
+}
+
+foreach (glob("engine/functions/*.php") as $filename) {
+    require_once $filename;
+}
+
+foreach (glob("engine/configs/*.php") as $filename) {
+    require_once $filename;
+}
+
+if (!isset($_GET['page'])) {
+    $page = 'home';
+} else {
+    if (preg_match('/[^a-zA-Z]/', $_GET['page'])) {
+        $page = 'home';
+    } else {
+        $page = $_GET['page'];
+    }
+}
+
+$global = new GlobalFunctions();
+
+$config_object = new gen_config();
+$config = $config_object->get_config();
+
+$user_rank = null;
+if (isset($_SESSION['username'])) {
+    $account = new Account($_SESSION['username']);
+    $user_rank = $account->get_rank();
+}
+
+?>
+
 
 <!DOCTYPE html>
 <html class="bg-custom-dark1">
@@ -89,6 +98,13 @@
                                 </summary>
                                 <ul class="p-2 bg-indigo-950 rounded-t-none min-w-40">
                                     <li><a href="?page=account" class="hover:bg-indigo-900/80">Кабинет</a></li>
+                                    <?php
+                                        if ($user_rank >= 3) {
+                                        ?>
+                                            <li><a href="/admin" class="hover:bg-indigo-900/80">Админ</a></li>
+                                        <?php
+                                        }
+          ?>
                                     <li><a href="?page=logout" class="hover:bg-indigo-900/80">Выход</a></li>
                                 </ul>
                             </details>

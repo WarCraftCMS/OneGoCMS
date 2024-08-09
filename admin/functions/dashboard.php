@@ -9,6 +9,7 @@ class Dashboard{
         $config = new Configuration();
         $this->connection = $config->getDatabaseConnection('auth');
         $this->characters = $config->getDatabaseConnection('characters');
+        $this->website = $config->getDatabaseConnection('website');
     }   
 
     public function total_accounts() {
@@ -53,6 +54,16 @@ class Dashboard{
 
     public function total_arena_teams() {
         $stmt = $this->characters->prepare("SELECT COUNT(*) FROM arena_team");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $total = $row['COUNT(*)'];
+        $stmt->close();
+        return $total;
+    }
+
+    public function total_news() {
+        $stmt = $this->website->prepare("SELECT COUNT(*) FROM news");
         $stmt->execute();
         $result = $stmt->get_result();
         $row = $result->fetch_assoc();

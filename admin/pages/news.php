@@ -56,13 +56,13 @@ $news = new News();
                                 <div class="nk-tb-col nk-tb-col-action">
                                     <div class="dropdown">
                                         <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown">
-                                            <em class="icon ni ni-more-h"></em>
+                                            ...
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <ul class="link-list-plain">
-                                                <li><a href="https://wow.wizardcp.com/ru/backend/articles/16/edit">Редактировать</a></li>
-                                                <button class="btn btn-primary edit-news-btn" data-id="<?php echo $newsItem['id']; ?>" data-title="<?php echo htmlspecialchars($newsItem['title'], ENT_QUOTES, 'UTF-8'); ?>" data-content="<?php echo htmlspecialchars($newsItem['content'], ENT_QUOTES, 'UTF-8'); ?>">Edit</button>
-                                                    <li><a href="#" class="text-danger" onclick="this.closest('form').submit();return false;">Удалить</a></li>
+                                                <li></li>
+                                                
+                                                    
                                                
                                             </ul>
                                         </div>
