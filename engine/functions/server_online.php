@@ -150,7 +150,7 @@ class Online
             $silver = floor(($money % 10000) / 100);
             $copper = $money % 100;
             $gender_text = ($gender == 0) ? 'Мужчина' : 'Женщина';
-            $guild_text = !empty($guild_name) ? $guild_name : 'Не состоит в гильдии';
+            $guild_text = !empty($guild_name) ? $guild_name : 'Без гильдии';
 
             if ($totalHonorPoints <= 0) {
                 $rank = 0; // Нет ранга
