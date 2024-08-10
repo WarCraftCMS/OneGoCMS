@@ -192,5 +192,41 @@ class Character
     return $characters;
 }
 
+    public function teleport_to_home($guid)
+{
+    $stmt = $this->character_connection->prepare("
+        SELECT POSx, POSy, POSz FROM character_homebind WHERE guid = ?
+    ");
+
+    if ($stmt === false) {
+        die('Ошибка подготовки запроса: ' . $this->character_connection->error);
+    }
+
+    $stmt->bind_param("i", $guid);
+    $stmt->execute();
+    $stmt->bind_result($x, $y, $z);
+    
+    if ($stmt->fetch()) {
+        $stmt->close();
+
+        $update_stmt = $this->character_connection->prepare("
+            UPDATE characters SET position_x = ?, position_y = ?, position_z = ? WHERE guid = ?
+        ");
+        
+        if ($update_stmt === false) {
+            die('Ошибка подготовки обновления позиции: ' . $this->character_connection->error);
+        }
+
+        $update_stmt->bind_param("dddi", $x, $y, $z, $guid);
+        $update_stmt->execute();
+        $update_stmt->close();
+        
+        return true;
+    } else {
+        $stmt->close();
+        return false;
+    }
+}
+
 }
 ?>
