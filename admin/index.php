@@ -119,7 +119,13 @@ $stats = new Dashboard();
                                     </a>
                                     <!-- .nk-menu-sub -->
                                 </li>
-
+                                <li class="nk-menu-item has-sub">
+                                    <a href="/admin/?page=tickets" class="nk-menu-link" data-original-title="" title="">
+                                        <span class="nk-menu-text">Тикеты</span>
+                                        <span class="nk-menu-badge"></span>
+                                    </a>
+                                    <!-- .nk-menu-sub -->
+                                </li>
                                 <!-- .nk-menu-item -->
                                 <li class="nk-menu-heading">
                                     <h6 class="overline-title text-primary-alt">Статус серверов</h6>
