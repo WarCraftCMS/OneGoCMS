@@ -25,7 +25,7 @@ class TopPlayers
                 c.`arenaPoints`, 
                 c.`totalKills`,  
                 (SELECT COUNT(*) FROM character_achievement WHERE guid = c.guid) AS achievement_count,
-                (SELECT g.`defaultName` FROM guild_member gm JOIN guild g ON gm.guildId = g.guildId WHERE gm.guid = c.guid) AS guild_name
+                (SELECT g.`name` FROM guild_member gm JOIN guild g ON gm.guildId = g.guildId WHERE gm.guid = c.guid) AS guild_name
             FROM 
                 characters c
             ORDER BY 

@@ -24,7 +24,7 @@ class adminAccounts
 
     public function get_accounts($currentPage, $perPage) {
         $offset = ($currentPage - 1) * $perPage;
-        $stmt = $this->auth->prepare("SELECT id, username, email, joindate, last_ip, last_login, bonuses FROM account LIMIT ?, ?");
+        $stmt = $this->auth->prepare("SELECT id, username, email, joindate, last_ip, last_login FROM account LIMIT ?, ?");
         $stmt->bind_param("ii", $offset, $perPage);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -36,8 +36,7 @@ class adminAccounts
                 "email" => $row['email'],
                 "joindate" => $row['joindate'],
                 "last_ip" => $row['last_ip'],
-                "last_login" => $row['last_login'],
-                "bonuses" => $row['bonuses']
+                "last_login" => $row['last_login']
             );
         }
         $stmt->close();

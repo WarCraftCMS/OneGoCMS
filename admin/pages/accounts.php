@@ -60,30 +60,36 @@ $accounts = $account->get_accounts($pageNum, $perPage);
                     </div>
 
 <div class="card-inner">
-                        <nav>
+    <nav>
         <ul class="pagination">
-                            
-            
-                            
-                           
-                                        <?php
-    // Calculate total number of pages
-    $totalAccounts = $account->get_total_accounts();
-    $totalPages = ceil($totalAccounts / $perPage);
+            <?php
+            $totalAccounts = $account->get_total_accounts();
+            $totalPages = ceil($totalAccounts / $perPage);
 
-    // Display pagination links
-    for ($i = 1; $i <= $totalPages; $i++) {
-        $isActive = $i == $pageNum ? "active" : "";
-        echo "<li class='page-item $isActive'><a class='page-link' href='?page=accounts&pg=$i'>$i</a></li>";
-    }
-    ?>
+            if ($pageNum > 1) {
+                echo "<li class='page-item'><a class='page-link' href='?page=accounts&pg=1'>1</a></li>";
+            }
 
+            if ($pageNum > 3) {
+                echo "<li class='page-item disabled'><span class='page-link'>...</span></li>";
+            }
 
-                                                                        
-                    </ul>
+            for ($i = max(2, $pageNum - 1); $i <= min($totalPages - 1, $pageNum + 1); $i++) {
+                $isActive = $i == $pageNum ? "active" : "";
+                echo "<li class='page-item $isActive'><a class='page-link' href='?page=accounts&pg=$i'>$i</a></li>";
+            }
+
+            if ($pageNum < $totalPages - 1) {
+                if ($pageNum < $totalPages - 2) {
+                    echo "<li class='page-item disabled'><span class='page-link'>...</span></li>";
+                }
+                echo "<li class='page-item'><a class='page-link' href='?page=accounts&pg=$totalPages'>$totalPages</a></li>";
+            }
+            ?>
+        </ul>
     </nav>
+</div>
 
-                    </div>
                                             </div>
                     </div>
                                             </div>
