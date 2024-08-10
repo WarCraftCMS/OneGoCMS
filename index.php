@@ -40,6 +40,7 @@ if (isset($_SESSION['username'])) {
 ?>
 
 
+
 <!DOCTYPE html>
 <html class="bg-custom-dark1">
 
@@ -99,7 +100,7 @@ if (isset($_SESSION['username'])) {
                                 <ul class="p-2 bg-indigo-950 rounded-t-none min-w-40">
                                     <li><a href="?page=account" class="hover:bg-indigo-900/80">Кабинет</a></li>
                                     <?php
-                                        if ($user_rank >= 3) {
+                                        if ($user_rank >= 1) {
                                         ?>
                                             <li><a href="/admin" class="hover:bg-indigo-900/80">Админ</a></li>
                                         <?php
