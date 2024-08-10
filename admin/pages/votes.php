@@ -68,34 +68,20 @@ if (isset($_POST['vote-submit'])) {
                         <div class="nk-tb-list nk-tb-orders">
                             <?php foreach ($voteSites->get_vote_sites() as $voteSite) : ?>
                                 <div class="nk-tb-item">
-                                <div class="nk-tb-col"><span class="tb-lead"><?php echo $voteSite['site_name']; ?></span></div>
-                                <div class="nk-tb-col">
-                                    <span class="tb-lead"><a href="<?php echo $voteSite['site_url']; ?>" target="_blank"><?php echo $voteSite['site_url']; ?></a></span>
-                                </div>
-                                <div class="nk-tb-col tb-col-md">
-                                    <span class="tb-sub">
-                                        <?php echo $voteSite['vote_points']; ?> очков
-                                    </span>
-                                </div>
-                                <div class="nk-tb-col nk-tb-col-action">
-                                    <div class="dropdown">
-                                        <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown">
-                                            ...
-                                        </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                            <ul class="link-list-plain">
-                                <li><a href="#">Редактировать</a></li>
-                                <li><a href="#">Удалить</a></li>
-                            </ul>
-                        </div>
+                                    <div class="nk-tb-col"><span class="tb-lead"><?php echo htmlspecialchars($voteSite['site_name']); ?></span></div>
+                                    <div class="nk-tb-col">
+                                        <span class="tb-lead"><a href="<?php echo htmlspecialchars($voteSite['site_url']); ?>" target="_blank"><?php echo htmlspecialchars($voteSite['site_url']); ?></a></span>
+                                    </div>
+                                    <div class="nk-tb-col tb-col-md">
+                                        <span class="tb-sub">
+                                            <?php echo htmlspecialchars($voteSite['vote_points']); ?> очков
+                                        </span>
+                                    </div>
+                                    <div class="nk-tb-col nk-tb-col-action">
                                     </div>
                                 </div>
-                            </div>
                             <?php endforeach; ?>
                         </div>
-                    </div>
-                    <div class="card-inner">
-                        
                     </div>
                 </div>
             </div>
