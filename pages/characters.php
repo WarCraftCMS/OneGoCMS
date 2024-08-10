@@ -37,7 +37,6 @@ if (isset($_POST['unstick'])) {
                                     <th class='text-center text-white'>Золото</th>
                                     <th class='text-center text-white'>Арена</th>
                                     <th class='text-center text-white'>Честь</th>
-                                    <th class='text-center text-white'>Ранг</th>
                                     <th class='text-center text-white'>Достижения</th>
                                 </tr>
                             </thead>
@@ -72,9 +71,6 @@ if (isset($_POST['unstick'])) {
                                     </td>
                                     <td class='text-center'>
                                         <span><img class="h-5 inline rounded-full" src="<?= $character['honor_image']; ?>" class="mr-2"> <?= $character['totalHonorPoints']; ?></span>
-                                    </td>
-                                    <td class='text-center'>
-                                        <span><img class="h-5 inline rounded-full" src="" class="mr-2"> <?= $character['rankPoints']; ?></span>
                                     </td>
                                     <td class='text-center'>
                                         <span><img class="h-5 inline rounded-full" src="<?= $character['achievement_image']; ?>" class="mr-2"> <?= $character['achievement_count']; ?></span>
