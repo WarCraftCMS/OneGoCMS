@@ -105,7 +105,7 @@ class Store
             $total += $item_price[1] * $item['quantity'];
         }
 
-        if ($account->get_account_currency()['donor_points'] <= $total) {
+        if ($account->get_donor_points()['donor_points'] <= $total) {
             echo "You don't have enough points!";
             return false;
         }
