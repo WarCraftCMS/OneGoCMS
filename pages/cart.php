@@ -47,7 +47,7 @@ $characters = $character->get_characters($account->get_id());
                         </thead>
                         <tbody>
                             <?php
-                            $total = 0;
+                            $total = 1000;
                             foreach ($cart as $item) :
                                 $item_price = $store->get_item_price($item['product_id']);
                                 $item_name = $store->get_item_name($item['product_id']);

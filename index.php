@@ -27,6 +27,7 @@ if (!isset($_GET['page'])) {
 }
 
 $global = new GlobalFunctions();
+$server = new ServerInfo();
 
 $config_object = new gen_config();
 $config = $config_object->get_config();
@@ -112,6 +113,16 @@ if (isset($_SESSION['username'])) {
          <?php
             }
             ?>
+                        </li>
+                        <li>
+                            <a class="bg-cyan-800 hover:bg-cyan-800 text-white mx-2">
+                                Общий Онлайн: <?= $server->get_online_players(); ?>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" class="bg-cyan-600 hover:bg-cyan-700 text-white mx-2">
+                                О сервере
+                            </a>
                         </li>
                         <li>
                             <a href="?page=howtoplay" class="bg-rose-700 hover:bg-rose-900 text-white mx-2">

@@ -3,8 +3,8 @@
 class Store
 {
     private $website_connection;
-    private $soap_username = "test";
-    private $soap_password = "test";
+    private $soap_username = "xaocZ";
+    private $soap_password = "112312976";
     private $soap_port = "7878";
 
     public function __construct()
@@ -12,7 +12,6 @@ class Store
         $config = new Configuration();
         $this->website_connection = $config->getDatabaseConnection('website');
     }
-
 
     public function get_categories()
     {
@@ -106,7 +105,7 @@ class Store
         }
 
         if ($account->get_donor_points()['donor_points'] <= $total) {
-            echo "You don't have enough points!";
+            echo "У вас недостаточно очков!";
             return false;
         }
 
@@ -116,14 +115,13 @@ class Store
         $character = isset($_POST['character']) ? $_POST['character'] : null;
 
         if ($character === null) {
-            echo "Character is not set. Please select a character.";
+            echo "Персонаж не установлен. Выберите персонаж.";
             return false;
         }
 
         $this->soap($character, $item_ids, $quantities, $total);
         return true;
     }
-
 
     public function remove_from_cart_all($user_id)
     {
@@ -141,47 +139,62 @@ class Store
         $stmt->close();
     }
 
-
-
-
-
     public function soap($character, $item_ids, $quantities, $total)
-    {
-        // TO DO //
-        /*
-        Move errors into a log file instead of printing them on the screen
-        */
+{
+    $db_host = "127.0.0.1";
+    $soapErrors = [];
+
+    try {
+        $soapClient = new SoapClient("http://$db_host:$this->soap_port/?wsdl");
+        echo "SOAP-клиент успешно создан.";
+    } catch (Exception $e) {
+        echo "Не удалось создать SOAP-клиент: " . $e->getMessage();
+        return;
+    }
+
+    foreach (array_combine($item_ids, $quantities) as $item_id => $quantity) {
+        $command = 'send items ' . $character . ' "test" "Body" ' . $item_id . ':' . $quantity;
 
 
-        $db_host = "127.0.0.1";
-        $soapErrors = [];
-        foreach (array_combine($item_ids, $quantities) as $item_id => $quantity) {
-            $command = 'send items ' . $character . ' "test" "Body" ' . $item_id . ':' . $quantity;
-            $client = new SoapClient(NULL, array(
-                'location' => "http://$db_host:$this->soap_port/",
-                'uri' => 'urn:TC',
-                'style' => SOAP_RPC,
-                'login' => $this->soap_username,
-                'password' => $this->soap_password,
-            ));
-
-            try {
-                $result = $client->executeCommand(new SoapParam($command, 'command'));
-                if ($result == 0) {
-                    $soapErrors[] = "Failed to execute SOAP command for item id $item_id";
-                }
-            } catch (SoapFault $fault) {
-                $soapErrors[] = "SOAP Fault: (faultcode: {$fault->faultcode}, faultstring: {$fault->faultstring})";
+        try {
+            $result = $soapClient->executeCommand(new SoapParam($command, 'command'));
+            
+            if ($result == 0) {
+                $soapErrors[] = "Не удалось выполнить команду SOAP для предмета id $item_id";
             }
+        } catch (SoapFault $fault) {
+            $soapErrors[] = "SOAP Fault: (код неисправности: {$fault->faultcode}, строка неисправностей: {$fault->faultstring})";
+        } catch (Exception $e) {
+            $soapErrors[] = "Ошибка: " . $e->getMessage();
+        }
+    }
+
+    if (empty($soapErrors)) {
+        $this->remove_from_cart_all($_SESSION['account_id']);
+        $this->remove_donor_points($_SESSION['account_id'], $total);
+        $_SESSION['success_message'] = "Ваша покупка прошла успешно! Вы можете найти свои товары в игровом почтовом ящике.";
+        header("Location: ?page=store");
+    } else {
+        echo "Что-то пошло не так! Ошибки: " . implode(", ", $soapErrors);
+    }
+}
+
+
+
+
+    public function process_direct_purchase($user_id, $character, $product_id, $quantity)
+    {
+        $item_price = $this->get_item_price($product_id);
+        $total = $item_price[2] * $quantity;
+
+        $account = new Account($_SESSION['username']);
+        if ($account->get_donor_points() < $total) {
+            $_SESSION['error'] = "У вас недостаточно донат монет!";
+            return false;
         }
 
-        if (empty($soapErrors)) {
-            $this->remove_from_cart_all($_SESSION['account_id']);
-            $this->remove_donor_points($_SESSION['account_id'], $total);
-            $session['success_message'] = "Your purchase was successful! You can find your items in your mailbox in-game.";
-            header("Location: ?page=store");
-        } else {
-            echo "Something went wrong! Errors: " . implode(", ", $soapErrors);
-        }
+        $this->soap($character, [$product_id], [$quantity], $total);
+        $_SESSION['success_message'] = "Ваша покупка прошла успешно! Вы можете найти свои товары в игровом почтовом ящике.";
+        return true;
     }
 }

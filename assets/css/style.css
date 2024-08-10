@@ -1,138 +1,138 @@
 .hero1 {
-  background-image: url("../images/bg1.webp");
+  background-image: url("../images/bg/bg1.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
 }
 
 .hero2 {
-  background-image: url("../images/bg-xalatath.webp");
+  background-image: url("../images/bg/bg-xalatath.webp");
   background-size: auto 100%;
   background-repeat: no-repeat;
   background-position: left;
 }
 
 .hero3 {
-  background-image: url("../images/bg-dis.webp");
+  background-image: url("../images/bg/bg-dis.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: right;
 }
 
 .hero4 {
-  background-image: url("../images/bg2.webp");
+  background-image: url("../images/bg/bg2.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
 }
 
 .hero5 {
-  background-image: url("../images/bg3.webp");
+  background-image: url("../images/bg/bg3.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
 }
 
 .hero6 {
-  background-image: url("../images/bg4.webp");
+  background-image: url("../images/bg/bg4.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
 }
 
 .hero7 {
-  background-image: url("../images/bg5.webp");
+  background-image: url("../images/bg/bg5.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
 }
 
 .hero8 {
-  background-image: url("../images/bg6.webp");
+  background-image: url("../images/bg/bg6.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
 }
 
 .hero9 {
-  background-image: url("../images/bg7.webp");
+  background-image: url("../images/bg/bg7.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
 }
 
 .hero10 {
-  background-image: url("../images/bg10.webp");
+  background-image: url("../images/bg/bg10.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
 }
 
 .hero11 {
-  background-image: url("../images/bg11.webp");
+  background-image: url("../images/bg/bg11.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
 }
 
 .hero12 {
-  background-image: url("../images/bg12.webp");
+  background-image: url("../images/bg/bg12.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
 }
 
 .hero13 {
-  background-image: url("../images/bg13.webp");
+  background-image: url("../images/bg/bg13.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
 }
 
 .hero14 {
-  background-image: url("../images/bg14.webp");
+  background-image: url("../images/bg/bg14.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
 }
 
 .hero15 {
-  background-image: url("../images/bg15.webp");
+  background-image: url("../images/bg/bg15.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
 }
 
 .hero16 {
-  background-image: url("../images/bg16.webp");
+  background-image: url("../images/bg/bg16.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
 }
 
 .hero17 {
-  background-image: url("../images/bg17.webp");
+  background-image: url("../images/bg/bg17.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
 }
 
 .hero18 {
-  background-image: url("../images/bg18.webp");
+  background-image: url("../images/bg/bg18.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
 }
 
 .hero-404 {
-  background-image: url("../images/bg404.webp");
+  background-image: url("../images/bg/bg404.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
 }
 
 .hero-500 {
-  background-image: url("../images/bg500.webp");
+  background-image: url("../images/bg/bg500.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
@@ -566,13 +566,13 @@ div.home-header>div.realm-info>div.realm>div.fractions>:last-child {
 }
 
 div.home-header>div.realm-info>div.realm>div.fractions>span.icon_ally {
-    background: url(../images/icon_realm_status_ally.png) no-repeat;
+    background: url(../images/bg/icon_realm_status_ally.png) no-repeat;
     width: 22px;
     height: 26px
 }
 
 div.home-header>div.realm-info>div.realm>div.fractions>span.icon_horde {
-    background: url(../images/icon_realm_status_horde.png) no-repeat;
+    background: url(../images/bg/icon_realm_status_horde.png) no-repeat;
     width: 22px;
     height: 26px
 }
