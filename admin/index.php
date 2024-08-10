@@ -112,6 +112,13 @@ $stats = new Dashboard();
                                     <!-- .nk-menu-sub -->
                                 </li>
 
+                                <li class="nk-menu-item has-sub">
+                                    <a href="/admin/?page=votes" class="nk-menu-link" data-original-title="" title="">
+                                        <span class="nk-menu-text">Голосование</span>
+                                        <span class="nk-menu-badge"></span>
+                                    </a>
+                                    <!-- .nk-menu-sub -->
+                                </li>
 
                                 <!-- .nk-menu-item -->
                                 <li class="nk-menu-heading">
