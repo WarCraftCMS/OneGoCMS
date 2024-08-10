@@ -33,6 +33,8 @@ if (isset($_SESSION['error'])) {
     echo '</div>';
     unset($_SESSION['error']);
 }
+
+
 ?>
 
 
@@ -49,15 +51,15 @@ if (isset($_SESSION['error'])) {
 
 
                     <div class="mt-2">
-                                                <div class="divider mb-5">Your Account Info</div>
+                         <div class="divider mb-5">Your Account Info</div>
                         <div>
                             <p>
-                                <span class="font-bold">Account:</span> <span class="text-blue-500">
-                                    AIZEN</span>
+                            <span class="font-bold">Account:</span> <span class="text-blue-500">
+                                    <?= $account->get_username(); ?></span>
                             </p>
                             <p>
                                 <span class="font-bold">Credit:</span> <span class="text-green-500">
-                                    0€</span>
+                                    <?= $account->get_donor_points(); ?> €</span>
                             </p>
                         </div>
                         <div class="divider mb-5">Increase Credit with</div>
