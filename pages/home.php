@@ -146,6 +146,7 @@
                                             <th class="text-center text-white">Уровень</th>
                                             <th class="text-center text-white">Гильдия</th>
                                             <th class="text-center text-white">Ранг</th>
+                                            <th class="text-center text-white">Локация</th>
                                         </tr>
                                     </thead>
          <?php
@@ -168,6 +169,8 @@
                                                 <td class="text-center text-white"><?= htmlspecialchars($character['level']); ?></td>
                                                 <td class="text-center text-white"><?= htmlspecialchars($character['guild_name']); ?></td>
                                                 <td class="text-center text-white"><?= htmlspecialchars($character['rank_title']); ?></td>
+                                                <td class="text-center text-white"><?= htmlspecialchars($character['map_name']); ?></td>
+
                                             </tr>
                                     <?php
                                         }

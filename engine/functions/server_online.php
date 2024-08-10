@@ -25,6 +25,7 @@ class Online
                 c.`arenaPoints`, 
                 c.`totalKills`,  
                 c.`online`,
+                c.`zone`,
                 (SELECT COUNT(*) FROM character_achievement WHERE guid = c.guid) AS achievement_count,
                 (SELECT g.`name` FROM guild_member gm JOIN guild g ON gm.guildId = g.guildId WHERE gm.guid = c.guid) AS guild_name
             FROM 
@@ -42,9 +43,11 @@ class Online
 
         $stmt->bind_param("i", $limit);
         $stmt->execute();
-        $stmt->bind_result($guid, $name, $race, $class, $gender, $level, $money, $totalHonorPoints, $arenaPoints, $totalKills, $online, $achievement_count, $guild_name);
+        $stmt->bind_result($guid, $name, $race, $class, $gender, $level, $money, $totalHonorPoints, $arenaPoints, $totalKills, $online, $zone, $achievement_count, $guild_name);
         
         $characters = array();
+        
+        require 'map.php';
 
         $class_image = array(
             1 => 'assets/images/classes/1.png',
@@ -150,7 +153,7 @@ class Online
             $silver = floor(($money % 10000) / 100);
             $copper = $money % 100;
             $gender_text = ($gender == 0) ? 'Мужчина' : 'Женщина';
-            $guild_text = !empty($guild_name) ? $guild_name : 'Без гильдии';
+            $guild_text = !empty($guild_name) ? $guild_name : 'Не состоит в гильдии';
 
             if ($totalHonorPoints <= 0) {
                 $rank = 0; // Нет ранга
@@ -195,6 +198,8 @@ class Online
             }
 
             $rank_title = $rank_titles[$rank];
+            
+            $map_name = isset($mapNames[$zone]) ? $mapNames[$zone] : 'Неизвестная карта';
 
             $character = array(
                 'guid' => $guid,
@@ -216,11 +221,12 @@ class Online
                 'online' => $online,
                 'achievement_count' => $achievement_count,
                 'class_color' => $classColors[$class],
-                'class_name' => $className[$class], //
-                'race_name' => $raceName[$race], //
+                'class_name' => $className[$class],
+                'race_name' => $raceName[$race],
                 'guild_name' => $guild_text,
                 'rank' => $rank,
-                'rank_title' => $rank_title
+                'rank_title' => $rank_title,
+                'map_name' => $map_name
             );
 
             $characters[] = $character;
