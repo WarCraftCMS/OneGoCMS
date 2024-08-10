@@ -21,7 +21,7 @@ require_once '../engine/functions/database.php';
 $account = new Account($_SESSION['username']);
 $rank = $account->get_rank();
 
-if ($rank < 3) {
+if ($rank < 1) {
     header("Location: /?page=home");
     exit();
 }
