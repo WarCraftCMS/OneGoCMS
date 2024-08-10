@@ -52,6 +52,18 @@
                     Бесплатная русская CMS плфторма для игровых серверов World Of Warcraft
                 </p>         
             </div>
+
+        </div>
+
+            </div>
+            </div>
+
+
+
+<div class="hero hero2 min-h-full bg-[#080B10] border-b border-purple-950">
+    <div class="hero-overlay bg-opacity-20"></div>
+    <div class="hero-content text-center text-neutral-content max-w-full">
+        <div class="grid grid-cols-1 gap-3 md:gap-2 lg:gap-3 lg:grid-cols-2">
             <div class="news">
 <?php
             $newsHome = new news_home();
@@ -87,10 +99,10 @@
                echo '';
             }
             ?></div>
-        </div>
 
-            </div>
-            </div>
+        </div>
+    </div>
+</div>
 
 <div class="border-t border-b border-indigo-800 bg-indigo-950">
     <div class="container mx-auto py-10">
@@ -109,60 +121,6 @@
                     class="btn md:mt-2 bg-fuchsia-800 hover:bg-fuchsia-600 text-white">
                     Наш Instagram
                 </a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="hero hero2 min-h-full bg-[#080B10] border-b border-purple-950">
-    <div class="hero-overlay bg-opacity-20"></div>
-    <div class="hero-content text-center text-neutral-content max-w-full">
-        <div class="grid grid-cols-1 gap-3 md:gap-2 lg:gap-3 lg:grid-cols-2">
-            <div class="card bg-base-100 shadow-xl image-full w-[32rem] max-w-full">
-                <figure>
-                    <img src="https://masterwow.net/images/b1.webp" />
-                </figure>
-                <div class="card-body">
-                    <h2 class="card-title text-white text-center mx-auto text-shadow_dark">
-                        Как подключиться
-                    </h2>
-                    <p class="text-white/80 text-shadow_dark">
-                        Узнайте, как установить соединение, загрузить наши пользовательские
-                        патчи и использовать наш лаунчер для доступа к нашему серверу. Отправьтесь
-                        в свое приключение сегодня!
-                    </p>
-
-                    <div class="card-actions justify-center">
-                        <a href="?page=howtoplay"
-                            class="btn text-shadow_dark bg-pink-600/40 hover:bg-pink-900 text-white">
-                            Прочитайте руководство по подключению!
-                        </a>
-                        <a href="?page=register"
-                            class="btn text-shadow_dark bg-cyan-600/40 hover:bg-cyan-900 text-white">
-                            Регистрация Аккаунта
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="card w-[32rem] bg-base-100 shadow-xl image-full max-w-full">
-                <figure>
-                    <img src="assets/images/b2.webp" />
-                </figure>
-                <div class="card-body">
-                    <h2 class="card-title text-white text-center mx-auto text-shadow_dark">
-                        Панель управления аккаунтом
-                    </h2>
-                    <p class="text-white/80 text-shadow_dark">
-                        Здесь вы можете управлять своим аккаунтом, голосовать за сервер и управлять своими персонажами.
-                    </p>
-
-                    <div class="card-actions justify-center">
-                        <a href="?page=login"
-                            class="btn text-shadow_dark bg-sky-600/40 hover:bg-sky-900 text-white">
-                            Посетите панель управления аккаунтом
-                        </a>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -233,44 +191,49 @@
                                 <table class="table-auto sm:table mx-auto">
                                     <thead>
                                         <tr>
-                                            <th class="text-center text-white">Rank</th>
-                                            <th class="text-center text-white">Name</th>
-                                            <th class="text-center text-white sm:block hidden">Type</th>
-                                            <th class="text-center text-white">Status</th>
-                                            <th class="text-center text-white">Votes</th>
+                                            <th class="text-center text-white">№</th>
+                                            <th class="text-center text-white">Имя</th>
+                                            <th class="text-center text-white sm:block hidden"></th>
+                                            <th class="text-center text-white">Уровень</th>
+                                            <th class="text-center text-white">Гильдия</th>
+                                            <th class="text-center text-white">Убийств</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                                                                <tr class="hover:bg-indigo-900/30">
-                                            <th class="text-center text-white">1</th>
-                                            <td class="text-center">
-                                                <span
-                                                    class="text-white class-paladin">Ikki</span>
-                                            </td>
-                                            <td class="text-center text-white sm:block hidden">
-                                                <div class="tooltip"
-                                                    data-tip="Horde - Blood Elf - Paladin">
-                                                    <img class="h-5 inline"
-                                                        src="https://masterwow.net/images/factions/horde.webp" />
-                                                    <img class="h-5 inline rounded-full"
-                                                        src="https://masterwow.net/images/races/bloodelf_male.webp" />
-                                                    <img class="h-5 inline rounded-full"
-                                                        src="https://masterwow.net/images/classes/paladin.webp" />
-                                                </div>
 
-                                            </td>
-                                            <td class="text-center text-white">
-                                                                                                    <span class="badge bg-red-800">
-                                                        <i class="fa-solid fa-wifi-slash sm:mr-2"></i>
-                                                        <span class="hidden sm:block">Offline</span>
-                                                    </span>
-                                                                                                </td>
-                                            <td class="text-center text-purple-300">
-                                                290                                                <i class="fa-regular fa-thumbs-up ml-1.5"></i>
-                                            </td>
-                                        </tr>
+<?php
+                                    $topPlayers = new TopPlayers();
+                                    $topCharacters = $topPlayers->get_top_killers(10);
+                                    $rank = 1;
+                                    if (!empty($topCharacters)) {
+                                        foreach ($topCharacters as $character) {
+                                    ?>
+                                <tr class="hover:bg-indigo-900/30">
+                                    <td class="text-center text-white"><?= $rank++; ?></td>
+                                    <td class="text-center text-white"><font color="<?= htmlspecialchars($character['class_color']); ?>"><?= htmlspecialchars($character['name']); ?></font></td>
+                                    <td class="text-center text-white">
+                                    <div class="tooltip" data-tip="<?= htmlspecialchars($character['faction_text']); ?> - <?= htmlspecialchars($character['class_name']); ?> - <?= htmlspecialchars($character['race_name']); ?>">
+                                        <img class="h-5 inline" src="<?= htmlspecialchars($character['faction']); ?>" />
+                                        <img class="h-5 inline" src="<?= htmlspecialchars($character['class_image']); ?>" />
+                                        <img class="h-5 inline" src="<?= htmlspecialchars($character['race_image']); ?>" />
+                                    </div>
+                                    </td>
+                                        <td class="text-center text-white"><?= htmlspecialchars($character['level']); ?></td>
+                                        <td class="text-center text-white"><?= htmlspecialchars($character['guild_name']); ?></td>
+                                        <td class="text-center text-white"><?= htmlspecialchars($character['totalKills']); ?></td>
+                                </tr>
+<?php
+    }
+} else {
+?>
+    <tr>
+        <td colspan="6" class="text-center text-white">Нет доступных игроков.</td>
+    </tr>
+<?php
+}
+?>
                                                                                
-                                                                            </tbody>
+                                   </tbody>
                                 </table>
                             </div>
                         </div>
