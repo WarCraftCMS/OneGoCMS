@@ -1,9 +1,15 @@
 <?php
-$global->check_logged_in();
+if (isset($GLOBALS['global'])) {
+    $GLOBALS['global']->check_logged_in();
+}
+
 $store = new Store();
 $account_id = $_SESSION['account_id'];
 $account = new Account($_SESSION['username']);
+
 $check = true;
+$successMessage = '';
+$errorMessage = '';
 
 if (isset($_POST['buy_now'])) {
     $character = $_POST['character'];
@@ -14,22 +20,12 @@ if (isset($_POST['buy_now'])) {
 }
 
 if (isset($_SESSION['success_message'])) {
-    echo '<div class="text-center">';
-    echo '<div class="alert alert-dismissible alert-success">';
-    echo '<button type="button" class="btn-close" data-bs-dismiss="alert"></button>';
-    echo '<strong>Отличная работа!</strong> ' . $_SESSION['success_message'];
-    echo '</div>';
-    echo '</div>';
+    $successMessage = $_SESSION['success_message'];
     unset($_SESSION['success_message']);
 }
 
 if (isset($_SESSION['error'])) {
-    echo '<div class="text-center">';
-    echo '<div class="alert alert-dismissible alert-danger">';
-    echo '<button type="button" class="btn-close" data-bs-dismiss="alert"></button>';
-    echo '<strong>Эй, там!</strong> ' . $_SESSION['error'];
-    echo '</div>';
-    echo '</div>';
+    $errorMessage = $_SESSION['error'];
     unset($_SESSION['error']);
 }
 
@@ -37,6 +33,7 @@ $category = isset($_GET['category']) ? $_GET['category'] : 1;
 
 $categories = $store->get_categories();
 $items = $store->get_items($category);
+
 $character = new Character();
 $characters = $character->get_characters($account->get_id());
 ?>
@@ -76,3 +73,21 @@ $characters = $character->get_characters($account->get_id());
         <?php endforeach; ?>
     </div>
 </div>
+
+<?php if ($successMessage) : ?>
+    <div class="text-center">
+        <div class="alert alert-dismissible alert-success">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Отличная работа!</strong> <?= $successMessage ?>
+        </div>
+    </div>
+<?php endif; ?>
+
+<?php if ($errorMessage) : ?>
+    <div class="text-center">
+        <div class="alert alert-dismissible alert-danger">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Эй, там!</strong> <?= $errorMessage ?>
+        </div>
+    </div>
+<?php endif; ?>

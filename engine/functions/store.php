@@ -1,11 +1,44 @@
 <?php
 
+class TelnetClient
+{
+    private $connection;
+
+    public function __construct($host, $port)
+    {
+        $this->connection = fsockopen($host, $port);
+        if (!$this->connection) {
+            throw new Exception("Не удалось подключиться к серверу Telnet.");
+        }
+    }
+
+    public function executeCommand($command)
+    {
+        fwrite($this->connection, $command . "\n");
+
+        $response = '';
+        while (!feof($this->connection)) {
+            $line = fgets($this->connection);
+            if (trim($line) === '') {
+                break;
+            }
+            $response .= $line;
+        }
+
+        return $response;
+    }
+
+    public function __destruct()
+    {
+        fclose($this->connection);
+    }
+}
+
 class Store
 {
     private $website_connection;
-    private $soap_username = "xaocZ";
-    private $soap_password = "112312976";
-    private $soap_port = "7878";
+    private $telnet_host = "192.168.0.2";
+    private $telnet_port = "23";
 
     public function __construct()
     {
@@ -140,47 +173,40 @@ class Store
     }
 
     public function soap($character, $item_ids, $quantities, $total)
-{
-    $db_host = "127.0.0.1";
-    $soapErrors = [];
-
-    try {
-        $soapClient = new SoapClient("http://$db_host:$this->soap_port/?wsdl");
-        echo "SOAP-клиент успешно создан.";
-    } catch (Exception $e) {
-        echo "Не удалось создать SOAP-клиент: " . $e->getMessage();
-        return;
-    }
-
-    foreach (array_combine($item_ids, $quantities) as $item_id => $quantity) {
-        $command = 'send items ' . $character . ' "test" "Body" ' . $item_id . ':' . $quantity;
-
+    {
+        $telnetErrors = [];
 
         try {
-            $result = $soapClient->executeCommand(new SoapParam($command, 'command'));
-            
-            if ($result == 0) {
-                $soapErrors[] = "Не удалось выполнить команду SOAP для предмета id $item_id";
-            }
-        } catch (SoapFault $fault) {
-            $soapErrors[] = "SOAP Fault: (код неисправности: {$fault->faultcode}, строка неисправностей: {$fault->faultstring})";
+            $telnetClient = new TelnetClient($this->telnet_host, $this->telnet_port);
+            echo "Telnet клиент успешно создан.";
         } catch (Exception $e) {
-            $soapErrors[] = "Ошибка: " . $e->getMessage();
+            echo "Не удалось создать Telnet клиент: " . $e->getMessage();
+            return;
+        }
+
+        foreach (array_combine($item_ids, $quantities) as $item_id => $quantity) {
+            $command = 'send items ' . $character . ' "test" "Body" ' . $item_id . ':' . $quantity;
+
+            try {
+                $result = $telnetClient->executeCommand($command);
+                
+                if (strpos($result, 'success') === false) {
+                    $telnetErrors[] = "Не удалось выполнить команду Telnet для предмета id $item_id: $result";
+                }
+            } catch (Exception $e) {
+                $telnetErrors[] = "Ошибка: " . $e->getMessage();
+            }
+        }
+
+        if (empty($telnetErrors)) {
+            $this->remove_from_cart_all($_SESSION['account_id']);
+            $this->remove_donor_points($_SESSION['account_id'], $total);
+            $_SESSION['success_message'] = "Ваша покупка прошла успешно! Вы можете найти свои товары в игровом почтовом ящике.";
+            header("Location: ?page=store");
+        } else {
+            echo "Что-то пошло не так! Ошибки: " . implode(", ", $telnetErrors);
         }
     }
-
-    if (empty($soapErrors)) {
-        $this->remove_from_cart_all($_SESSION['account_id']);
-        $this->remove_donor_points($_SESSION['account_id'], $total);
-        $_SESSION['success_message'] = "Ваша покупка прошла успешно! Вы можете найти свои товары в игровом почтовом ящике.";
-        header("Location: ?page=store");
-    } else {
-        echo "Что-то пошло не так! Ошибки: " . implode(", ", $soapErrors);
-    }
-}
-
-
-
 
     public function process_direct_purchase($user_id, $character, $product_id, $quantity)
     {

@@ -1,4 +1,5 @@
 <?php
+$global->check_logged_in();
 if (isset($_POST['submit'])) {
     $reg = new Registration($_POST['username'], $_POST['email'], $_POST['password'], $_POST['password_confirmation']);
     $reg->register_checks();
