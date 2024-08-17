@@ -39,32 +39,65 @@
    $server = new ServerInfo();
    ?>
 
+ 
 
     <div class="hero min-h-screen hero1">
+         <div class="video-header">
+        <video autoplay loop muted class="video-header__player">
+            <source src="assets/images/video/lich.webm" type="video/mp4">
+            <source src="assets/images/video/lich.webm" type="video/webm">
+        </video>
+    </div>
     <div class="hero-overlay bg-opacity-70"></div>
-    <div class="hero-content text-center text-neutral-content">
-        <div class="container">
-            <div class="max-w-4xl pt-40 2xl:pt-0">
-                <h1 class="mb-5 text-4xl font-bold text-white text-shadow_dark">
-                    Добро пожаловать на OneGoCMS
-                </h1>
-                <p class="mb-5 text-white bg-slate-950/20 p-9 rounded-lg text-shadow_dark">
-                    Бесплатная русская CMS плфторма для игровых серверов World Of Warcraft
-                </p>         
-            </div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="home-welcome">
+                    <div class="home-welcome-join">
+                        <span></span>
+                        <span>
+                            <span>Присоединяйтесь и создайте свою собственную историю</span>
+                            <span>Присоединяйтесь и создайте свою собственную историю</span>
+                        </span>
+                        <span>
+                            Переживите чудеса Азерота, исследуйте земли, покрытые туманами, снегом и дождем, прокладывайте свой путь кровью ваших врагов и побеждайте силы, стремящиеся нарушить равновесие.
+                        </span>
 
+
+                                            </div>
+
+                    <div></div>
+
+                    <div class="home-welcome-realms">
+                        <div class="">
+                            <div>
+                                <span><span><?= $server->get_realm_name(); ?></span></span>
+                                    <span>
+                                        <span>Работает</span>
+                                        <span>19 ч.</span>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span><?= $server->get_online_players(); ?></span>
+                                        <span>Включён</span>
+                                </div>
+                                <div>
+                                    <span class=""></span>
+                                    <span>49%</span>
+                                    <span></span>
+                                    <span>51%</span>
+                                    <span class=""></span>
+                                </div>
+                            </div>
+                                            </div>
+                </div>
+            </div>
         </div>
+    </div>
+    <div class="container-news">
+        <div class="home-last-news">
 
-            </div>
-            </div>
 
-
-
-<div class="hero hero2 min-h-full bg-[#080B10] border-b border-purple-950">
-    <div class="hero-overlay bg-opacity-20"></div>
-    <div class="hero-content text-center text-neutral-content max-w-full">
-        <div class="grid grid-cols-1 gap-3 md:gap-2 lg:gap-3 lg:grid-cols-2">
-            <div class="news">
 <?php
             $newsHome = new news_home();
             $newsList = $newsHome->get_news();
@@ -76,18 +109,11 @@
                   echo '';
                }
             ?>
-            <a href="<?= $news['url'] ?>">
-         <figure class="article">
-               <?php if($news['thumbnail'] != null) : ?>
-                <img src="<?= $news['thumbnail'] ?>" />
-               <?php endif; ?>
-               <figcaption>
-                <h3><?= $news['title'] ?></h3>
-                     <p><?= $news['content'] ?></p>
-                     
-            </figcaption>
-        </figure>
-        </a>
+        <a href="<?= $news['url'] ?>" class="last-news-item" style="background-image: url('<?= $news['thumbnail'] ?>');">   
+           <span class="date"><?= $news['date'] ?></span>
+            <span class="title"><?= $news['title'] ?></span>
+                </a>
+                
          <?php
             $count++;
             if ($count % 3 === 0) {
@@ -98,11 +124,12 @@
             if ($count % 3 !== 0) {
                echo '';
             }
-            ?></div>
+            ?>   
 
-        </div>
+                    </div>
     </div>
-</div>
+
+            </div>
 
 <div class="border-t border-b border-indigo-800 bg-indigo-950">
     <div class="container mx-auto py-10">
@@ -134,7 +161,7 @@
                 <div class="w-full lg:w-4/6 mx-auto">
                     <div role="tablist" class="tabs tabs-lifted">
                         <input type="radio" name="my_tabs_2" role="tab" class="tab text-xs sm:text-md"
-                            aria-label="Онлайн Игроки" checked />
+                            aria-label="Онлайн по времени" checked />
                         <div role="tabpanel" class="tab-content bg-indigo-800/15 rounded-box p-6">
                             <div class="overflow-x-scroll">
                                 <table class="table-auto sm:table mx-auto">
@@ -188,7 +215,7 @@
                         </div>
 
                         <input type="radio" name="my_tabs_2" role="tab" class="tab text-xs sm:text-md"
-                            aria-label="Топ" />
+                            aria-label="Топ убийц" />
                         <div role="tabpanel" class="tab-content bg-indigo-800/15 rounded-box p-6">
                             <div class="overflow-x-scroll">
                                 <table class="table-auto sm:table mx-auto">
@@ -242,7 +269,7 @@
                         </div>
 
                         <input type="radio" name="my_tabs_2" role="tab" class="tab text-xs sm:text-md"
-                            aria-label="Пустое" />
+                            aria-label="Топ Голосов" />
                         <div role="tabpanel" class="tab-content bg-indigo-800/15 rounded-box p-6">
                             <div class="overflow-x-scroll">
                                 <table class="table-auto sm:table mx-auto">

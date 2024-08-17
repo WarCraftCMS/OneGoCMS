@@ -61,6 +61,7 @@ if (isset($_SESSION['username'])) {
     <link href="assets/css/main.css" rel="stylesheet" />
     <link href="assets/css/style.css" rel="stylesheet" />
     <link href="assets/css/all.css" rel="stylesheet" />
+    <link href="assets/css/theme.css" rel="stylesheet" />
     <title>OneGo WoW - Free WoW Private Haste Server (2024) | Home</title>
 
 </head>
@@ -113,11 +114,6 @@ if (isset($_SESSION['username'])) {
          <?php
             }
             ?>
-                        </li>
-                        <li>
-                            <a class="bg-cyan-800 hover:bg-cyan-800 text-white mx-2">
-                                Общий Онлайн: <?= $server->get_online_players(); ?>
-                            </a>
                         </li>
                         <li>
                             <a href="" class="bg-cyan-600 hover:bg-cyan-700 text-white mx-2">

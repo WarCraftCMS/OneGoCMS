@@ -6,3 +6,791 @@
  * Version	 :	1.0.0
  * Updated	 :	02.18.2020
 **/
+
+.container-news {
+    position: relative;
+    top: 300px;
+    z-index: 2
+}
+
+@media(max-width: 1500px) {
+    .container-news {
+        position:static
+    }
+}
+
+.container-news>.home-last-news {
+    border-radius: 10px;
+    margin: 0 auto;
+    padding: 10px
+}
+
+div.home-last-news {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center
+}
+
+@media(max-width: 992px) {
+    div.home-last-news {
+        flex-direction:column
+    }
+
+    div.home-last-news>a+a {
+        margin-left: 0!important;
+        margin-top: 25px!important
+    }
+
+    div.home-last-news>a {
+        height: 200px!important;
+        max-width: 700px!important
+    }
+}
+
+div.home-last-news>a+a {
+    margin-left: 10px
+}
+
+div.home-last-news>a {
+    background-size: cover;
+    border-radius: 10px;
+    box-shadow: inset 0 -64px 68px 8px rgba(0,0,0,.9);
+    display: flex;
+    flex-direction: column;
+    height: 185px;
+    justify-content: flex-end;
+    max-width: 30%;
+    padding: 25px;
+    position: relative;
+}
+
+div.home-last-news>a:hover {
+    text-decoration: none;
+    transform: scale(1.05)
+}
+
+div.home-last-news>a:before {
+    border-radius: 10px;
+    bottom: 0;
+    box-shadow: 0 20px 90px rgba(0,0,0,.25);
+    content: " ";
+    display: block;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0
+}
+
+div.home-last-news>a>span.date {
+    color: #fff;
+    font-size: 12px;
+    margin-bottom: 5px;
+    opacity: .6
+}
+
+div.home-last-news>a>span.title {
+    font-family: Josefin Sans;
+    font-size: 16px;
+    font-weight: 600
+}
+
+.container,.container-fluid,.container-lg,.container-md,.container-xl {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%
+}
+
+@media(min-width: 768px) {
+    .container,.container-md,.container-sm {
+        max-width:720px
+    }
+}
+
+@media(min-width: 992px) {
+    .container,.container-lg,.container-md,.container-sm {
+        max-width:960px
+    }
+}
+
+@media(min-width: 1200px) {
+    .container,.container-lg,.container-md,.container-sm,.container-xl {
+        max-width:1360px
+    }
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -15px;
+    margin-right: -15px
+}
+
+.no-gutters {
+    margin-left: 0;
+    margin-right: 0
+}
+
+.no-gutters>.col,.no-gutters>[class*=col-] {
+    padding-left: 0;
+    padding-right: 0
+}
+
+.col,.col-1,.col-10,.col-11,.col-12,.col-2,.col-3,.col-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-auto,.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-auto,.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-auto,.col-sm,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-auto,.col-xl,.col-xl-1,.col-xl-10,.col-xl-11,.col-xl-12,.col-xl-2,.col-xl-3,.col-xl-4,.col-xl-5,.col-xl-6,.col-xl-7,.col-xl-8,.col-xl-9,.col-xl-auto {
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    width: 100%
+}
+
+.col {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%
+}
+
+.row-cols-1>* {
+    flex: 0 0 100%;
+    max-width: 100%
+}
+
+.row-cols-2>* {
+    flex: 0 0 50%;
+    max-width: 50%
+}
+
+.row-cols-3>* {
+    flex: 0 0 33.3333333333%;
+    max-width: 33.3333333333%
+}
+
+.row-cols-4>* {
+    flex: 0 0 25%;
+    max-width: 25%
+}
+
+.row-cols-5>* {
+    flex: 0 0 20%;
+    max-width: 20%
+}
+
+.row-cols-6>* {
+    flex: 0 0 16.6666666667%;
+    max-width: 16.6666666667%
+}
+
+.col-auto {
+    flex: 0 0 auto;
+    max-width: 100%;
+    width: auto
+}
+
+.col-1 {
+    flex: 0 0 8.33333333%;
+    max-width: 8.33333333%
+}
+
+.col-2 {
+    flex: 0 0 16.66666667%;
+    max-width: 16.66666667%
+}
+
+.col-3 {
+    flex: 0 0 25%;
+    max-width: 25%
+}
+
+.col-4 {
+    flex: 0 0 33.33333333%;
+    max-width: 33.33333333%
+}
+
+.col-5 {
+    flex: 0 0 41.66666667%;
+    max-width: 41.66666667%
+}
+
+.col-6 {
+    flex: 0 0 50%;
+    max-width: 50%
+}
+
+.col-7 {
+    flex: 0 0 58.33333333%;
+    max-width: 58.33333333%
+}
+
+.col-8 {
+    flex: 0 0 66.66666667%;
+    max-width: 66.66666667%
+}
+
+.col-9 {
+    flex: 0 0 75%;
+    max-width: 75%
+}
+
+.col-10 {
+    flex: 0 0 83.33333333%;
+    max-width: 83.33333333%
+}
+
+.col-11 {
+    flex: 0 0 91.66666667%;
+    max-width: 91.66666667%
+}
+
+.col-12 {
+    flex: 0 0 100%;
+    max-width: 100%
+}
+
+div.home-welcome {
+    align-items: center;
+    display: flex;
+    flex-flow: row;
+    height: 600px;
+    justify-content: center
+}
+
+div.home-welcome>* {
+    width: 33%
+}
+
+@media(max-width: 992px) {
+    div.home-welcome {
+        flex-flow:column;
+        height: unset;
+        justify-content: flex-end;
+        min-height: 600px
+    }
+
+    div.home-welcome>* {
+        width: 100%
+    }
+
+    div.home-welcome>div:first-child {
+        align-items: center;
+        justify-content: center;
+        padding-top: 200px;
+        text-align: center
+    }
+
+    div.home-welcome>div:nth-child(2) {
+        display: none
+    }
+
+    div.home-welcome>div:nth-child(3) {
+        align-items: center;
+        margin: 50px 0
+    }
+}
+
+div.home-welcome>.home-new-realm-trailer {
+    flex: 1 55%;
+    max-height: 450px;
+    width: 55%
+}
+
+div.home-welcome>.home-new-realm-trailer>.home-new-realm-trailer-container {
+    border: 2px solid #000;
+    border-radius: 4px;
+    box-shadow: 0 0 5px #000;
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative
+}
+
+div.home-welcome>.home-new-realm-trailer>.home-new-realm-trailer-container>iframe {
+    border-radius: 4px;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%
+}
+
+div.home-welcome>.home-new-realm {
+    display: flex;
+    flex-direction: column;
+    width: 45%
+}
+
+@media(max-width: 992px) {
+    div.home-welcome>.home-new-realm {
+        width:100%
+    }
+}
+
+div.home-welcome>.home-new-realm>.home-new-realm-counter {
+    margin-bottom: 10px
+}
+
+@media(max-width: 992px) {
+    div.home-welcome>.home-new-realm>.home-new-realm-counter {
+        font-size:24px;
+        margin-bottom: 25px
+    }
+}
+
+div.home-welcome>.home-new-realm>.home-new-realm-title {
+    font-family: Josefin Sans;
+    font-size: 42px;
+    text-shadow: 0 0 1px transparent,0 1px 2px rgba(0,0,0,.8)
+}
+
+div.home-welcome>.home-new-realm>.home-new-realm-info {
+    color: var(--text-alt);
+    font-size: 16px;
+    margin-bottom: 10px
+}
+
+div.home-welcome>.home-new-realm>.home-new-realm-btn {
+    align-items: center;
+    display: flex;
+    flex-direction: row
+}
+
+div.home-welcome>.home-new-realm>.home-new-realm-btn>.btn+.btn {
+    margin-left: 15px
+}
+
+div.home-welcome>.home-new-realm>.home-new-realm-btn>.btn {
+    border-radius: 4px!important;
+    padding: 10px 25px
+}
+
+div.home-welcome>.home-new-realm>.home-new-realm-btn>.btn.btn-outline-primary,div.home-welcome>.home-new-realm>.home-new-realm-btn>.btn.btn-outline-secondary {
+    border-color: #343a40
+}
+
+div.home-welcome>.home-new-realm>.home-new-realm-socials {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    margin-top: 25px
+}
+
+div.home-welcome>.home-new-realm>.home-new-realm-socials>a {
+    font-size: 18px;
+    opacity: .6
+}
+
+div.home-welcome>.home-new-realm>.home-new-realm-socials>a:hover {
+    opacity: 1
+}
+
+div.home-welcome>.home-new-realm>.home-new-realm-socials>a+a {
+    margin-left: 15px
+}
+
+div.home-welcome>.home-welcome-join {
+    display: flex;
+    flex-direction: column
+}
+
+div.home-welcome>.home-welcome-join>.home-new-realm-socials {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    margin-top: 25px
+}
+
+div.home-welcome>.home-welcome-join>.home-new-realm-socials>a {
+    font-size: 18px;
+    opacity: .6
+}
+
+div.home-welcome>.home-welcome-join>.home-new-realm-socials>a:hover {
+    opacity: 1
+}
+
+div.home-welcome>.home-welcome-join>.home-new-realm-socials>a+a {
+    margin-left: 15px
+}
+
+div.home-welcome>.home-welcome-join>span+span {
+    margin-top: 25px
+}
+
+div.home-welcome>.home-welcome-join>span:first-child {
+    display: flex;
+    flex-direction: row;
+    font-family: Josefin Sans;
+    font-size: 32px;
+    text-shadow: 0 0 1px transparent,0 1px 2px rgba(0,0,0,.8)
+}
+
+@media(max-width: 992px) {
+    div.home-welcome>.home-welcome-join>span:first-child {
+        flex-direction:column
+    }
+
+    div.home-welcome>.home-welcome-join>span:first-child>span {
+        margin-right: 0!important;
+        margin-top: 15px
+    }
+}
+
+div.home-welcome>.home-welcome-join>span:first-child>span {
+    margin-right: 15px;
+    opacity: .6
+}
+
+div.home-welcome>.home-welcome-join>span:first-child .countdown {
+    color: #fff;
+    display: flex;
+    flex-direction: row
+}
+
+div.home-welcome>.home-welcome-join>span:first-child .countdown>span+span:before {
+    content: ":";
+    display: inline-block;
+    margin: 0 10px
+}
+
+div.home-welcome>.home-welcome-join>span:nth-child(2) {
+    position: relative
+}
+
+div.home-welcome>.home-welcome-join>span:nth-child(2)>span:first-child,div.home-welcome>.home-welcome-join>span:nth-child(2)>span:nth-child(2) {
+    font-family: Josefin Sans;
+    font-size: 42px;
+    line-height: 46px
+}
+
+div.home-welcome>.home-welcome-join>span:nth-child(2)>span:nth-child(2) {
+    -webkit-text-fill-color: transparent;
+    background: linear-gradient(186deg,#fff,#eed697);
+    -webkit-background-clip: text;
+    position: relative
+}
+
+div.home-welcome>.home-welcome-join>span:nth-child(2)>span:first-child {
+    bottom: 0;
+    color: #000;
+    filter: blur(15px);
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0
+}
+
+div.home-welcome>.home-welcome-join>span:nth-child(3) {
+    color: var(--text-alt);
+    font-size: 16px
+}
+
+div.home-welcome>.home-welcome-asia-start {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px
+}
+
+div.home-welcome>.home-welcome-asia-start>div {
+    border-radius: 8px;
+    min-width: 450px;
+    padding: 14px 24px
+}
+
+div.home-welcome>.home-welcome-asia-start>div.karazhan-realm {
+    align-items: center;
+    background-image: url(/assets_new/karazhan_realm_bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    -moz-column-gap: 24px;
+    column-gap: 24px;
+    display: flex;
+    flex-direction: row;
+    min-height: 100px
+}
+
+div.home-welcome>.home-welcome-asia-start>div.karazhan-realm>img {
+    max-height: 36px
+}
+
+div.home-welcome>.home-welcome-asia-start>div.karazhan-realm>span.title {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px
+}
+
+div.home-welcome>.home-welcome-asia-start>div.karazhan-realm>span.title>span:first-child {
+    font-size: 18px;
+    font-weight: 700
+}
+
+div.home-welcome>.home-welcome-asia-start>div.karazhan-realm>span.title>span:nth-child(2) {
+    opacity: .8
+}
+
+div.home-welcome>.home-welcome-asia-start>div.karazhan-realm>span.counter {
+    background: rgba(0,0,0,.43);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 18px;
+    margin-left: auto;
+    opacity: 100%!important;
+    padding: 5px 15px;
+    text-shadow: 0 0 5px #000
+}
+
+div.home-welcome>.home-welcome-asia-start>div.karazhan-realm>span.counter>div>span {
+    text-shadow: 0 0 9px #000
+}
+
+div.home-welcome>.home-welcome-asia-start>div.karazhan-realm>span.counter>div>span>span:last-child {
+    opacity: 1!important
+}
+
+div.home-welcome>.home-welcome-asia-start>div.karazhan-realm>span.buttons {
+    margin-left: auto
+}
+
+div.home-welcome>.home-welcome-asia-start>div.karazhan-realm>span.buttons>a {
+    background: rgba(0,0,0,.5);
+    border: 1px solid #c6d13b;
+    border-radius: 10px;
+    color: #c6d13b;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 10px 15px
+}
+
+div.home-welcome>.home-welcome-asia-start>div.wechat {
+    align-items: center;
+    background: linear-gradient(88deg,#19440d,#249203);
+    border: 1px solid hsla(0,0%,100%,.369);
+    color: #fff;
+    -moz-column-gap: 24px;
+    column-gap: 24px;
+    display: flex;
+    flex-direction: row
+}
+
+div.home-welcome>.home-welcome-asia-start>div.wechat>span:first-child {
+    font-size: 32px
+}
+
+div.home-welcome>.home-welcome-asia-start>div.wechat>span:nth-child(2) {
+    display: flex;
+    flex-direction: column
+}
+
+div.home-welcome>.home-welcome-asia-start>div.wechat>span:nth-child(2)>span:first-child {
+    font-family: Josefin Sans,sans-serif;
+    font-size: 18px;
+    font-weight: 700
+}
+
+div.home-welcome>.home-welcome-asia-start>div.wechat>span:nth-child(2)>span:nth-child(2) {
+    font-family: Lato,Sans-serif;
+    font-size: 14px;
+    opacity: .7
+}
+
+div.home-welcome>.home-welcome-asia-start>div.wechat>span:nth-child(3) {
+    margin-left: auto
+}
+
+div.home-welcome>.home-welcome-asia-start>div.wechat>span:nth-child(3)>a,div.home-welcome>.home-welcome-asia-start>div.wechat>span:nth-child(3)>div>a {
+    font-size: 32px
+}
+
+div.home-welcome>.home-welcome-realms {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column
+}
+
+div.home-welcome>.home-welcome-realms>div+div {
+    margin-top: 10px
+}
+
+div.home-welcome>.home-welcome-realms>div {
+    align-items: center;
+    background: hsla(0,4%,5%,.7);
+    border: 1px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(90deg,#49b120,transparent);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px 25px;
+    position: relative;
+    width: 400px
+}
+
+@media(max-width: 420px) {
+    div.home-welcome>.home-welcome-realms>div {
+        width:300px
+    }
+}
+
+div.home-welcome>.home-welcome-realms>div.wotlk-realm {
+    background: rgba(15,41,75,.2);
+    border: none
+}
+
+div.home-welcome>.home-welcome-realms>div.wotlk-realm:after {
+    display: none
+}
+
+div.home-welcome>.home-welcome-realms>div.wotlk-realm:before {
+    background: rgba(15,41,75,.8)
+}
+
+div.home-welcome>.home-welcome-realms>div.soon {
+    border-image-source: linear-gradient(90deg,#df0,transparent)
+}
+
+div.home-welcome>.home-welcome-realms>div.soon:after {
+    display: none
+}
+
+div.home-welcome>.home-welcome-realms>div.soon:before {
+    background: rgba(221,255,0,.4)
+}
+
+div.home-welcome>.home-welcome-realms>div.soon>div:first-child>span:last-child>span:first-child {
+    color: #df0
+}
+
+div.home-welcome>.home-welcome-realms>div.offline {
+    background: hsla(0,4%,5%,.2);
+    border: none;
+    opacity: .8
+}
+
+div.home-welcome>.home-welcome-realms>div.offline:after {
+    display: none
+}
+
+div.home-welcome>.home-welcome-realms>div.offline:before {
+    background: rgba(179,13,13,.4)
+}
+
+div.home-welcome>.home-welcome-realms>div.offline>div:first-child>span:last-child>span:first-child {
+    color: #b30d0d
+}
+
+div.home-welcome>.home-welcome-realms>div>div {
+    z-index: 2
+}
+
+div.home-welcome>.home-welcome-realms>div>div:nth-child(3) {
+    align-items: center;
+    display: flex;
+    flex-direction: row
+}
+
+div.home-welcome>.home-welcome-realms>div>div:nth-child(3)>span+span {
+    margin-left: 10px
+}
+
+div.home-welcome>.home-welcome-realms>div>div:nth-child(3)>span:nth-child(2) {
+    color: #0a48e5;
+    font-weight: 600
+}
+
+div.home-welcome>.home-welcome-realms>div>div:nth-child(3)>span:nth-child(3) {
+    color: #f8d6b2;
+    font-weight: 600
+}
+
+div.home-welcome>.home-welcome-realms>div>div:nth-child(3)>span:nth-child(4) {
+    color: #b30d0d;
+    font-weight: 600
+}
+
+div.home-welcome>.home-welcome-realms>div>div:nth-child(3)>span.icon_ally {
+    background: url(../../images/icon_realm_status_ally.png) no-repeat;
+    height: 26px;
+    width: 22px
+}
+
+div.home-welcome>.home-welcome-realms>div>div:nth-child(3)>span.icon_horde {
+    background: url(../../images/icon_realm_status_horde.png) no-repeat;
+    height: 26px;
+    width: 22px
+}
+
+div.home-welcome>.home-welcome-realms>div>div:nth-child(2) {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center
+}
+
+div.home-welcome>.home-welcome-realms>div>div:nth-child(2)>span:first-child {
+    font-weight: 600
+}
+
+div.home-welcome>.home-welcome-realms>div>div:nth-child(2)>span:last-child {
+    color: #727570;
+    font-size: 12px
+}
+
+div.home-welcome>.home-welcome-realms>div>div:first-child {
+    display: flex;
+    flex-direction: column
+}
+
+div.home-welcome>.home-welcome-realms>div>div:first-child>span:first-child {
+    align-items: center;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    font-size: 16px;
+    font-weight: 600
+}
+
+div.home-welcome>.home-welcome-realms>div>div:first-child>span:first-child>img {
+    margin-right: 5px
+}
+
+div.home-welcome>.home-welcome-realms>div>div:first-child>span:last-child {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    margin-top: 5px
+}
+
+div.home-welcome>.home-welcome-realms>div>div:first-child>span:last-child>span:first-child {
+    color: #49b120;
+    font-weight: 700
+}
+
+div.home-welcome>.home-welcome-realms>div>div:first-child>span:last-child>span:last-child {
+    color: #727570;
+    margin-left: 10px
+}
+
+div.home-welcome>.home-welcome-realms>div:after {
+    background: linear-gradient(90deg,rgba(73,177,32,.1),transparent);
+    bottom: 0;
+    content: " ";
+    display: block;
+    left: 8px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1
+}
+
+div.home-welcome>.home-welcome-realms>div:before {
+    background: #49b120;
+    bottom: 0;
+    content: " ";
+    display: block;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 8px;
+    z-index: 1
+}
