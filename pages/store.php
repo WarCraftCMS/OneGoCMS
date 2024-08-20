@@ -17,6 +17,14 @@ if (isset($_POST['buy_now'])) {
     $quantity = 1;
 
     $check = $store->process_direct_purchase($account_id, $character, $product_id, $quantity);
+
+    if ($check) {
+        $_SESSION['success_message'] = 'Вы успешно приобрели предмет!';
+        header('Location: ?page=store');
+        exit();
+    } else {
+        $_SESSION['error'] = 'Произошла ошибка при покупке предмета. Попробуйте еще раз.';
+    }
 }
 
 if (isset($_SESSION['success_message'])) {
@@ -64,6 +72,7 @@ $characters = $character->get_characters($account->get_id());
                                 <?php foreach ($characters as $char) : ?>
                                     <option value="<?= htmlspecialchars($char['name']) ?>"><?= htmlspecialchars($char['name']) ?></option>
                                 <?php endforeach; ?>
+                                <strong>Отличная работа!</strong> <?= $successMessage ?>
                             </select>
                             <button type="submit" name="buy_now" class="btn bg-cyan-600 hover:bg-cyan-700 text-white">Купить сейчас</button>
                         </form>

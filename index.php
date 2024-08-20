@@ -62,6 +62,7 @@ if (isset($_SESSION['username'])) {
     <link href="assets/css/style.css" rel="stylesheet" />
     <link href="assets/css/all.css" rel="stylesheet" />
     <link href="assets/css/theme.css" rel="stylesheet" />
+    <script src="assets/js/test.js"></script>
     <title>OneGo WoW - Free WoW Private Haste Server (2024) | Home</title>
 
 </head>
@@ -148,7 +149,6 @@ if (isset($_SESSION['username'])) {
              include 'pages/404.php';
          }
          ?>
-
 
     <footer class="footer p-10 bg-slate-950 text-base-content">
         <aside class="text-center mx-auto">

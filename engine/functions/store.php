@@ -37,8 +37,10 @@ class TelnetClient
 class Store
 {
     private $website_connection;
-    private $telnet_host = "192.168.0.2";
-    private $telnet_port = "23";
+    private $soap_url = 'http://192.168.0.2:7878/';
+    private $soap_uri = 'urn:AC';
+    private $soap_username = 'xaocZ';
+    private $soap_password = '112312976';
 
     public function __construct()
     {
@@ -174,37 +176,35 @@ class Store
 
     public function soap($character, $item_ids, $quantities, $total)
     {
-        $telnetErrors = [];
-
-        try {
-            $telnetClient = new TelnetClient($this->telnet_host, $this->telnet_port);
-            echo "Telnet клиент успешно создан.";
-        } catch (Exception $e) {
-            echo "Не удалось создать Telnet клиент: " . $e->getMessage();
-            return;
-        }
+        $soapErrors = [];
+        $client = new \SoapClient(null, [
+            'location'      =>  $this->soap_url,
+            'uri'           =>  $this->soap_uri,
+            'login'         =>  $this->soap_username,
+            'password'      =>  $this->soap_password,
+            'style'         =>  SOAP_RPC,
+            'keep_alive'    =>  false
+        ]);
 
         foreach (array_combine($item_ids, $quantities) as $item_id => $quantity) {
-            $command = 'send items ' . $character . ' "test" "Body" ' . $item_id . ':' . $quantity;
+            $command = 'send items ' . $character . ' "test" "Body" ' . $item_id . ':' . 1;
 
             try {
-                $result = $telnetClient->executeCommand($command);
+                $result = $client->executeCommand(new \SoapParam($command, "command"));
                 
                 if (strpos($result, 'success') === false) {
-                    $telnetErrors[] = "Не удалось выполнить команду Telnet для предмета id $item_id: $result";
+                    $soapErrors[] = "Не удалось выполнить команду SOAP для предмета id $item_id: $result";
                 }
-            } catch (Exception $e) {
-                $telnetErrors[] = "Ошибка: " . $e->getMessage();
+            } catch (\Exception $e) {
+                $soapErrors[] = "Ошибка: " . $e->getMessage();
             }
         }
 
-        if (empty($telnetErrors)) {
+        if (empty($soapErrors)) {
             $this->remove_from_cart_all($_SESSION['account_id']);
             $this->remove_donor_points($_SESSION['account_id'], $total);
             $_SESSION['success_message'] = "Ваша покупка прошла успешно! Вы можете найти свои товары в игровом почтовом ящике.";
             header("Location: ?page=store");
-        } else {
-            echo "Что-то пошло не так! Ошибки: " . implode(", ", $telnetErrors);
         }
     }
 
