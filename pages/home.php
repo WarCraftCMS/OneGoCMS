@@ -68,33 +68,45 @@
 
                     <div></div>
 
-                    <div class="home-welcome-realms">
-                        <div class="">
-                            <div>
-                                <span><span><?= $server->get_realm_name(); ?></span></span>
-                                    <span>
-                                        <span>Работает</span>
-                                        <span>19 ч.</span>
-                                    </span>
-                                </div>
-                                <div>
-                                    <span><?= $server->get_online_players(); ?></span>
-                                        <span>Включён</span>
-                                </div>
-                                <div>
-                                    <span class=""></span>
-                                    <span>49%</span>
-                                    <span></span>
-                                    <span>51%</span>
-                                    <span class=""></span>
-                                </div>
-                            </div>
-                                            </div>
+<div class="home-welcome-realms">
+    <div class="">
+        <div>
+            <span><span><?= $server->get_realm_name(); ?></span></span>
+            <span>
+                <span>Работает</span>
+                <?php 
+                $uptime_info = $server->get_uptime(); 
+                if ($uptime_info) {
+                    echo "<span>" . htmlspecialchars($uptime_info['uptime']) . "</span>";
+                } else {
+                    echo "<span>Неизвестно</span>";
+                }
+                ?>
+            </span>
+        </div>
+        <div>
+            <span><?= $server->get_online_players(); ?></span>
+            <span><?= $server->get_status_server(); ?></span>
+        </div>
+        
+        <?php 
+        $factionPercentages = $server->get_online_faction_percentages();
+        ?>
+        
+        <div>
+            <span class=""></span>
+            <span><?php echo $factionPercentages['alliance_percentage']; ?>%</span>
+            <span></span>
+            <span><?php echo $factionPercentages['horde_percentage']; ?>%</span>
+            <span class=""></span>
+        </div>
+    </div>
+</div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container-news">
+    <!--<div class="container-news">
         <div class="home-last-news">
 
 
@@ -127,7 +139,7 @@
             ?>   
 
                     </div>
-    </div>
+    </div>-->
 
             </div>
 
@@ -149,6 +161,16 @@
                     Наш Instagram
                 </a>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="hero hero2 min-h-full bg-[#080B10] border-b border-purple-950">
+    <div class="hero-overlay bg-opacity-20"></div>
+    <div class="hero-content text-center text-neutral-content max-w-full">
+        <div class="grid grid-cols-1 gap-3 md:gap-2 lg:gap-3 lg:grid-cols-2">
+
+
         </div>
     </div>
 </div>
