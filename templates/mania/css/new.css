@@ -1,0 +1,86 @@
+.cp-form-block > .inner-form > .line > select{
+	width: 100%;
+	height: 48px;
+	background: rgba(2, 11, 27, 0.44);
+	border: 1px solid rgba(88,100,114,0.45);
+	border-radius: 4px;
+	font-family: Ubuntu Medium;
+	font-size: 18px;
+	color: #8597b1;
+	padding-left: 12px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	z-index: 1;
+}
+
+.cp-form-block > .inner-form > .line > select > option{
+	background: #071628;
+	outline: none;
+}
+
+.cp-form-block > .inner-form > .line > .arrow{
+	width: 40px;
+	height: 48px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	display: flex;
+	flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    color: #9b9085;
+    font-size: 18px;
+    pointer-events: none;
+}
+
+.disabled-button{
+	width: 130px;
+	height: 38px;
+    border-radius: 4px;
+    background: url(../images/dbtn_bg.png) left center;
+    text-align: center;
+	font-family: Play;
+	font-weight: 600;
+    font-size: 18px;
+    color: #021c35;
+    text-transform: uppercase;
+    text-shadow: 0px 1px 0px #adadad;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: filter 0.2s ease-in-out;
+    box-shadow: 0px 0px 7px rgba(0,0,0,0.7);
+    border: none;
+}
+
+.reward-button{
+	width: 130px;
+	height: 38px;
+    border-radius: 4px;
+    background: url(../images/btn_bg.png) left center;
+    text-align: center;
+	font-family: Play;
+	font-weight: 600;
+    font-size: 18px;
+    color: #021c35;
+    text-transform: uppercase;
+    text-shadow: 0px 1px 0px #7fa5dc;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: filter 0.2s ease-in-out;
+    box-shadow: 0px 0px 7px rgba(0,0,0,0.7);
+    border: none;
+}
+
+.strikethrough {
+    position: relative;
+}
+
+.strikethrough:before {
+  border-bottom: 2px solid red;
+  position: absolute;
+  content: "";
+  width: 110%;
+  height: 50%;
+  transform: rotate(20deg);
+}

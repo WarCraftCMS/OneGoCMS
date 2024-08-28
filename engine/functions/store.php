@@ -8,12 +8,14 @@ class TelnetClient
     {
         $this->connection = fsockopen($host, $port);
         if (!$this->connection) {
+            error_log("Не удалось подключиться к серверу Telnet.");
             throw new Exception("Не удалось подключиться к серверу Telnet.");
         }
     }
 
     public function executeCommand($command)
     {
+        error_log("Отправка команды: $command");
         fwrite($this->connection, $command . "\n");
 
         $response = '';
@@ -25,6 +27,7 @@ class TelnetClient
             $response .= $line;
         }
 
+        error_log("Получен ответ: $response");
         return $response;
     }
 
@@ -37,10 +40,10 @@ class TelnetClient
 class Store
 {
     private $website_connection;
-    private $soap_url = 'http://192.168.0.2:7878/';
+    private $soap_url = 'http://127.0.0.1:7878/';
     private $soap_uri = 'urn:AC';
-    private $soap_username = 'xaocZ';
-    private $soap_password = '112312976';
+    private $soap_username = 'username';
+    private $soap_password = 'password';
 
     public function __construct()
     {
@@ -78,22 +81,6 @@ class Store
         return $title;
     }
 
-    public function add_to_cart($user_id, $product_id, $quantity)
-    {
-        $stmt = $this->website_connection->prepare("INSERT INTO cart (user_id, product_id, quantity) VALUES (?, ?, ?)");
-        $stmt->bind_param("iii", $user_id, $product_id, $quantity);
-        $stmt->execute();
-        $stmt->close();
-    }
-
-    public function remove_from_cart($id)
-    {
-        $stmt = $this->website_connection->prepare("DELETE FROM cart WHERE id = ?");
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        $stmt->close();
-    }
-
     public function get_item_name($id)
     {
         $stmt = $this->website_connection->prepare("SELECT title FROM products WHERE item_id = ?");
@@ -103,17 +90,6 @@ class Store
         $stmt->fetch();
         $stmt->close();
         return $title;
-    }
-
-    public function get_cart($user_id)
-    {
-        $stmt = $this->website_connection->prepare("SELECT * FROM cart WHERE user_id = ?");
-        $stmt->bind_param("i", $user_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $cartData = $result->fetch_all(MYSQLI_ASSOC);
-        $stmt->close();
-        return $cartData;
     }
 
     public function get_item_price($id)
@@ -127,47 +103,9 @@ class Store
         return array($title, $vote_points, $donor_points);
     }
 
-    public function check_cart($user_id)
-    {
-        require_once('engine/configs/db_config.php');
-        $cart = $this->get_cart($user_id);
-        $total = 0;
-        $account = new Account($_SESSION['username']);
-
-        foreach ($cart as $item) {
-            $item_price = $this->get_item_price($item['product_id']);
-            $total += $item_price[1] * $item['quantity'];
-        }
-
-        if ($account->get_donor_points()['donor_points'] <= $total) {
-            echo "У вас недостаточно очков!";
-            return false;
-        }
-
-        $item_ids = array_column($cart, 'product_id');
-        $quantities = array_column($cart, 'quantity');
-
-        $character = isset($_POST['character']) ? $_POST['character'] : null;
-
-        if ($character === null) {
-            echo "Персонаж не установлен. Выберите персонаж.";
-            return false;
-        }
-
-        $this->soap($character, $item_ids, $quantities, $total);
-        return true;
-    }
-
-    public function remove_from_cart_all($user_id)
-    {
-        $stmt = $this->website_connection->prepare("DELETE FROM cart WHERE user_id = ?");
-        $stmt->bind_param("i", $user_id);
-        $stmt->execute();
-        $stmt->close();
-    }
-
     public function remove_donor_points($user_id, $amount)
     {
+        error_log("Удаление донат-очков: user_id = $user_id, amount = $amount");
         $stmt = $this->website_connection->prepare("UPDATE users SET donor_points = donor_points - ? WHERE account_id = ?");
         $stmt->bind_param("ii", $amount, $user_id);
         $stmt->execute();
@@ -176,6 +114,7 @@ class Store
 
     public function soap($character, $item_ids, $quantities, $total)
     {
+        error_log("SOAP-запрос для персонажа: $character, предметы: " . implode(",", $item_ids) . ", количества: " . implode(",", $quantities) . ", total: $total");
         $soapErrors = [];
         $client = new \SoapClient(null, [
             'location'      =>  $this->soap_url,
@@ -190,7 +129,9 @@ class Store
             $command = 'send items ' . $character . ' "test" "Body" ' . $item_id . ':' . 1;
 
             try {
+                error_log("Выполнение SOAP команды: $command");
                 $result = $client->executeCommand(new \SoapParam($command, "command"));
+                error_log("Команда выполнена. Результат: $result");
                 
                 if (strpos($result, 'success') === false) {
                     $soapErrors[] = "Не удалось выполнить команду SOAP для предмета id $item_id: $result";
@@ -205,6 +146,9 @@ class Store
             $this->remove_donor_points($_SESSION['account_id'], $total);
             $_SESSION['success_message'] = "Ваша покупка прошла успешно! Вы можете найти свои товары в игровом почтовом ящике.";
             header("Location: ?page=store");
+        } else {
+            echo "Что-то пошло не так! Ошибки: " . implode(", ", $soapErrors);
+            error_log("Ошибки SOAP: " . implode(", ", $soapErrors));
         }
     }
 
@@ -213,9 +157,11 @@ class Store
         $item_price = $this->get_item_price($product_id);
         $total = $item_price[2] * $quantity;
 
+        error_log("Обработка прямой покупки: user_id = $user_id, character = $character, product_id = $product_id, quantity = $quantity, total = $total");
         $account = new Account($_SESSION['username']);
         if ($account->get_donor_points() < $total) {
             $_SESSION['error'] = "У вас недостаточно донат монет!";
+            error_log("Недостаточно донат-очков. Доступно: {$account->get_donor_points()}, требуется: $total");
             return false;
         }
 

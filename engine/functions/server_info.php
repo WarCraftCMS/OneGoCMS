@@ -47,7 +47,19 @@ class ServerInfo
             return 'Оффлайн';
         }
     }
-    
+  
+    public function get_status_server2()
+    {
+        global $db_host, $db_gameport;
+        $status = @fsockopen($db_host, $db_gameport, $error_no, $error_str, 1);
+        if ($status) {
+            @fclose($status);
+            return '<img src="templates/mania/images/server_on_icon.png" class="icon">';
+        } else {
+            return '<img src="templates/mania/images/server_off_icon.png" class="icon">';
+        }
+    }
+
     public function get_uptime()
     {
     $stmt = $this->auth_connection->prepare("SELECT starttime, uptime, maxplayers FROM uptime WHERE realmid = 1 ORDER BY starttime DESC LIMIT 1");
@@ -109,8 +121,8 @@ class ServerInfo
         'total_online' => $total_online_players,
         'alliance_online' => $alliance_online,
         'horde_online' => $horde_online,
-        'alliance_percentage' => round($alliance_percentage, 2),
-        'horde_percentage' => round($horde_percentage, 2)
+        'alliance_percentage' => round($alliance_percentage),
+        'horde_percentage' => round($horde_percentage)
     ];
     }
 

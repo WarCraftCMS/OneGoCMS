@@ -71,6 +71,34 @@ class Dashboard{
         $stmt->close();
         return $total;
     }
+    
+    public function get_template_name() {
+        $stmt = $this->website->query("SELECT template_name FROM templates WHERE id = 1");
+        
+        if ($stmt) {
+            $row = $stmt->fetch_assoc();
+            return $row['template_name'];
+        } else {
+            error_log("Запрос не удался: " . $this->website->error);
+            return null;
+        }
+    }
+
+    public function update_template_name($new_template_name) {
+        $stmt = $this->website->prepare("UPDATE templates SET template_name = ? WHERE id = 1");
+        $stmt->bind_param("s", $new_template_name);
+        
+        if ($stmt->execute()) {
+            $stmt->close();
+            return true;
+        } else {
+            error_log("Обновление не удалось: " . $stmt->error);
+            $stmt->close();
+            return false;
+        }
+    }
+
+
 }
 
 ?>
