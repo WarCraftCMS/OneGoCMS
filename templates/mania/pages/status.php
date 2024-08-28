@@ -41,10 +41,6 @@
     <div class="content inner-content">
         <div class="inner-title flex-cc">СТАТУС СЕРВЕРА</div>
 	
-        <div class="realm-tabs">
-			<a href="status.php" class="blue-button flex-cc active">EASY</a>
-			<!--<a href="status.php?realm=2" class="blue-button flex-cc">HARD</a>-->
-        </div>
         <style>
             .realm-tabs {
                 display: flex;
@@ -77,9 +73,9 @@
         $factionPercentages = $server->get_online_faction_percentages();
         ?>
         
-                    <div class="percent alliance"><span><?php echo $factionPercentages['alliance_percentage']; ?></span>%<img src="frontend\web\images\icon\alliance.png" alt=""></div>
+                    <div class="percent alliance"><span><?php echo $factionPercentages['alliance_percentage']; ?></span>%<img src="<?= $template_path ?>images\icon\alliance.png" alt=""></div>
                     <div class="progress"><div class="bar" style="width: 5%;"></div></div>
-                    <div class="percent orda"><img src="frontend\web\images\icon\orda.png" alt=""><span><?php echo $factionPercentages['horde_percentage']; ?></span>%</div>
+                    <div class="percent orda"><img src="<?= $template_path ?>images\icon\orda.png" alt=""><span><?php echo $factionPercentages['horde_percentage']; ?></span>%</div>
                 </div>
             </div>
         </div>
@@ -172,27 +168,27 @@ try {
                 <div class="title">ОСОБЕННОСТИ РЕАЛМА:</div>
                 <div class="table">
 					<div class="tr">
-						<div class="td"><img src="/frontend/web/images/check.png"></div>
+						<div class="td"><img src="<?= $template_path ?>images/check.png"></div>
 						<div class="td">Игрок может проходить подземелья и рейды сам!</div>
 					</div>
 					<div class="tr">
-						<div class="td"><img src="/frontend/web/images/check.png"></div>
+						<div class="td"><img src="<?= $template_path ?>images/check.png"></div>
 						<div class="td">КД и АП уменьшены до 5 дней.</div>
 					</div>
 					<div class="tr">
-						<div class="td"><img src="/frontend/web/images/check.png"></div>
+						<div class="td"><img src="<?= $template_path ?>images/check.png"></div>
 						<div class="td">Запуск БГ при наличии 4 игроков.</div>
 					</div>
 					<div class="tr">
-						<div class="td"><img src="/frontend/web/images/check.png"></div>
+						<div class="td"><img src="<?= $template_path ?>images/check.png"></div>
 						<div class="td">Трансмогрификация с коллекцией.</div>
 					</div>
 					<div class="tr">
-						<div class="td"><img src="/frontend/web/images/check.png"></div>
+						<div class="td"><img src="<?= $template_path ?>images/check.png"></div>
 						<div class="td">Все перелеты открыты и они мгновенны.</div>
 					</div>
 					<div class="tr">
-						<div class="td"><img src="/frontend/web/images/check.png"></div>
+						<div class="td"><img src="<?= $template_path ?>images/check.png"></div>
 						<div class="td">Межфракционные БГ, Аукцион и Каналы чата.</div>
 					</div>
                 </div>

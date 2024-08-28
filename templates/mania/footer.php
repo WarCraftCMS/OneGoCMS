@@ -4,35 +4,40 @@
             <div class="f_cpr flex-ss">
                 <img src="<?= $template_path ?>images/f_logo.png" class="logo">
                 <div class="info">
-                    <div class="title">© 2018-2024 WOWGG.ORG</div>
+                    <div class="title">© 2024 ONEGO CMS</div>
                     <div class="text">
-                        WORLD OF WARCRAFT AND BLIZZARD ENTERTAINMENT ARE TRADEMARKS OR REGISTERED TRADEMARKS OF BLIZZARD ENTERTAINMENT, INC. IN THE U.S. AND/OR OTHER COUNTRIES. THIS SITE IS IN NO WAY ASSOCIATED WITH BLIZZARD ENTERTAINMENT.
+                        WORLD OF WARCRAFT И BLIZZARD ENTERTAINMENT ЯВЛЯЮТСЯ ТОРГОВЫМИ МАРКАМИ ИЛИ ЗАРЕГИСТРИРОВАННЫМИ ТОВАРНЫМИ ЗНАКАМИ BLIZZARD ENTERTAINMENT, INC. В США И/ИЛИ ДРУГИХ СТРАНАХ. ЭТОТ САЙТ НИКОИМ ОБРАЗОМ НЕ СВЯЗАН С BLIZZARD ENTERTAINMENT.
+УСЛОВИЯ ОБСЛУЖИВАНИЯ
                     </div>
                     <div class="links flex-ss">
                         <!--
                         <a href="page\privacy.html">PRIVACY POLICY</a>
                         <a href="page\refund.html">REFUND POLICY</a>
-                        -->
-                        <a href="terms.php">УСЛОВИЯ ОБСЛУЖИВАНИЯ</a>
+                        
+                        <a href="terms.php">УСЛОВИЯ ОБСЛУЖИВАНИЯ</a>-->
                     </div>
                 </div>
             </div>
             <div class="f_links">
-                <a href="index.php">ГЛАВНАЯ</a><br>
-                <a href="news.php">НОВОСТИ</a><br>
-                <a href="status.php">СТАТУС МИ�&nbsp;ОВ</a>
+                <a href="?page=home">ГЛАВНАЯ</a><br>
+                <a href="?page=news">НОВОСТИ</a><br>
+                <a href="?page=status">СТАТУС МИРОВ</a>
                 <!--<a href="start.html">ПОДКЛЮЧЕНИЕ</a>-->
             </div>
+            <?php
+                            if (!isset($_SESSION['username'])) { ?>
             <div class="f_links">
-                        <a href="login.php">ВХОД</a><br>
-            <a href="signup.php">�&nbsp;ЕГИСТ�&nbsp;АЦИЯ</a>
+            <a href="?page=login">ВХОД</a><br>
+            <a href="?page=register">РЕГИСТРАЦИЯ</a>
+            
                         </div>
+                        <?php } else { ?>
             <div class="f_links">
-                <a href="rules.php">П�&nbsp;АВИЛА</a><br>
-                <a href="contacts.php">КОНТАКТЫ</a><br>
-                <a href="start.php">КАК НАЧАТЬ</a>
-                
+                <a href="?page=store">МАГАЗИН</a><br>
+                <a href="?page=donate">ПОЖЕРТВОВАТЬ</a><br>
+                <a href="?page=account">ЛИЧНЫЙ КАБИНЕТ</a>
             </div>
+                        <?php } ?>
             <div class="f_buttons flex-cc">
                 <!--
                 <div class="social flex-sbc">

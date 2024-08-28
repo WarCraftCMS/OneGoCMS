@@ -20,15 +20,15 @@
                 <a href="?page=home" class="link active">ГЛАВНАЯ</a>
                 <a href="?page=status" class="link ">СТАТУС</a>
                 <?php
-                            if (!isset($_SESSION['username'])) { ?>
-                <a href="?page=register" class="link ">�&nbsp;ЕГИСТ�&nbsp;АЦИЯ</a>
+                if (!isset($_SESSION['username'])) { ?>
+                <a href="?page=register" class="link ">РЕГИСТРАЦИЯ</a>
                 <?php } else { ?>
                  <div class="link">
                     <div class="open-drop-box flex-cc">АККАУНТ <i class="fa fa-caret-down" aria-hidden="true"></i></div>
                     <div class="drop-box">
                         <a href="?page=account" class="link">ЛИЧНЫЙ КАБИНЕТ</a>
                         <a href="?page=donate" class="link">ПОЖЕРТВОВАТЬ</a>
-                        <a href="?page=account" class="link">МАГАЗИН</a>
+                        <a href="?page=store" class="link">МАГАЗИН</a>
                         <a href="?page=vote" class="link">ГОЛОСОВАТЬ</a>
                     </div>
                 </div>

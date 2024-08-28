@@ -117,11 +117,11 @@
 
                 <article>
                     <div class="img flex-es"><img src="<?= $news['thumbnail'] ?>" alt="<?= $news['title'] ?>"></div>
-                    <div class="date flex-cs"><?= htmlspecialchars($day) ?><span><?= htmlspecialchars($month) ?></span></div>
+                    <div class="date flex-cs">25<span></span>Авг</div>
                     <div class="info">
                         <div class="title"><a href="<?= $news['url'] ?>"><?= $news['title'] ?></a></div>
                         <div class="text"><?= $news['content'] ?></div>
-                        <a class="more-btn" href="news.php?viewid=2">ПОДРОБНЕЕ</a>
+                        <a class="more-btn" href="<?= $news['url'] ?>">ПОДРОБНЕЕ</a>
                     </div>
                 </article>
    
