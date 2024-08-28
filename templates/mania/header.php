@@ -1,3 +1,10 @@
+<?php
+
+$global = new GlobalFunctions();
+$server = new ServerInfo();
+
+?>
+
 <!DOCTYPE html><html lang="ru-RU"><head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,8 +24,8 @@
 
 
                 <!--<div class="link"></div>-->
-                <a href="?page=home" class="link active">ГЛАВНАЯ</a>
-                <a href="?page=status" class="link ">СТАТУС</a>
+                <a href="/?page=home" class="link active">ГЛАВНАЯ</a>
+                <a href="/?page=status" class="link ">СТАТУС</a>
                 <?php
                 if (!isset($_SESSION['username'])) { ?>
                 <a href="?page=register" class="link ">РЕГИСТРАЦИЯ</a>
@@ -26,10 +33,10 @@
                  <div class="link">
                     <div class="open-drop-box flex-cc">АККАУНТ <i class="fa fa-caret-down" aria-hidden="true"></i></div>
                     <div class="drop-box">
-                        <a href="?page=account" class="link">ЛИЧНЫЙ КАБИНЕТ</a>
-                        <a href="?page=donate" class="link">ПОЖЕРТВОВАТЬ</a>
-                        <a href="?page=store" class="link">МАГАЗИН</a>
-                        <a href="?page=vote" class="link">ГОЛОСОВАТЬ</a>
+                        <a href="/?page=account" class="link">ЛИЧНЫЙ КАБИНЕТ</a>
+                        <a href="/?page=donate" class="link">ПОЖЕРТВОВАТЬ</a>
+                        <a href="/?page=store" class="link">МАГАЗИН</a>
+                        <a href="/?page=vote" class="link">ГОЛОСОВАТЬ</a>
                     </div>
                 </div>
                 <?php } ?>

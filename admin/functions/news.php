@@ -36,8 +36,7 @@ class News {
         return $result;
     }
 
-    public function add_news($title, $content, $url, $image, $author) 
-    {
+    public function add_news($title, $content, $url, $image, $author) {
         $url = $this->generate_url($url);
 
         if ($image['error'] == 0) {
@@ -61,7 +60,7 @@ class News {
         
         if ($stmt->execute()) {
             $news_id = $this->connection->insert_id;
-            $this->create_news_page($news_id, $title, $content, $url, $thumbnail, $author, $template_path);
+            $this->create_news_page($news_id, $title, $content, $url, $thumbnail, $author);
             $stmt->close();
             return true;
         }
@@ -80,33 +79,110 @@ class News {
         $slug = preg_replace('/[^A-Za-z0-9а-яА-ЯёЁ-]+/', '-', strtolower(trim($url)));
         $slug = preg_replace('/-+/', '-', $slug);
         $slug = trim($slug, '-');
-
-        return '../news/' . urlencode($slug);
+        return '../news/' . urlencode($slug) . '.php';
     }
 
-    private function create_news_page($news_id, $title, $content, $url, $thumbnail, $author, $template_path) {
-        $news_folder = $template_path . '../news/';
-        if (!is_dir($news_folder)) {
-            mkdir($news_folder, 0755, true);
-        }
-
-        // Имя файла для страницы новости
-        $filename = $news_folder . basename($url) . '.php';
-        // Содержимое страницы
+    private function create_news_page($news_id, $title, $content, $url, $thumbnail, $author) {
+        $filename = '../news/' . basename($url);
+        $created_at = $this->get_news_by_id($news_id)['created_at'];
+        $created_at_formatted = $this->format_date($created_at);
+        
+// начало страницы //
         $page_content = "<?php
 ";
-        $page_content .= "\$title = '{$title}';\n";
-        $page_content .= "\$content = '{$content}';\n";
-        $page_content .= "\$author = '{$author}';\n";
-        $page_content .= "\$thumbnail = '{$thumbnail}';\n";
-        $page_content .= "\$url = '{$url}';\n";
-        $page_content .= "?>";
-        $page_content .= "<h1><?php echo \$title; ?></h1>\n";
-        $page_content .= "<p><strong>Автор:</strong> <?php echo \$author; ?></p>\n";
-        $page_content .= "<p><strong>Ссылка:</strong> <a href='<?php echo \$url; ?>'>Читать больше</a></p>\n";
-        $page_content .= "<div><?php echo \$content; ?></div>\n";
+        $page_content .= "if (!file_exists('../engine/install.lock')) {
+    header('Location: ../install');
+    exit;
+}
+
+if (!isset(\$_SESSION)) {
+    session_start();
+}
+
+foreach (glob('../engine/functions/*.php') as \$filename) {
+    require_once \$filename;
+}
+
+foreach (glob('../engine/configs/*.php') as \$filename) {
+    require_once \$filename;
+}
+
+\$title = '{$title}';
+\$content = '" . addslashes($content) . "';
+\$author = '{$author}';
+\$created_at = '{$created_at_formatted}';
+
+\$config_object = new Configuration();
+\$db = \$config_object->getDatabaseConnection('website');
+
+\$result = \$db->query('SELECT template_name FROM templates WHERE id = 1');
+\$template = '1';
+
+if (\$result->num_rows > 0) {
+    \$row = \$result->fetch_assoc();
+    \$template = htmlspecialchars(\$row['template_name'], ENT_QUOTES, 'UTF-8');
+}
+
+\$db->close(); 
+
+if (isset(\$_GET['template'])) {
+    \$template = preg_replace('/[^a-zA-Z0-9_-]/', '', \$_GET['template']);
+}
+
+\$template_path = '../templates/' . \$template . '/';
+\$thumbnail = '{$thumbnail}';
+\$url = '{$url}';
+?>
+<?php include \$template_path . 'header.php'; ?>
+<?php include \$template_path . '/pages/form.php'; ?>
+<?php include \$template_path . 'footer.php'; ?>
+";
 
         file_put_contents($filename, $page_content);
     }
+
+    private function get_template_path() {
+        $default_template = 'default';
+        $template_path = '../templates/';
+
+        $stmt = $this->connection->prepare("SELECT template_name FROM templates WHERE id = 1");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $template = htmlspecialchars($row['template_name'], ENT_QUOTES, 'UTF-8');
+        } else {
+            $template = $default_template;
+        }
+        $stmt->close();
+
+        return $template_path . $template;
+    }
+
+    private function format_date($date) {
+        setlocale(LC_TIME, 'ru_RU.UTF-8');
+        $timestamp = strtotime($date);
+        return strftime('%e %b', $timestamp);
+ }
+
+public function delete_news($id) {
+    $stmt = $this->connection->prepare("SELECT thumbnail FROM news WHERE id = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $thumbnail = $row['thumbnail'];
+    $stmt->close();
+
+    if ($thumbnail && file_exists($thumbnail)) {
+        unlink($thumbnail);
+    }
+
+    $stmt = $this->connection->prepare("DELETE FROM news WHERE id = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $stmt->close();
+}
+
 }
 ?>

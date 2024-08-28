@@ -41,41 +41,6 @@
 
 
     <div class="content flex-sbs">
-        <div class="alert-window">
-            <div class="close close_alert" data-alert="c56722f9094d4bd3c551e0e9cd78c62d"><i class="fa fa-times"></i></div>
-            <style>.tab {position:absolute;left:200px; }</style>
-            <p>
-
-<b>ВНИМАНИЕ:</b>
-<br>
-
-<!--
-Встречаем Новый Год со СКИДКАМИ!
-<br>
-<a href="shop.php"><font color=orange>ЗАГЛЯНУТЬ В МАГАЗИН!</font></a>
-<br><br>
--->
-
-Голосуй за нас на MMOTOP.RU каждый день и получай GGP!
-<br>
-<a href="https://wow.mmotop.ru/servers/33557/votes/new"><font color="orange">П�&nbsp;ОГОЛОСОВАТЬ</font></a>
-<br><br>
-
-И не забудь пригласить друзей, ведь за каждого друга ты получишь 50 GGP!
-<br>
-Твоя ссылка для приглашения: <font color="orange">https://wowgg.org/?refer=</font>
-
-<!--
-14.11.2020 Запланированы технические работы!
-<br>
-Игровые миры и сайт будут недоступны с 9:25 и примерно до 10:30 МСК!
-<br>
-Об окончании тех. работ мы сообщим в этом сообщении!
-<a href="news.php?viewid=4"><font color=orange>ПОДРОБНЕЕ</font></a>
--->
-
-            </p>
-        </div>
         <div class="home-description" style="width: 100%;">
             <div style="cursor: url('images/sword.png'),default;">
 
@@ -117,7 +82,7 @@
 
                 <article>
                     <div class="img flex-es"><img src="<?= $news['thumbnail'] ?>" alt="<?= $news['title'] ?>"></div>
-                    <div class="date flex-cs">25<span></span>Авг</div>
+                    <div class="date flex-cs"><?= $news['date'] ?></div>
                     <div class="info">
                         <div class="title"><a href="<?= $news['url'] ?>"><?= $news['title'] ?></a></div>
                         <div class="text"><?= $news['content'] ?></div>
@@ -137,7 +102,7 @@
             }
             ?>  
 
-                    <a class="show-more-btn" href="news.php">БОЛЬШЕ НОВОСТЕЙ</a>
+                    <a class="show-more-btn" href="/?page=news">БОЛЬШЕ НОВОСТЕЙ</a>
                 </div>
         <aside class="flex-sbs">
             <div class="rankings">

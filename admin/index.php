@@ -243,8 +243,17 @@ $stats = new Dashboard();
                 <div class="nk-footer">
                     <div class="container-fluid">
                         <div class="nk-footer-wrap">
-                            <div class="nk-footer-copyright"> &copy; 2024 <a href="https://wow.net.kg" title="" target="_blank" rel="dofollow">OneGo WoW</a> by <a href="https://wow.net.kg" title="Website development / Разработка сайта — Aizen" target="_blank" rel="dofollow">Aizen</a>
+                            <div class="nk-footer-copyright"> &copy; 2024 <a href="https://wizardcp.com" title="ONEGOCP — Control panel for magical game projects" target="_blank" rel="dofollow">ONEGOCP</a> by <a href="https://wow.net.kg" title="Website development / Разработка сайта — Aizen" target="_blank" rel="dofollow">Aizen</a>
                             </div>
+
+                            <div class="btn-container">
+                                <label class="switch btn-color-mode-switch">
+                                    <input type="checkbox" name="color_mode" id="color_mode"  value="1">
+                                    <label for="color_mode" data-on="Dark" data-off="Light" class="btn-color-mode-switch-inner"></label>
+                                </label>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -255,36 +264,25 @@ $stats = new Dashboard();
         <!-- main @e  -->
     </div>
     <!-- app-root @e  -->
-
-
-
     </body>
-        <script>
+    <script>
         $(document).ready(function() {
             $("#color_mode").on("change", function () {
                 if($(this).prop("checked") == true){
                     //window.location.href = 'https://wow.wizardcp.com/settheme/dark';
-                    $.get('/settheme/dark');
-                    $('link[href="assets/css/theme.css"]').attr('href', 'assets/css/backend-dark.css?ver=2');
+                    $.get('https://wow.wizardcp.com/settheme/dark');
+                    $('link[href="/assets/css/theme.css"]').attr('href', '/assets/css/backend-dark.css?ver=2');
                 }
                 else if($(this).prop("checked") == false){
                     //window.location.href = 'https://wow.wizardcp.com/settheme/light';
-                    $.get('/settheme/light');
-                    $('link[href="assets/css/backend-dark.css?ver=2"]').attr('href', 'assets/css/theme.css');
+                    $.get('https://wow.wizardcp.com/settheme/light');
+                    $('link[href="/assets/css/backend-dark.css?ver=2"]').attr('href', '/assets/css/theme.css');
                 }
             })
         });
     </script>
-
-
-
 <!-- JavaScript -->
 <script src="../assets/js/bundle.js?ver=1.0.0"></script>
-<script src="../assets/js/scripts.js?ver=1.0.0"></script>
+<script src="../assets/js/scripts.js"></script>
 <script src="../assets/js/charts/gd-general.js?ver=1.0.0"></script>
-
-
-
-
-
-</body>
+</html>

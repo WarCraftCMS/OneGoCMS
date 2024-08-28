@@ -8,9 +8,16 @@ if (isset($_POST['edit-submit'])) {
     $news = new News();
     $news->update_news($_POST['news-id'], $_POST['news-title'], $_POST['news-content']);
 }
+
+if (isset($_POST['delete-submit'])) {
+    if(isset($_POST['news-id'])) {
+        $news = new News();
+        $news->delete_news($_POST['news-id']);
+    }
+}
+
 $news = new News();
 ?>
-
                             <div class="nk-content-body">
                                 <div class="nk-block-head nk-block-head-sm">
                                     <div class="nk-block-between">
@@ -22,8 +29,6 @@ $news = new News();
                                         </div>
                                     </div>
                                 </div>
-
-<!-- .nk-block -->
     <div class="nk-block">
         <div class="row g-gs">
             <div class="col-12">
@@ -56,14 +61,14 @@ $news = new News();
                                 <div class="nk-tb-col nk-tb-col-action">
                                     <div class="dropdown">
                                         <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown">
-                                            ...
+                                            <em class="icon ni ni-more-h"></em>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <ul class="link-list-plain">
-                                                <li></li>
-                                                
-                                                    
-                                               
+                                                <form method="POST" style="display:inline;">
+                                                    <input type="hidden" name="news-id" value="<?php echo $newsItem['id']; ?>">
+                                                    <button type="submit" class="text-danger" name="delete-submit" onclick="return confirm('Вы уверены, что хотите удалить эту новость??')"><li>Удалить</li></button>
+                                                </form>
                                             </ul>
                                         </div>
                                     </div>
