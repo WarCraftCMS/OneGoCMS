@@ -127,6 +127,7 @@ class Store
 
         foreach (array_combine($item_ids, $quantities) as $item_id => $quantity) {
             $command = 'send items ' . $character . ' "test" "Body" ' . $item_id . ':' . 1;
+            $this->remove_donor_points($_SESSION['account_id'], $total);
 
             try {
                 error_log("Выполнение SOAP команды: $command");
@@ -143,7 +144,6 @@ class Store
 
         if (empty($soapErrors)) {
             $this->remove_from_cart_all($_SESSION['account_id']);
-            $this->remove_donor_points($_SESSION['account_id'], $total);
             $_SESSION['success_message'] = "Ваша покупка прошла успешно! Вы можете найти свои товары в игровом почтовом ящике.";
             header("Location: ?page=store");
         } else {
@@ -159,9 +159,9 @@ class Store
 
         error_log("Обработка прямой покупки: user_id = $user_id, character = $character, product_id = $product_id, quantity = $quantity, total = $total");
         $account = new Account($_SESSION['username']);
-        if ($account->get_donor_points() < $total) {
+        if ($account->get_account_currency()['donor_points'] < $total) {
             $_SESSION['error'] = "У вас недостаточно донат монет!";
-            error_log("Недостаточно донат-очков. Доступно: {$account->get_donor_points()}, требуется: $total");
+            error_log("Недостаточно донат-очков. Доступно: {$account->get_account_currency()['donor_points']}, требуется: $total");
             return false;
         }
 

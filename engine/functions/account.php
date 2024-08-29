@@ -39,24 +39,29 @@ class Account
                 "last_ip" => $row['last_ip'],
                 "last_login" => $row['last_login']
             ];
-        }
-        $stmt->close();
-
-    if ($account) {
-        $stmt = $this->website->prepare("SELECT vote_points, donor_points FROM users WHERE account_id = ?");
-        $stmt->bind_param("i", $account['id']);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($row = $result->fetch_assoc()) {
-            $account['vote_points'] = (int) $row['vote_points'];
-            $account['donor_points'] = (int) $row['donor_points'];
+        return $account;
         }
         $stmt->close();
     }
 
-    return $account;
-    
+    public function get_account_currency()
+    {
+        $account = $this->get_account();
+        $stmt = $this->website->prepare("SELECT vote_points, donor_points FROM users WHERE account_id = ?");
+        $stmt->bind_param("i", $account['id']);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $stmt->close();
+
+        if ($row) {
+            return [
+                'vote_points' => $row['vote_points'],
+                'donor_points' => $row['donor_points']
+            ];
+        } else {
+            return 0;
+        }
     }
 
     public function get_rank()
@@ -317,17 +322,5 @@ public function get_vote_sites()
         return $account['last_login'];
     }
     
-    public function get_vote_points()
-    {
-        $account = $this->get_account();
-        return $account ? $account['vote_points'] : 0;
-    }
-
-    public function get_donor_points()
-    {
-        $account = $this->get_account();
-        return $account ? $account['donor_points'] : 0;
-    }
-
 }
 ?>

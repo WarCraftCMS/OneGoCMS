@@ -24,11 +24,11 @@ $characters = $character->get_characters($account->get_id());
     <div class="card mt-3 mx-auto" style="max-width: 700px;">
         <div class="card-body custom-card-body">
             <div class="row">
-                <h3 class="custom-card-text text-center">Корзина</h3>
+                <h3 class="custom-card-text text-center">Cart</h3>
                 <!-- Check if account has enough donor points -->
                 <?php if ($check == false) : ?>
                     <div class="col text-center text-white">
-                        <p>У вас недостаточно очков!</p>
+                        <p>You don't have enough points!</p>
                     </div>
                 <?php endif; ?>
             </div>
@@ -38,16 +38,16 @@ $characters = $character->get_characters($account->get_id());
                     <table class="table mx-auto text-white" style="max-width: 500px;">
                         <thead>
                             <tr>
-                                <th>Название предмета</th>
-                                <th>Цена</th>
-                                <th>Количество</th>
-                                <th>Персонаж</th>
-                                <th>Удалить</th>
+                                <th>Item Name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Character</th>
+                                <th>Remove</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            $total = 1000;
+                            $total = 0;
                             foreach ($cart as $item) :
                                 $item_price = $store->get_item_price($item['product_id']);
                                 $item_name = $store->get_item_name($item['product_id']);
@@ -73,7 +73,7 @@ $characters = $character->get_characters($account->get_id());
                                     <td>
                                         <!-- Form to remove the item from the cart -->
                                         <input type="hidden" name="id" value="<?= $item['id'] ?>">
-                                        <input type="submit" name="remove_from_cart" value="Удалить" class="btn btn-danger">
+                                        <input type="submit" name="remove_from_cart" value="Remove" class="btn btn-danger">
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -82,8 +82,8 @@ $characters = $character->get_characters($account->get_id());
                     <hr>
                     <div class="row">
                         <div class="col text-center text-white">
-                            <p>Всего: <?php echo $total; ?> Донат монет</p>
-                            <input type="submit" name="check-out" value="Проверить" class="btn btn-success">
+                            <p>Total: <?php echo $total; ?> Donor Points</p>
+                            <input type="submit" name="check-out" value="Check Out" class="btn btn-success">
                         </div>
                     </div>
                 </form>
