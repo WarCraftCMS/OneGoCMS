@@ -40,7 +40,6 @@ class TelnetClient
 class Store
 {
     private $website_connection;
-    private $soap_url = 'http://127.0.0.1:7878/';
     private $soap_uri = 'urn:AC';
     private $soap_username = 'username';
     private $soap_password = 'password';
@@ -117,20 +116,20 @@ class Store
         error_log("SOAP-запрос для персонажа: $character, предметы: " . implode(",", $item_ids) . ", количества: " . implode(",", $quantities) . ", total: $total");
         $soapErrors = [];
         $client = new \SoapClient(null, [
-            'location'      =>  $this->soap_url,
+            'location' => "http://$db_host:$this->soap_port/",
             'uri'           =>  $this->soap_uri,
-            'login'         =>  $this->soap_username,
-            'password'      =>  $this->soap_password,
+            'login'         => $this->soap_username,
+            'password'      => $this->soap_password,
             'style'         =>  SOAP_RPC,
             'keep_alive'    =>  false
         ]);
 
         foreach (array_combine($item_ids, $quantities) as $item_id => $quantity) {
             $command = 'send items ' . $character . ' "test" "Body" ' . $item_id . ':' . 1;
-            $this->remove_donor_points($_SESSION['account_id'], $total);
-
+            
             try {
                 error_log("Выполнение SOAP команды: $command");
+                $this->remove_donor_points($_SESSION['account_id'], $total);
                 $result = $client->executeCommand(new \SoapParam($command, "command"));
                 error_log("Команда выполнена. Результат: $result");
                 
