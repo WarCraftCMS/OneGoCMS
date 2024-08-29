@@ -88,7 +88,7 @@ $characters = $character->get_characters($account->get_id());
                             <?= htmlspecialchars($item['title']) ?>
                         </a>
                     <div class="desc" title="<?= htmlspecialchars($item['description']) ?>"><?= htmlspecialchars($item['description']) ?></div>
-                    <div class="price"><?= htmlspecialchars($item['donor_points']) ?> GGP</div>
+                    <div class="price"><?= htmlspecialchars($item['donor_points']) ?> Донат</div>
 
             <div class="shop_top flex-sbc">
                 <form action="" method='post' class="flex-sbc" style="width: 100%; margin: 0 auto;">
