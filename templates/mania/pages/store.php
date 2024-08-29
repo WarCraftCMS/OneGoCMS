@@ -105,20 +105,20 @@ $characters = $character->get_characters($account->get_id());
     </div>
 </div>
 
-<?php if ($successMessage) : ?>
-    <div class="text-center">
-        <div class="alert alert-dismissible alert-success">
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            <strong>Отличная работа!</strong> <?= htmlspecialchars($successMessage) ?>
-        </div>
-    </div>
-<?php endif; ?>
+    <script>
+        var VIEW_SUCCESS = true;
+        var VIEW_ERROR = true;
+    </script>
 
+<?php if ($successMessage) : ?>
+<div class="popup popup_success" data-popup-name="success">
+    <div class="close"><i class="fa fa-times" aria-hidden="true"></i></div>
+    <div class="text">Отличная работа! <?= htmlspecialchars($successMessage) ?><br><br></div>
+</div>
+<?php endif; ?>
 <?php if ($errorMessage) : ?>
-    <div class="text-center">
-        <div class="alert alert-dismissible alert-danger">
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            <strong>Эй, там!</strong> <?= htmlspecialchars($errorMessage) ?>
-        </div>
-    </div>
+<div class="popup popup_critical_error" data-popup-name="error" style="display: block;">
+    <div class="close"><i class="fa fa-times" aria-hidden="true"></i></div>
+    <div class="text">Эй, там! <?= htmlspecialchars($errorMessage) ?><br><br></div>
+</div>
 <?php endif; ?>
