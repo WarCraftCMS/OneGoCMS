@@ -3,8 +3,8 @@
             <div class="user-info">
                 <div class="desc">Вы вошли как:</div>
                 <div class="name flex-sc"><?= $account->get_username(); ?> <a class="exit_button" href="?page=logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Выход</a></div>
-                <div class="balance coins">Баланс: <span><balance class="balance_panel"><?= $account->get_donor_points(); ?></balance> GGP</span></div>
-                <div class="balance coins">Голоса: <span><balance class="balance_panel"><?= $account->get_vote_points(); ?></balance> GGP</span></div>
+                <div class="balance coins">Баланс: <span><balance class="balance_panel"><?= $account->get_account_currency()['donor_points'] ?></balance> GGP</span></div>
+                <div class="balance coins">Голоса: <span><balance class="balance_panel"><?= $account->get_account_currency()['vote_points'] ?></balance> GGP</span></div>
                             </div>
             <div class="nav flex-cc">
                 <a class="flex-sc active" href="?page=account"><div class="icon flex-cc"><i class="fa fa-user" aria-hidden="true"></i></div>Учетная Запись</a>
