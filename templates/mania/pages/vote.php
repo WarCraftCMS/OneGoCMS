@@ -54,10 +54,10 @@ $vote_sites = $account->get_vote_sites();
             <div class="cp-title flex-cc">Голосовать</div>
               <?php foreach ($vote_sites as $site): ?>
             <div class="vote-buttons flex-sbs">
-                <a name="vote" class="blue-button flex-cc vote-not-callback" data-id="1" target="_blank" href="<?= htmlspecialchars($site['url']) ?>">
-                    <i class="fa fa-thumbs-up" aria-hidden="true"></i>
-                    <i><?= htmlspecialchars($site['name']) ?></i>
-                </a>
+                <form method="POST" action="">
+                        <input type="hidden" name="vote_site" value="<?= htmlspecialchars($site['url']) ?>">
+                        <button type="submit" name="vote" class="blue-button flex-cc vote-not-callback"><?= htmlspecialchars($site['name']) ?></button>
+                </form>
             </div>
             <?php endforeach; ?>
             <br>

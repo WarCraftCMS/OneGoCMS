@@ -76,11 +76,6 @@ $vote_sites = $account->get_vote_sites();
                             </tbody>
 
                         </table>
-                        <?php
-                        if (!empty($vote_result)) {
-                            echo '<p>' . htmlspecialchars($vote_result) . '</p>';
-                        }
-                        ?>
                     </div>
                 </div>
             </div>
