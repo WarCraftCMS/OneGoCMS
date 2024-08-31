@@ -41,8 +41,16 @@ $character = new Character();
 $characters = $character->get_characters($account->get_id());
 ?>
 
-<div class="hero min-h-screen hero15">
-    <div class="grid grid-cols-1 gap-4">
+    <div class="hero min-h-screen hero15">
+    <div class="hero-overlay bg-opacity-70"></div>
+    <div class="hero-content text-center text-neutral-content w-full">
+                <div class="container">
+            <div class="mx-auto max-w-5xl mt-36 2xl:pt-0">
+                <h1 class="mb-5 text-4xl font-bold text-white text-shadow_dark">
+                    Shop & Donation
+                </h1>
+                 <div class="text-white bg-slate-950/60 p-9 rounded-lg text-left leading-loose">
+    <div class="grid-shop grid-cols-1 gap-4">
         <?php foreach ($items as $item) : ?>
             <div class="card bordered shadow-lg bg-indigo-900/10 group hover:bg-indigo-950/70 transition duration-500 ease-in-out">
                 <figure class="px-10 pt-10">
@@ -75,8 +83,12 @@ $characters = $character->get_characters($account->get_id());
             </div>
         <?php endforeach; ?>
     </div>
-</div>
-
+    </div>
+    </div>
+        </div>
+            </div>
+        </div>
+            </div>
 <?php if ($successMessage) : ?>
     <div class="text-center">
         <div class="alert alert-dismissible alert-success">
