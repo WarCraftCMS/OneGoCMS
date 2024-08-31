@@ -21,6 +21,7 @@ class TopPlayers
                 c.`gender`, 
                 c.`level`, 
                 c.`money`, 
+                c.`online`, 
                 c.`totalHonorPoints`, 
                 c.`arenaPoints`, 
                 c.`totalKills`,  
@@ -39,7 +40,7 @@ class TopPlayers
 
         $stmt->bind_param("i", $limit);
         $stmt->execute();
-        $stmt->bind_result($guid, $name, $race, $class, $gender, $level, $money, $totalHonorPoints, $arenaPoints, $totalKills, $achievement_count, $guild_name);
+        $stmt->bind_result($guid, $name, $race, $class, $gender, $level, $money, $online, $totalHonorPoints, $arenaPoints, $totalKills, $achievement_count, $guild_name);
         
         $characters = array();
 
@@ -210,7 +211,7 @@ class TopPlayers
                 'totalHonorPoints' => $totalHonorPoints,
                 'arenaPoints' => $arenaPoints,
                 'totalKills' => $totalKills,
-                'online' => $online,
+                'status' => $online,
                 'achievement_count' => $achievement_count,
                 'class_color' => $classColors[$class],
                 'class_name' => $className[$class], //

@@ -125,7 +125,12 @@ class Online
         11 => 'Друид',
     );
 
-    $raceName = array(
+        $onlineStat = array(
+        0 => 'Оффлайн',
+        1 => 'В сети',
+    );
+
+        $raceName = array(
         1 => 'Человек',
         2 => 'Орк',
         3 => 'Дварф',
@@ -218,7 +223,7 @@ class Online
                 'totalHonorPoints' => $totalHonorPoints,
                 'arenaPoints' => $arenaPoints,
                 'totalKills' => $totalKills,
-                'online' => $online,
+                'status' => $onlineStat[$online],
                 'achievement_count' => $achievement_count,
                 'class_color' => $classColors[$class],
                 'class_name' => $className[$class],
