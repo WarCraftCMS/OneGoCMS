@@ -73,13 +73,15 @@
         <div>
 <span><span><?= $server->get_realm_name(); ?></span></span>
 <span>
-    <span>Работает</span>
-    <span id="uptime-display">
-        <?php 
-        $uptime_info = $server->get_uptime(); 
-        echo $uptime_info ? htmlspecialchars($uptime_info['uptime']) : 'Неизвестно';
-        ?>
-    </span>
+    <span><?= $server->get_status_server(); ?></span>
+                <?php 
+                $uptime_info = $server->get_uptime(); 
+                if ($uptime_info) {
+                    echo "<span>" . htmlspecialchars($uptime_info['uptime']) . "</span>";
+                } else {
+                    echo "<span>Неизвестно</span>";
+                }
+                ?>
 </span>
         </div>
         <div>

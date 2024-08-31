@@ -39,11 +39,11 @@ if (isset($_POST['change_password']))
                                         <?= $account->get_last_login(); ?>                                    </div>
                                     <div class="sm:ml-2 block md:inline-block">
                                         <span class="font-bold">Донат:</span>
-                                        <span class="text-yellow-500"><?= $account->get_donor_points(); ?></span>
+                                        <span class="text-yellow-500"><?= $account->get_account_currency()['donor_points'] ?></span>
                                     </div>
                                     <div class="sm:ml-2 block md:inline-block">
                                         <span class="font-bold">Голоса:</span>
-                                        <span class="text-blue-300"><?= $account->get_vote_points(); ?></span>
+                                        <span class="text-blue-300"><?= $account->get_account_currency()['vote_points'] ?></span>
                                     </div>
                                     <div class="sm:ml-2 block md:inline-block">
                                         <span class="font-bold">ПРЕМИУМ:</span>
