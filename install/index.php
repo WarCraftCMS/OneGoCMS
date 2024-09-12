@@ -39,7 +39,7 @@ $check = new InstallOneGoCMS();
     <div class="swiper-wrapper">
       <div class="swiper-slide">
         <video class="video-background" autoplay muted loop>
-          <source src="https://alterac-pvp.ru/bg.mp4" type="video/mp4">
+          <source src="./bg.mp4" type="video/mp4">
         </video>
         <div class="content" data-content="one">
           <h1>OneGoCMS release 1.0.0</h1>

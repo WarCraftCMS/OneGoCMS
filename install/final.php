@@ -99,7 +99,7 @@ if (isset($_POST['install'])) {
 <body>
     <div class="swiper-container">
         <video class="video-background" autoplay muted loop>
-            <source src="https://alterac-pvp.ru/bg.mp4" type="video/mp4">
+            <source src="./bg.mp4" type="video/mp4">
         </video>
         <div class="footer">
             <form action="" method="post" class="mt-4">
