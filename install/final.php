@@ -134,6 +134,9 @@ if (isset($_POST['install'])) {
                     <input type="text" class="form-control" name="db_characters" placeholder="Characters Database: characters" required>
                 </div>
                 <div class="form-group">
+                    <input type="text" class="form-control" name="db_world" placeholder="World Database: world" required>
+                </div>
+                <div class="form-group">
                     <input type="text" class="form-control" name="db_website" placeholder="Website Database: website" required>
                 </div>
                 <h4>SOAP</h4>

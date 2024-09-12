@@ -11,7 +11,7 @@ class InstallOneGoCMS
         }
     }
 
-    public function install($web_title, $realmlist, $host, $port, $db_gameport, $username, $password, $auth, $characters, $website, $soap_url, $soap_uri, $soap_username, $soap_password)
+    public function install($web_title, $realmlist, $host, $port, $db_gameport, $username, $password, $auth, $characters, $world, $website, $soap_url, $soap_uri, $soap_username, $soap_password)
     {
         $db = new mysqli($host, $username, $password, '', $port);
         if ($db->connect_error) {
@@ -55,6 +55,7 @@ class InstallOneGoCMS
 \$db_password = '" . $password . "';
 \$db_auth = '" . $auth . "';
 \$db_characters = '" . $characters . "';
+\$db_world = '" . $world . "';
 \$db_website = '" . $website . "';
     
 // Soap Account Configuration
