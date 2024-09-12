@@ -3,7 +3,7 @@ require_once("functions/install.php");
 $install = new InstallOneGoCMS();
 
 if (isset($_POST['install'])) {
-    $install->install($_POST['web_title'], $_POST['realmlist'], $_POST['db_host'], $_POST['db_port'], $_POST['db_gameport'], $_POST['db_username'], $_POST['db_password'], $_POST['db_auth'], $_POST['db_characters'], $_POST['db_website'], $_POST['soap_url'], $_POST['soap_uri'], $_POST['soap_username'], $_POST['soap_password']);
+    $install->install($_POST['web_title'], $_POST['realmlist'], $_POST['db_host'], $_POST['db_port'], $_POST['db_gameport'], $_POST['db_username'], $_POST['db_password'], $_POST['db_auth'], $_POST['db_characters'], $_POST['db_world'], $_POST['db_website'], $_POST['soap_url'], $_POST['soap_uri'], $_POST['soap_username'], $_POST['soap_password']);
 }
 ?>
 <!DOCTYPE html>
