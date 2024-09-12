@@ -23,21 +23,21 @@ if (isset($_POST['unstick'])) {
         <div class="container">
             <div class="max-w-full mt-36 2xl:pt-0">
                 <h1 class="mb-5 text-4xl font-bold text-white text-shadow_dark">
-                    Мои Персонажи
+                    <?= $translations['my_characters'] ?>
                 </h1>
                 <div class="text-white bg-slate-950/60 p-9 rounded-lg text-left leading-loose">
                     <div class="mt-2">
                         <table class="table w-full">
                             <thead>
                                 <tr>
-                                    <th class='text-center text-white'>Name</th>
+                                    <th class='text-center text-white'><?= $translations['username'] ?></th>
                                     <th class='text-center text-white'>  </th>
-                                    <th class='text-center text-white'>Уровень</th>
-                                    <th class='text-center text-white'>Гильдия</th>
-                                    <th class='text-center text-white'>Золото</th>
-                                    <th class='text-center text-white'>Арена</th>
-                                    <th class='text-center text-white'>Честь</th>
-                                    <th class='text-center text-white'>Достижения</th>
+                                    <th class='text-center text-white'><?= $translations['level'] ?></th>
+                                    <th class='text-center text-white'><?= $translations['guild'] ?></th>
+                                    <th class='text-center text-white'><?= $translations['gold'] ?></th>
+                                    <th class='text-center text-white'><?= $translations['arena'] ?></th>
+                                    <th class='text-center text-white'><?= $translations['honor'] ?></th>
+                                    <th class='text-center text-white'><?= $translations['achievements'] ?></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -46,8 +46,11 @@ if (isset($_POST['unstick'])) {
                             foreach ($characters as $character) { ?>
                                 <tr>
                                     <td class='text-center'>
-                                        <span><font color="<?= $character['class_color']; ?>"><?= $character['name']; ?></font></span>
+                                        <a href="?page=armory&charid=<?= $character['guid']; ?>" class="text-blue-500 hover:underline">
+                                            <span><font color="<?= $character['class_color']; ?>"><?= $character['name']; ?></font></span>
+                                        </a>
                                     </td>
+
                                     <td class='text-center text-white sm:block hidden'>
                                         <div class="tooltip" data-tip="<?= $character['faction_text']; ?> - <?= $character['class_name']; ?> - <?= $character['race_name']; ?>">
                                             <img class="h-5 inline" src="<?= $character['faction']; ?>" />
@@ -74,14 +77,6 @@ if (isset($_POST['unstick'])) {
                                     </td>
                                     <td class='text-center'>
                                         <span><img class="h-5 inline rounded-full" src="<?= $character['achievement_image']; ?>" class="mr-2"> <?= $character['achievement_count']; ?></span>
-                                    </td>
-                                    <td class='text-center'>
-                                        <form method="POST">
-                                            <input type="hidden" name="guid" value="<?= $character['guid']; ?>">
-                                            <button type="submit" name="unstick" class="btn bg-rose-900 hover:bg-rose-700 text-white btn-sm">
-                                                Застрял
-                                            </button>
-                                        </form>
                                     </td>
                                 </tr>
                             <?php } ?>

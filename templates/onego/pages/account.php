@@ -14,7 +14,7 @@ if (isset($_POST['change_password']))
         <div class="container">
             <div class="max-w-full mt-36 2xl:pt-0">
                 <h1 class="mb-5 text-4xl font-bold text-white text-shadow_dark">
-                    Панель управления учетной записью
+                    <?= $translations['account_control_panel'] ?>
                 </h1>
                 <div class="text-white bg-slate-950/60 p-9 rounded-lg text-left leading-loose">
 
@@ -22,32 +22,32 @@ if (isset($_POST['change_password']))
                     <div>
                         <div role="alert" class="alert shadow-lg bg-slate-950/40">
                             <div>
-                                <h3 class="font-bold">Информация об Аккаунте</h3>
+                                <h3 class="font-bold"><?= $translations['account_information'] ?></h3>
                                 <div class="text-xs">
                                     <p class="sm:inline">
                                     <div class="sm:ml-2 block sm:inline-block">
-                                        <span class="font-bold">Логин:</span>
+                                        <span class="font-bold"><?= $translations['username'] ?>:</span>
                                        <?= $account->get_username(); ?></div>
                                     <div class="sm:ml-2 block md:inline-block">
-                                        <span class="font-bold">Email:</span>
+                                        <span class="font-bold"><?= $translations['e_mail'] ?>:</span>
                                         <?= $account->get_email(); ?>                                    </div>
                                     <div class="sm:ml-2 block md:inline-block">
-                                        <span class="font-bold">Регистрация:</span>
+                                        <span class="font-bold"><?= $translations['registration'] ?>:</span>
                                         <?= $account->get_joindate(); ?>                                    </div>
                                     <div class="sm:ml-2 block md:inline-block">
-                                        <span class="font-bold">Последний вход:</span>
+                                        <span class="font-bold"><?= $translations['last_login'] ?>:</span>
                                         <?= $account->get_last_login(); ?>                                    </div>
                                     <div class="sm:ml-2 block md:inline-block">
-                                        <span class="font-bold">Донат:</span>
+                                        <span class="font-bold"><?= $translations['donor_coins'] ?>:</span>
                                         <span class="text-yellow-500"><?= $account->get_account_currency()['donor_points'] ?></span>
                                     </div>
                                     <div class="sm:ml-2 block md:inline-block">
-                                        <span class="font-bold">Голоса:</span>
+                                        <span class="font-bold"><?= $translations['voting_coins'] ?>:</span>
                                         <span class="text-blue-300"><?= $account->get_account_currency()['vote_points'] ?></span>
                                     </div>
                                     <div class="sm:ml-2 block md:inline-block">
-                                        <span class="font-bold">ПРЕМИУМ:</span>
-                                        <span class="text-purple-400">Нету</span>
+                                        <span class="font-bold"><?= $translations['premium'] ?>:</span>
+                                        <span class="text-purple-400"><?= $translations['no'] ?></span>
                                     </div>
                                     </p>
                                 </div>
@@ -64,8 +64,8 @@ if (isset($_POST['change_password']))
                                             class="mask mask-hexagon max-h-32 max-w-32" />
                                     </figure>
                                     <div class="card-body">
-                                        <h2 class="card-title text-teal-400">Управление учетными записями</h2>
-                                        <p class="text-gray-300 text-sm">Управляйте настройками своей учетной записи, меняйте пароль и многое другое.</p>
+                                        <h2 class="card-title text-teal-400"><?= $translations['account_management'] ?></h2>
+                                        <p class="text-gray-300 text-sm"><?= $translations['account_management_info'] ?></p>
                                     </div>
                                 </div>
                             </a>
@@ -78,9 +78,9 @@ if (isset($_POST['change_password']))
                                     </figure>
                                     <div class="card-body">
                                         <h2 class="card-title text-teal-400">
-                                            Управление персонажами
+                                            <?= $translations['character_management'] ?>
                                         </h2>
-                                        <p class="text-gray-300 text-sm">Управляйте своими персонажами, раскручивайте их и многое другое.</p>
+                                        <p class="text-gray-300 text-sm"><?= $translations['character_management_info'] ?></p>
                                     </div>
                                 </div>
                             </a>
@@ -92,8 +92,8 @@ if (isset($_POST['change_password']))
                                             class="mask mask-hexagon max-h-32 max-w-32" />
                                     </figure>
                                     <div class="card-body">
-                                        <h2 class="card-title text-teal-400">Голосуйте за нас</h2>
-                                        <p class="text-gray-300 text-sm">Голосуйте за нас и получайте награды в игре.</p>
+                                        <h2 class="card-title text-teal-400"><?= $translations['vote_for_us'] ?></h2>
+                                        <p class="text-gray-300 text-sm"><?= $translations['vote_for_us_info'] ?></p>
                                     </div>
                                 </div>
                             </a>
@@ -106,15 +106,15 @@ if (isset($_POST['change_password']))
                                     </figure>
                                     <div class="card-body">
                                         <h2 class="card-title text-teal-400">
-                                            Магазин и пожертвование
+                                            <?= $translations['shop'] ?>
                                         </h2>
                                         <p class="text-gray-300 text-sm">
-                                            Приобретайте предметы, донат и VIP-подписки для поддержки сервера.
+                                            <?= $translations['shop_info'] ?>
                                         </p>
                                     </div>
                                 </div>
                             </a>
-                            <a href="">
+                            <a href="?page=fortune">
                                 <div
                                     class="card card-side bg-slate-950/40 border hover:bg-slate-950 border-slate-950 h-full transition duration-300">
                                     <figure class="p-5">
@@ -124,15 +124,15 @@ if (isset($_POST['change_password']))
                                     <div class="card-body">
                                         <h2 class="card-title text-teal-400">
                                             
-                                            Социальные сети
+                                            <?= $translations['fortune'] ?>
                                         </h2>
                                         <p class="text-gray-300 text-sm">
-                                            Свяжите свои аккаунты в социальных сетях, чтобы получать награды в игре.
+                                            <?= $translations['fortune_info'] ?>
                                         </p>
                                     </div>
                                 </div>
                             </a>
-                            <a href="">
+                            <a href="?page=bag">
                                 <div
                                     class="card card-side bg-slate-950/40 border hover:bg-slate-950 border-slate-950 h-full transition duration-300">
                                     <figure class="p-5">
@@ -142,10 +142,9 @@ if (isset($_POST['change_password']))
                                     <div class="card-body">
                                         <h2 class="card-title text-teal-400">
                                             
-                                            Награды за наследие
+                                            <?= $translations['bag'] ?>
                                         </h2>
-                                        <p class="text-gray-300 text-sm">Получите награды за свои старые аккаунты и
-                                            персонажей с нашего старого сервера.</p>
+                                        <p class="text-gray-300 text-sm"><?= $translations['bag_info'] ?></p>
                                     </div>
                                 </div>
                             </a>
@@ -155,7 +154,7 @@ if (isset($_POST['change_password']))
                             <div class="mt-4 mx-auto text-center">
                                 <a href="?page=logout"
                                     class="btn bg-red-800 hover:bg-red-600 text-white">
-                                    Выход
+                                    <?= $translations['logout'] ?>
                                 </a>
                             </div>
                         </div>

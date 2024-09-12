@@ -21,7 +21,6 @@ class TopPlayers
                 c.`gender`, 
                 c.`level`, 
                 c.`money`, 
-                c.`online`, 
                 c.`totalHonorPoints`, 
                 c.`arenaPoints`, 
                 c.`totalKills`,  
@@ -40,9 +39,19 @@ class TopPlayers
 
         $stmt->bind_param("i", $limit);
         $stmt->execute();
-        $stmt->bind_result($guid, $name, $race, $class, $gender, $level, $money, $online, $totalHonorPoints, $arenaPoints, $totalKills, $achievement_count, $guild_name);
+        $stmt->bind_result($guid, $name, $race, $class, $gender, $level, $money, $totalHonorPoints, $arenaPoints, $totalKills, $achievement_count, $guild_name);
         
         $characters = array();
+		
+		$lang = isset($_SESSION['lang']) ? $_SESSION['lang'] : 'en';
+        $lang_file = __DIR__ . '/../../lang/' . $lang . '.php';
+
+        if (file_exists($lang_file)) {
+            $translations = require($lang_file);
+        } else {
+            $translations = require(__DIR__ . '/../../lang/en.php');
+            error_log("Language file not found: " . $lang_file);
+        }
 
         $class_image = array(
             1 => 'assets/images/classes/1.png',
@@ -83,75 +92,27 @@ class TopPlayers
             '11' => array('0' => 'assets/images/race/11-0.png', '1' => 'assets/images/race/11-1.png')
         );
 
-        $rank_titles = array(
-            0 => 'Нет ранга',
-            1 => 'Ранг 1',
-            2 => 'Ранг 2',
-            3 => 'Ранг 3',
-            4 => 'Ранг 4',
-            5 => 'Ранг 5',
-            6 => 'Ранг 6',
-            7 => 'Ранг 7',
-            8 => 'Ранг 8',
-            9 => 'Ранг 9',
-            10 => 'Ранг 10',
-            11 => 'Ранг 11',
-            12 => 'Ранг 12',
-            13 => 'Ранг 13',
-            14 => 'Ранг 14',
-            15 => 'Ранг 15',
-            16 => 'Ранг 16',
-            17 => 'Ранг 17',
-            18 => 'Ранг 18',
-            19 => 'Ранг 19',
-        );
-        
-        
-        $className = array(
-        1 => 'Воин',
-        2 => 'Паладин',
-        3 => 'Охотник',
-        4 => 'Разбойник',
-        5 => 'Жрец',
-        6 => 'Рыцарь Смерти',
-        7 => 'Шаман',
-        8 => 'Маг',
-        9 => 'Чернокнижник',
-        11 => 'Друид',
-    );
-
-    $raceName = array(
-        1 => 'Человек',
-        2 => 'Орк',
-        3 => 'Дварф',
-        4 => 'Ночной Эльф',
-        5 => 'Нежить',
-        6 => 'Таурен',
-        7 => 'Гном',
-        8 => 'Троль',
-        10 => 'Эльф Крови',
-        11 => 'Дреней',
-    );
-
         while ($stmt->fetch()) {
             if (in_array($race, [1, 3, 4, 7, 11])) {
                 $faction = 'assets/images/fraction/alliance.webp';
-                $faction_text = 'Альянс';
+				$faction_bg = 'assets/images/fraction/bg-alliance.png';
+                $faction_text = $translations['faction_alliance'];
             } elseif (in_array($race, [2, 5, 6, 8, 10])) {
                 $faction = 'assets/images/fraction/horde.webp';
-                $faction_text = 'Орда';
+				$faction_bg = 'assets/images/fraction/bg-horde.png';
+                $faction_text = $translations['faction_horde'];
             } else {
-                $faction = 'Неизвестно';
+                $faction = $translations['faction_unknown'];
             }
 
             $gold = floor($money / 10000);
             $silver = floor(($money % 10000) / 100);
             $copper = $money % 100;
             $gender_text = ($gender == 0) ? 'Мужчина' : 'Женщина';
-            $guild_text = !empty($guild_name) ? $guild_name : 'Без гильдии';
+            $guild_text = !empty($guild_name) ? $guild_name : $translations['no_guild'];
 
             if ($totalHonorPoints <= 0) {
-                $rank = 0; // Нет ранга
+                $rank = 0;
             } elseif ($totalHonorPoints < 500) {
                 $rank = 1;
             } elseif ($totalHonorPoints < 1500) {
@@ -192,7 +153,7 @@ class TopPlayers
                 $rank = 19;
             }
 
-            $rank_title = $rank_titles[$rank];
+            $rank_title = $translations["rank_" . $rank];
 
             $character = array(
                 'guid' => $guid,
@@ -203,19 +164,18 @@ class TopPlayers
                 'level' => $level,
                 'faction' => $faction,
                 'faction_text' => $faction_text,
-                'class_image' => $class_image[$class],
-                'race_image' => $race_image[$race][$gender],
+                'class_image' => isset($class_image[$class]) ? $class_image[$class] : 'assets/images/classes/unknown.png',
+                'race_image' => isset($race_image[$race]) ? $race_image[$race][$gender] : 'assets/images/races/unknown.png',
                 'gold' => $gold,
                 'silver' => $silver,
                 'copper' => $copper,
                 'totalHonorPoints' => $totalHonorPoints,
                 'arenaPoints' => $arenaPoints,
                 'totalKills' => $totalKills,
-                'status' => $online,
                 'achievement_count' => $achievement_count,
                 'class_color' => $classColors[$class],
-                'class_name' => $className[$class], //
-                'race_name' => $raceName[$race], //
+                'class_name' => $translations['class_' . strtolower($this->get_class_name($class))],
+                'race_name' => $translations['race_' . strtolower($this->get_race_name($race))],
                 'guild_name' => $guild_text,
                 'rank' => $rank,
                 'rank_title' => $rank_title
@@ -226,7 +186,41 @@ class TopPlayers
 
         return $characters;
     }
+	
+    private function get_class_name($class)
+    {
+        $class_names = [
+            1 => 'warrior',
+            2 => 'paladin',
+            3 => 'hunter',
+            4 => 'rogue',
+            5 => 'priest',
+            6 => 'death_knight',
+            7 => 'shaman',
+            8 => 'mage',
+            9 => 'warlock',
+            11 => 'druid',
+        ];
+
+        return isset($class_names[$class]) ? $class_names[$class] : 'unknown';
+    }
+
+    private function get_race_name($race)
+    {
+        $race_names = [
+            1 => 'human',
+            2 => 'orc',
+            3 => 'dwarf',
+            4 => 'night_elf',
+            5 => 'undead',
+            6 => 'tauren',
+            7 => 'gnome',
+            8 => 'troll',
+            10 => 'blood_elf',
+            11 => 'draenei',
+        ];
+
+        return isset($race_names[$race]) ? $race_names[$race] : 'unknown';
+    }
 }
-
-
 ?>

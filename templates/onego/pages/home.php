@@ -56,11 +56,11 @@
                     <div class="home-welcome-join">
                         <span></span>
                         <span>
-                            <span>Присоединяйтесь и создайте свою собственную историю</span>
-                            <span>Присоединяйтесь и создайте свою собственную историю</span>
+                            <span><?= $translations['content1'] ?></span>
+                            <span><?= $translations['content1'] ?></span>
                         </span>
                         <span>
-                            Переживите чудеса Азерота, исследуйте земли, покрытые туманами, снегом и дождем, прокладывайте свой путь кровью ваших врагов и побеждайте силы, стремящиеся нарушить равновесие.
+                            <?= $translations['content2'] ?>
                         </span>
 
 
@@ -73,7 +73,7 @@
         <div>
 <span><span><?= $server->get_realm_name(); ?></span></span>
 <span>
-    <span><?= $server->get_status_server(); ?></span>
+    <span>UPTIME</span>
                 <?php 
                 $uptime_info = $server->get_uptime(); 
                 if ($uptime_info) {
@@ -106,7 +106,7 @@
             </div>
         </div>
     </div>
-    <!--<div class="container-news">
+  <!-- <div class="container-news">
         <div class="home-last-news">
 
 
@@ -147,18 +147,16 @@
     <div class="container mx-auto py-10">
         <div class="md:flex mx-auto">
             <div class="w-full md:w-2/3 mt-3 text-center px-4 text-white text-shadow_dark">
-                Присоединяйтесь к нашему серверу Discord и следите за нами, задавайте свои
-                вопросы и общайтесь с сообществом. Мы рады, что вы
-                присоединитесь к нам!
+                <?= $translations['content3'] ?>
             </div>
             <div class="w-full mt-4 md:mt-0 md:w-1/3 text-center">
                 <a target="_blank" href=""
                     class="btn bg-blue-900 hover:bg-blue-700 text-white">
-                    Вступить в DISCORD
+                    <?= $translations['join_discord'] ?>
                 </a>
                 <a target="_blank" href=""
                     class="btn md:mt-2 bg-fuchsia-800 hover:bg-fuchsia-600 text-white">
-                    Наш Instagram
+                    <?= $translations['instagram'] ?>
                 </a>
             </div>
         </div>
@@ -183,19 +181,19 @@
                 <div class="w-full lg:w-4/6 mx-auto">
                     <div role="tablist" class="tabs tabs-lifted">
                         <input type="radio" name="my_tabs_2" role="tab" class="tab text-xs sm:text-md"
-                            aria-label="Онлайн по времени" checked />
+                            aria-label="<?= $translations['online_players'] ?>" checked />
                         <div role="tabpanel" class="tab-content bg-indigo-800/15 rounded-box p-6">
                             <div class="overflow-x-scroll">
                                 <table class="table-auto sm:table mx-auto">
                                     <thead>
                                         <tr>
                                             <th class="text-center text-white">№</th>
-                                            <th class="text-center text-white">Имя</th>
+                                            <th class="text-center text-white"><?= $translations['name'] ?></th>
                                             <th class="text-center text-white sm:block hidden"></th>
-                                            <th class="text-center text-white">Уровень</th>
-                                            <th class="text-center text-white">Гильдия</th>
-                                            <th class="text-center text-white">Ранг</th>
-                                            <th class="text-center text-white">Локация</th>
+                                            <th class="text-center text-white"><?= $translations['level'] ?></th>
+                                            <th class="text-center text-white"><?= $translations['guild'] ?></th>
+                                            <th class="text-center text-white"><?= $translations['rank'] ?></th>
+                                            <th class="text-center text-white"><?= $translations['location'] ?></th>
                                         </tr>
                                     </thead>
          <?php
@@ -207,7 +205,7 @@
                                     ?>
                                             <tr class="hover:bg-indigo-900/30">
                                                 <td class="text-center text-white"><?= $rank++; ?></td>
-                                                <td class="text-center text-white"><font color="<?= htmlspecialchars($character['class_color']); ?>"><?= htmlspecialchars($character['name']); ?></font></td>
+                                                <td class="text-center text-white"><a href="?page=armory&charid=<?= $character['guid']; ?>" class="text-blue-500 hover:underline"><font color="<?= htmlspecialchars($character['class_color']); ?>"><?= htmlspecialchars($character['name']); ?></font></a></td>
                                                 <td class="text-center text-white">
                                                 <div class="tooltip" data-tip="<?= htmlspecialchars($character['faction_text']); ?> - <?= htmlspecialchars($character['class_name']); ?> - <?= htmlspecialchars($character['race_name']); ?>">
                                                     <img class="h-5 inline" src="<?= htmlspecialchars($character['faction']); ?>" />
@@ -226,7 +224,7 @@
                                     } else {
                                     ?>
                                         <tr>
-                                            <td colspan="5" class="text-center text-white">Онлайн-игроков не найдено.</td>
+                                            <td colspan="5" class="text-center text-white"><?= $translations['no_online_players_found'] ?></td>
                                         </tr>
                                     <?php
                                     }
@@ -237,18 +235,18 @@
                         </div>
 
                         <input type="radio" name="my_tabs_2" role="tab" class="tab text-xs sm:text-md"
-                            aria-label="Топ убийц" />
+                            aria-label="<?= $translations['top_pvp'] ?>" />
                         <div role="tabpanel" class="tab-content bg-indigo-800/15 rounded-box p-6">
                             <div class="overflow-x-scroll">
                                 <table class="table-auto sm:table mx-auto">
                                     <thead>
                                         <tr>
                                             <th class="text-center text-white">№</th>
-                                            <th class="text-center text-white">Имя</th>
+                                            <th class="text-center text-white"><?= $translations['name'] ?></th>
                                             <th class="text-center text-white sm:block hidden"></th>
-                                            <th class="text-center text-white">Уровень</th>
-                                            <th class="text-center text-white">Гильдия</th>
-                                            <th class="text-center text-white">Убийств</th>
+                                            <th class="text-center text-white"><?= $translations['level'] ?></th>
+                                            <th class="text-center text-white"><?= $translations['guild'] ?></th>
+                                            <th class="text-center text-white"><?= $translations['kills'] ?></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -262,7 +260,7 @@
                                     ?>
                                 <tr class="hover:bg-indigo-900/30">
                                     <td class="text-center text-white"><?= $rank++; ?></td>
-                                    <td class="text-center text-white"><font color="<?= htmlspecialchars($character['class_color']); ?>"><?= htmlspecialchars($character['name']); ?></font></td>
+                                    <td class="text-center text-white"><a href="?page=armory&charid=<?= $character['guid']; ?>" class="text-blue-500 hover:underline"><font color="<?= htmlspecialchars($character['class_color']); ?>"><?= htmlspecialchars($character['name']); ?></font></a></td>
                                     <td class="text-center text-white">
                                     <div class="tooltip" data-tip="<?= htmlspecialchars($character['faction_text']); ?> - <?= htmlspecialchars($character['class_name']); ?> - <?= htmlspecialchars($character['race_name']); ?>">
                                         <img class="h-5 inline" src="<?= htmlspecialchars($character['faction']); ?>" />
@@ -279,98 +277,13 @@
 } else {
 ?>
     <tr>
-        <td colspan="6" class="text-center text-white">Нет доступных игроков.</td>
+        <td colspan="6" class="text-center text-white"><?= $translations['no_players_available'] ?></td>
     </tr>
 <?php
 }
 ?>
                                                                                
                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <input type="radio" name="my_tabs_2" role="tab" class="tab text-xs sm:text-md"
-                            aria-label="Топ Голосов" />
-                        <div role="tabpanel" class="tab-content bg-indigo-800/15 rounded-box p-6">
-                            <div class="overflow-x-scroll">
-                                <table class="table-auto sm:table mx-auto">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center text-white">Rank</th>
-                                            <th class="text-center text-white">Name</th>
-                                            <th class="text-center text-white sm:block hidden">Type</th>
-                                            <th class="text-center text-white">Status</th>
-                                            <th class="text-center text-white">Kills</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                                                                <tr class="hover:bg-indigo-900/30">
-                                            <th class="text-center text-white">1</th>
-                                            <td class="text-center">
-                                                <span
-                                                    class="text-white class-mage">Mango</span>
-                                            </td>
-                                            <td class="text-center text-white sm:block hidden">
-                                                <div class="tooltip"
-                                                    data-tip="Alliance - Night Elf - Mage">
-                                                    <img class="h-5 inline"
-                                                        src="https://masterwow.net/images/factions/alliance.webp" />
-                                                    <img class="h-5 inline rounded-full"
-                                                        src="https://masterwow.net/images/races/nightelf_female.webp" />
-                                                    <img class="h-5 inline rounded-full"
-                                                        src="https://masterwow.net/images/classes/mage.webp" />
-                                                </div>
-                                            </td>
-                                            <td class="text-center text-white">
-                                                                                                    <span class="badge bg-red-800">
-                                                        <i class="fa-solid fa-wifi-slash sm:mr-2"></i>
-                                                        <span class="hidden sm:block">Offline</span>
-                                                    </span>
-                                                                                                </td>
-                                            <td class="text-center text-orange-300">
-                                                30                                                <i class="fa-regular fa-swords ml-1.5"></i>
-                                            </td>
-                                        </tr>
-                                            
-                                                                            </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <input type="radio" name="my_tabs_2" role="tab" class="tab text-xs sm:text-md"
-                            aria-label="Пустое" />
-                        <div role="tabpanel" class="tab-content bg-indigo-800/15 rounded-box p-6">
-                            <div class="overflow-x-scroll">
-                                <table class="table-auto sm:table mx-auto">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center text-white">Rank</th>
-                                            <th class="text-center text-white">Name</th>
-                                            <th class="text-center text-white sm:block hidden">Type</th>
-                                            <th class="text-center text-white">Status</th>
-                                            <th class="text-center text-white sm:block hidden">Time</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                                                                <tr class="hover:bg-indigo-900/30">
-                                            <th class="text-center text-white">1</th>
-                                            <td class="text-center">
-                                                <span
-                                                    class="text-white class-mage">Hammy</span>
-                                            </td>
-                                            <td class="text-center text-white sm:block hidden">
-                                                <div class="tooltip"
-                                                    data-tip="Horde - Troll - Mage">
-                                                    <img class="h-5 inline"
-                                                        src="https://masterwow.net/images/factions/horde.webp" />
-                                                    <img class="h-5 inline rounded-full"
-                                                        src="https://masterwow.net/images/races/troll_male.webp" />
-                                                    <img class="h-5 inline rounded-full"
-                                                        src="https://masterwow.net/images/classes/mage.webp" />
-                                                </div>
-                                            </td>
-                                           
-                                                                            </tbody>
                                 </table>
                             </div>
                         </div>

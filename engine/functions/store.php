@@ -1,48 +1,8 @@
 <?php
 
-class TelnetClient
-{
-    private $connection;
-
-    public function __construct($host, $port)
-    {
-        $this->connection = fsockopen($host, $port);
-        if (!$this->connection) {
-            error_log("Не удалось подключиться к серверу Telnet.");
-            throw new Exception("Не удалось подключиться к серверу Telnet.");
-        }
-    }
-
-    public function executeCommand($command)
-    {
-        error_log("Отправка команды: $command");
-        fwrite($this->connection, $command . "\n");
-
-        $response = '';
-        while (!feof($this->connection)) {
-            $line = fgets($this->connection);
-            if (trim($line) === '') {
-                break;
-            }
-            $response .= $line;
-        }
-
-        error_log("Получен ответ: $response");
-        return $response;
-    }
-
-    public function __destruct()
-    {
-        fclose($this->connection);
-    }
-}
-
 class Store
 {
     private $website_connection;
-    private $soap_uri = 'urn:AC';
-    private $soap_username = 'username';
-    private $soap_password = 'password';
 
     public function __construct()
     {
@@ -113,26 +73,30 @@ class Store
 
     public function soap($character, $item_ids, $quantities, $total)
     {
+        global $soap_url, $soap_uri, $soap_username, $soap_password;
+		$soap_url = 'http://' . $soap_url . '/';
+		$soap_uri = 'urn:' . $soap_uri;
+
         error_log("SOAP-запрос для персонажа: $character, предметы: " . implode(",", $item_ids) . ", количества: " . implode(",", $quantities) . ", total: $total");
         $soapErrors = [];
         $client = new \SoapClient(null, [
-            'location' => "http://$db_host:$this->soap_port/",
-            'uri'           =>  $this->soap_uri,
-            'login'         => $this->soap_username,
-            'password'      => $this->soap_password,
+            'location'      =>  $soap_url,
+            'uri'           =>  $soap_uri,
+            'login'         =>  $soap_username,
+            'password'      =>  $soap_password,
             'style'         =>  SOAP_RPC,
             'keep_alive'    =>  false
         ]);
 
         foreach (array_combine($item_ids, $quantities) as $item_id => $quantity) {
             $command = 'send items ' . $character . ' "test" "Body" ' . $item_id . ':' . 1;
-            
+
             try {
                 error_log("Выполнение SOAP команды: $command");
                 $this->remove_donor_points($_SESSION['account_id'], $total);
                 $result = $client->executeCommand(new \SoapParam($command, "command"));
                 error_log("Команда выполнена. Результат: $result");
-                
+
                 if (strpos($result, 'success') === false) {
                     $soapErrors[] = "Не удалось выполнить команду SOAP для предмета id $item_id: $result";
                 }
@@ -168,4 +132,169 @@ class Store
         $_SESSION['success_message'] = "Ваша покупка прошла успешно! Вы можете найти свои товары в игровом почтовом ящике.";
         return true;
     }
+	
+	public function get_user_characters($user_id) {
+    $stmt = $this->website_connection->prepare("SELECT character_name FROM characters WHERE account_id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $characters = [];
+    while ($row = $result->fetch_assoc()) {
+        $characters[] = $row['character_name'];
+    }
+
+    $stmt->close();
+    return $characters;
+}
+
+	
+	
+	////фортуна////
+	public function spin_wheel($user_id, $use_donor_points = true)
+{
+    $account = new Account($_SESSION['username']);
+    
+    if ($use_donor_points) {
+        $points = $account->get_account_currency()['donor_points'];
+        $cost = 5;
+    } else {
+        $points = $account->get_account_currency()['vote_points'];
+        $cost = 10;
+    }
+
+    if ($points < $cost) {
+        $_SESSION['error'] = "Недостаточно " . ($use_donor_points ? "донат монет!" : "голосов!");
+        return false;
+    }
+
+    if ($use_donor_points) {
+        $account->remove_donor_points($user_id, $cost);
+    } else {
+        $this->remove_vote_points($user_id, $cost);
+    }
+
+    $items = $this->get_fortune_items_with_chances();
+
+    if (empty($items)) {
+        $_SESSION['error'] = "Нет доступных предметов для вращения!";
+        return false;
+    }
+
+    $weighted_items = [];
+    foreach ($items as $item) {
+        $chance = $use_donor_points ? $item['donor_chance'] : $item['vote_chance'];
+        for ($i = 0; $i < $chance; $i++) {
+            $weighted_items[] = $item;
+        }
+    }
+
+    if (empty($weighted_items)) {
+        $_SESSION['error'] = "Нет доступных предметов для вращения!";
+        return false;
+    }
+
+    $random_item = $weighted_items[array_rand($weighted_items)];
+
+    $itemDetails = $this->getWowheadItemDetails($random_item['item_id']);
+    
+    if ($itemDetails) {
+        $this->add_item_to_bag($user_id, $random_item['item_id']);
+        $_SESSION['success_message'] = "Поздравляем! Вы выиграли: " . $itemDetails['name'];
+    } else {
+        $_SESSION['error'] = "Ошибка получения данных о предмете!";
+        return false;
+    }
+
+    return true;
+}
+
+private function get_fortune_items_with_chances()
+{
+    $stmt = $this->website_connection->prepare("SELECT item_id, title, donor_chance, vote_chance FROM fortune_items");
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
+private function get_fortune_items()
+{
+    $stmt = $this->website_connection->prepare("SELECT item_id FROM fortune_items");
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
+private function getWowheadItemDetails($itemId)
+{
+    $url = "https://www.wowhead.com/item=$itemId&xml";
+    $xml = @file_get_contents($url);
+
+    if ($xml !== false) {
+        $rss = new SimpleXmlElement($xml);
+        if (isset($rss->item->icon) && isset($rss->item->name)) {
+            return [
+                'id' => $itemId,
+                'name' => (string)$rss->item->name,
+                'icon' => "https://wow.zamimg.com/images/wow/icons/large/" . (string)$rss->item->icon . ".jpg",
+            ];
+        }
+    }
+
+    return null;
+}
+
+private function add_item_to_bag($user_id, $item_id)
+{
+    $stmt = $this->website_connection->prepare("INSERT INTO bag_account (account_id, item_id) VALUES (?, ?)");
+    $stmt->bind_param("ii", $user_id, $item_id);
+    $stmt->execute();
+    $stmt->close();
+}
+
+public function remove_vote_points($user_id, $amount)
+{
+    error_log("Удаление голосов: user_id = $user_id, amount = $amount");
+    $stmt = $this->website_connection->prepare("UPDATE users SET vote_points = vote_points - ? WHERE account_id = ?");
+    $stmt->bind_param("ii", $amount, $user_id);
+    $stmt->execute();
+    $stmt->close();
+}
+
+public function get_fortune_items_with_details()
+{
+    $stmt = $this->website_connection->prepare("SELECT item_id, title FROM fortune_items");
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
+	////сумка////
+public function get_user_bag_items($user_id)
+    {
+        $stmt = $this->website_connection->prepare("SELECT item_id FROM bag_account WHERE account_id = ?");
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        $items = [];
+        while ($row = $result->fetch_assoc()) {
+            $itemDetails = $this->getWowheadItemDetails($row['item_id']);
+            if ($itemDetails !== null) {
+                $items[] = $itemDetails;
+            }
+        }
+
+        return $items;
+    }
+
+
+
 }

@@ -41189,7 +41189,7 @@ body.dark-mode.nk-body.ui-shady, body.dark-mode.nk-body.ui-softy {
     display: flex;
     justify-content: space-between;
     margin-left: 235px;
-    width: 120px;
+    width: 60px;
 }
 .languages__item.active {
     border: 2px solid #7e371a;
@@ -41197,31 +41197,23 @@ body.dark-mode.nk-body.ui-shady, body.dark-mode.nk-body.ui-softy {
     width: 28px;
 }
 .languages__item.en {
-    background-image: url(../../img/icons/en.svg);
+    background-image: url(../../assets/images/en.svg);
 }
 .languages__item {
-    border-radius: 50%;
+    border-radius: 30%;
     height: 25px;
     transition: all .3s;
     width: 25px;
 }
 .languages__item.ru {
-    background-image: url(../../img/icons/ru.svg);
-}
-.languages__item.br {
-    background-image: url(../../img/icons/br.png);
-    background-size: 25px;
-}
-.languages__item.es {
-    background-image: url(../../img/icons/es.png);
-    background-size: 25px;
+    background-image: url(../../assets/images/ru.svg);
 }
 
 .languages__item:not(.active) {
     opacity: .75;
 }
 .lang-checkbox {
-    margin-right: 10px;
+    margin-right: 2px;
 }
 /* */
 

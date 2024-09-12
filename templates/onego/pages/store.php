@@ -1,11 +1,9 @@
 <?php
-if (isset($GLOBALS['global'])) {
-    $GLOBALS['global']->check_logged_in();
-}
-
+$global->check_logged_in();
 $store = new Store();
-$account_id = $_SESSION['account_id'];
-$account = new Account($_SESSION['username']);
+   if (isset($_SESSION['username'])) {
+       $account = new Account($_SESSION['username']);
+   }
 
 $successMessage = '';
 $errorMessage = '';
@@ -15,9 +13,12 @@ if (isset($_POST['buy_now'])) {
     $product_id = $_POST['product_id'];
     $quantity = 1;
 
-    $store->process_direct_purchase($account_id, $character, $product_id, $quantity);
-    
-    $_SESSION['success_message'] = 'Вы успешно приобрели предмет!';
+    if ($store->process_direct_purchase($account_id, $character, $product_id, $quantity)) {
+        $_SESSION['success_message'] = 'Вы успешно приобрели предмет!';
+    } else {
+        $errorMessage = $_SESSION['error'] ?? 'У вас недостаточно донат монет!';
+    }
+
     header('Location: ?page=store');
     exit();
 }
@@ -47,9 +48,47 @@ $characters = $character->get_characters($account->get_id());
                 <div class="container">
             <div class="mx-auto max-w-5xl mt-36 2xl:pt-0">
                 <h1 class="mb-5 text-4xl font-bold text-white text-shadow_dark">
-                    Shop & Donation
+                    <?= $translations['shop'] ?>
                 </h1>
+
+
                  <div class="text-white bg-slate-950/60 p-9 rounded-lg text-left leading-loose">
+                    <?php if ($successMessage) : ?>
+    <div class="text-center">
+        <div class="alert alert-dismissible alert-success">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong><?= $translations['great_job'] ?></strong> <?= $successMessage ?>
+        </div>
+    </div>
+<?php endif; ?>
+
+<?php if ($errorMessage) : ?>
+    <div class="text-center">
+        <div class="alert alert-dismissible alert-danger">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong><?= $translations['hey_there'] ?></strong> <?= $errorMessage ?>
+        </div>
+    </div>
+<?php endif; ?>
+
+
+
+ <div class="mt-2">
+                        <div class="divider mb-5"><?= $translations['account_information'] ?></div>
+                        <div>
+                            <p>
+                                <span class="font-bold"><?= $translations['username'] ?>:</span> <span class="text-blue-500">
+                                    <?= $account->get_username(); ?></span>
+                            </p>
+                            <p>
+                                <span class="font-bold"><?= $translations['balance'] ?>:</span> <span class="text-green-500">
+                                    <?= $account->get_account_currency()['donor_points'] ?></span>
+                            </p>
+                        </div>
+                    </div>
+                         <?php while ($row = $categories->fetch_assoc()) : ?>
+                            <div class="divider mb-5"><?= $row['title'] ?></div>
+                            <?php endwhile; ?>
     <div class="grid-shop grid-cols-1 gap-4">
         <?php foreach ($items as $item) : ?>
             <div class="card bordered shadow-lg bg-indigo-900/10 group hover:bg-indigo-950/70 transition duration-500 ease-in-out">
@@ -65,9 +104,8 @@ $characters = $character->get_characters($account->get_id());
                         </a>
                     </h2>
                     <div class="text-center mx-auto">
-                        <span class="text-xl font-bold">Цена: <span class="text-green-500"><?= htmlspecialchars($item['donor_points']) ?></span></span>
+                        <span class="text-xl font-bold"><?= $translations['price'] ?>: <span class="text-green-500"><?= htmlspecialchars($item['donor_points']) ?></span></span>
                     </div>
-                    <p class=""><?= htmlspecialchars($item['description']) ?></p>
                     <div class="card-actions text-center mx-auto">
                         <form action="" method="POST">
                             <input type="hidden" name="product_id" value="<?= htmlspecialchars($item['item_id']); ?>">
@@ -76,33 +114,19 @@ $characters = $character->get_characters($account->get_id());
                                     <option value="<?= htmlspecialchars($char['name']) ?>"><?= htmlspecialchars($char['name']) ?></option>
                                 <?php endforeach; ?>
                             </select>
-                            <button type="submit" name="buy_now" class="btn bg-cyan-600 hover:bg-cyan-700 text-white">Купить сейчас</button>
+                            <button type="submit" name="buy_now" class="btn bg-cyan-600 hover:bg-cyan-700 text-white"><?= $translations['buy'] ?></button>
                         </form>
                     </div>
                 </div>
             </div>
+            
         <?php endforeach; ?>
     </div>
-    </div>
-    </div>
-        </div>
-            </div>
-        </div>
-            </div>
-<?php if ($successMessage) : ?>
-    <div class="text-center">
-        <div class="alert alert-dismissible alert-success">
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            <strong>Отличная работа!</strong> <?= $successMessage ?>
-        </div>
-    </div>
-<?php endif; ?>
 
-<?php if ($errorMessage) : ?>
-    <div class="text-center">
-        <div class="alert alert-dismissible alert-danger">
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            <strong>Эй, там!</strong> <?= $errorMessage ?>
-        </div>
     </div>
-<?php endif; ?>
+    </div>
+        </div>
+            </div>
+        </div>
+           
+

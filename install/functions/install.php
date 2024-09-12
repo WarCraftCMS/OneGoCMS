@@ -11,7 +11,7 @@ class InstallOneGoCMS
         }
     }
 
-    public function install($host, $port, $username, $password, $auth, $characters, $website, $soap_username, $soap_password)
+    public function install($web_title, $realmlist, $host, $port, $db_gameport, $username, $password, $auth, $characters, $website, $soap_url, $soap_uri, $soap_username, $soap_password)
     {
         $db = new mysqli($host, $username, $password, '', $port);
         if ($db->connect_error) {
@@ -42,10 +42,15 @@ class InstallOneGoCMS
 
 
         $config = fopen("../engine/configs/db_config.php", 'w');
-        $txt = "<?php 
+        $txt = "<?php 	
+// Database Configuration
+\$web_title = '" . $web_title . "';
+\$realmlist = '" . $realmlist . "';
+
 // Database Configuration
 \$db_host = '" . $host . "';
 \$db_port = '" . $port . "';
+\$db_gameport = '" . $db_gameport . "';
 \$db_username = '" . $username . "';
 \$db_password = '" . $password . "';
 \$db_auth = '" . $auth . "';
@@ -53,6 +58,8 @@ class InstallOneGoCMS
 \$db_website = '" . $website . "';
     
 // Soap Account Configuration
+\$soap_url = '" . $soap_url . "';
+\$soap_uri = '" . $soap_uri . "';
 \$soap_username = '" . $soap_username . "';
 \$soap_password = '" . $soap_password . "';   
 ?>";
@@ -61,7 +68,7 @@ class InstallOneGoCMS
         fwrite($config, $txt);
         fclose($config);
         header("Location: /?page=home");
-        $_SESSION['success_message'] = "You have successfully installed TinyCMS!";
+        $_SESSION['success_message'] = "You have successfully installed OneGoCMS!";
 
         // Create the install.lock file
         $file = fopen('../engine/install.lock', 'w');

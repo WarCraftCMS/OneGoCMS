@@ -42,6 +42,16 @@ class Character
     $stmt->bind_result($guid, $name, $race, $class, $gender, $level, $money, $totalHonorPoints, $arenaPoints, $totalKills, $online, $achievement_count, $guild_name);
     
     $characters = array();
+	
+	$lang = isset($_SESSION['lang']) ? $_SESSION['lang'] : 'en';
+        $lang_file = __DIR__ . '/../../lang/' . $lang . '.php';
+
+        if (file_exists($lang_file)) {
+            $translations = require($lang_file);
+        } else {
+            $translations = require(__DIR__ . '/../../lang/en.php');
+            error_log("Language file not found: " . $lang_file);
+        }
 
     $class_image = array(
         1 => 'assets/images/classes/1.png',
@@ -67,19 +77,6 @@ class Character
         8 => '#69CCF0',
         9 => '#9482C9',
         11 => '#FF7D0A',
-    );
-
-    $className = array(
-        1 => 'Воин',
-        2 => 'Паладин',
-        3 => 'Охотник',
-        4 => 'Разбойник',
-        5 => 'Жрец',
-        6 => 'Рыцарь Смерти',
-        7 => 'Шаман',
-        8 => 'Маг',
-        9 => 'Чернокнижник',
-        11 => 'Друид',
     );
 
     $race_image = array(
@@ -115,29 +112,18 @@ class Character
         )
     );
 
-    $raceName = array(
-        1 => 'Человек',
-        2 => 'Орк',
-        3 => 'Дварф',
-        4 => 'Ночной Эльф',
-        5 => 'Нежить',
-        6 => 'Таурен',
-        7 => 'Гном',
-        8 => 'Троль',
-        10 => 'Эльф Крови',
-        11 => 'Дреней',
-    );
-
     while ($stmt->fetch()) {
-        if (in_array($race, [1, 3, 4, 7, 11])) {
-            $faction = 'assets/images/fraction/alliance.webp';
-            $faction_text = 'Альянс';
-        } elseif (in_array($race, [2, 5, 6, 8, 10])) {
-            $faction = 'assets/images/fraction/horde.webp';
-            $faction_text = 'Орда';
-        } else {
-            $faction = 'Неизвестно';
-        }
+            if (in_array($race, [1, 3, 4, 7, 11])) {
+                $faction = 'assets/images/fraction/alliance.webp';
+				$faction_bg = 'assets/images/fraction/bg-alliance.png';
+                $faction_text = $translations['faction_alliance'];
+            } elseif (in_array($race, [2, 5, 6, 8, 10])) {
+                $faction = 'assets/images/fraction/horde.webp';
+				$faction_bg = 'assets/images/fraction/bg-horde.png';
+                $faction_text = $translations['faction_horde'];
+            } else {
+                $faction = $translations['faction_unknown'];
+            }
 
         $gold = floor($money / 10000);
         $silver = floor(($money % 10000) / 100);
@@ -151,8 +137,7 @@ class Character
             $gold_image = 'assets/images/fraction/gold.webp';
             $silver_image = 'assets/images/fraction/silver.webp';
             $copper_image = 'assets/images/fraction/copper.webp';
-            
-            $guild_text = !empty($guild_name) ? $guild_name : 'Без гильдии';
+            $guild_text = !empty($guild_name) ? $guild_name : $translations['no_guild'];
 
         $character = array(
             'guid' => $guid,
@@ -163,8 +148,8 @@ class Character
             'level' => $level,
             'faction' => $faction,
             'faction_text' => $faction_text,
-            'class_image' => $class_image[$class],
-            'race_image' => $race_image[$race][$gender],
+            'class_image' => isset($class_image[$class]) ? $class_image[$class] : 'assets/images/classes/unknown.png',
+            'race_image' => isset($race_image[$race]) ? $race_image[$race][$gender] : 'assets/images/races/unknown.png',
             'gold' => $gold,
             'silver' => $silver,
             'copper' => $copper,
@@ -174,8 +159,8 @@ class Character
             'online' => $online,
             'achievement_count' => $achievement_count,
             'class_color' => $classColors[$class],
-            'class_name' => $className[$class],
-            'race_name' => $raceName[$race],
+            'class_name' => $translations['class_' . strtolower($this->get_class_name($class))],
+            'race_name' => $translations['race_' . strtolower($this->get_race_name($race))],
             'honor_image' => $honor_image,
             'arena_image' => $arena_image,
             'achievement_image' => $achievement_image,
@@ -191,6 +176,42 @@ class Character
     
     return $characters;
 }
+
+    private function get_class_name($class)
+    {
+        $class_names = [
+            1 => 'warrior',
+            2 => 'paladin',
+            3 => 'hunter',
+            4 => 'rogue',
+            5 => 'priest',
+            6 => 'death_knight',
+            7 => 'shaman',
+            8 => 'mage',
+            9 => 'warlock',
+            11 => 'druid',
+        ];
+
+        return isset($class_names[$class]) ? $class_names[$class] : 'unknown';
+    }
+
+    private function get_race_name($race)
+    {
+        $race_names = [
+            1 => 'human',
+            2 => 'orc',
+            3 => 'dwarf',
+            4 => 'night_elf',
+            5 => 'undead',
+            6 => 'tauren',
+            7 => 'gnome',
+            8 => 'troll',
+            10 => 'blood_elf',
+            11 => 'draenei',
+        ];
+
+        return isset($race_names[$race]) ? $race_names[$race] : 'unknown';
+    }
 
     public function teleport_to_home($guid)
 {

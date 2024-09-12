@@ -31,18 +31,18 @@ $vote_sites = $account->get_vote_sites();
     <div class="hero-content text-center text-neutral-content">
         <div class="container">
             <div class="max-w-3xl mt-36 2xl:pt-0">
-                <h1 class="mb-5 text-4xl font-bold text-white text-shadow_dark">Голосуйте за нас</h1>
+                <h1 class="mb-5 text-4xl font-bold text-white text-shadow_dark"><?= $translations['vote_for_us'] ?></h1>
                 <div class="text-white bg-slate-950/60 p-9 rounded-lg text-left leading-loose">
 
                     <div class="mt-2">
-                        <div class="divider mb-5">Сайты голосования</div>
+                        <div class="divider mb-5"><?= $translations['voting_sites'] ?></div>
 
                         <div role="alert" class="alert shadow-lg bg-cyan-950/40">
                             <div>
-                                <h3 class="font-bold">Награды</h3>
+                                <h3 class="font-bold"><?= $translations['awards'] ?></h3>
                                 <div class="text-sm">
                                     <p class="sm:inline leading-loose">
-                                        Проголосовав за нас, вы получите Голоса, которые можно использовать в магазине.
+                                        <?= $translations['awards_info'] ?>
                                     </p>
                                 </div>
                             </div>
@@ -51,8 +51,8 @@ $vote_sites = $account->get_vote_sites();
                             <thead>
                                 <tr>
                                     <th class='text-center text-white'></th>
-                                    <th class='text-center text-white'>Сайт</th>
-                                    <th class='text-center text-white'>Действие</th>
+                                    <th class='text-center text-white'><?= $translations['website'] ?></th>
+                                    <th class='text-center text-white'><?= $translations['action'] ?></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -68,7 +68,7 @@ $vote_sites = $account->get_vote_sites();
                                     <td class='text-center'>
                                         <form method="POST" action="">
                                             <input type="hidden" name="vote_site" value="<?= htmlspecialchars($site['url']) ?>">
-                                            <button type="submit" name="vote" class="btn bg-teal-600 hover:bg-teal-700 text-white">Голосовать</button>
+                                            <button type="submit" name="vote" class="btn bg-teal-600 hover:bg-teal-700 text-white"><?= $translations['vote'] ?></button>
                                         </form>
                                     </td>
     </tr>
@@ -76,6 +76,11 @@ $vote_sites = $account->get_vote_sites();
                             </tbody>
 
                         </table>
+                        <?php
+                        if (!empty($vote_result)) {
+                            echo '<p>' . htmlspecialchars($vote_result) . '</p>';
+                        }
+                        ?>
                     </div>
                 </div>
             </div>

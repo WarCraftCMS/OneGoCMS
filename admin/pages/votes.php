@@ -39,9 +39,9 @@ if (isset($_POST['vote-submit'])) {
                                 <div class="nk-block-head nk-block-head-sm">
                                     <div class="nk-block-between">
                                         <div class="nk-block-head-content">
-                                            <h3 class="nk-block-title page-title">Список сайтов для голосования</h3>
+                                            <h3 class="nk-block-title page-title"><?= $translations['vote_dash'] ?></h3>
                                             <div class="nk-block-des text-soft">
-                                                <p>Основные показатели сервера.</p>
+                                                <p><?= $translations['vote_sub'] ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -56,7 +56,7 @@ if (isset($_POST['vote-submit'])) {
                         <div class="card-title-group">
                             <h5 class="card-title">
                                 <a href="/admin/?page=voteadd" class="btn btn-sm btn-primary">
-                                    <span class="d-none d-sm-inline" id="add-news-btn">Добавить сайт</span>
+                                    <span class="d-none d-sm-inline" id="add-news-btn"><?= $translations['vote_add'] ?></span>
                                 </a>
                             </h5>
                             <div class="card-tools d-none d-md-inline">
@@ -74,7 +74,7 @@ if (isset($_POST['vote-submit'])) {
                                     </div>
                                     <div class="nk-tb-col tb-col-md">
                                         <span class="tb-sub">
-                                            <?php echo htmlspecialchars($voteSite['vote_points']); ?> очков
+                                            <?php echo htmlspecialchars($voteSite['vote_points']); ?> <?= $translations['vote_point'] ?>
                                         </span>
                                     </div>
                                     <div class="nk-tb-col nk-tb-col-action">

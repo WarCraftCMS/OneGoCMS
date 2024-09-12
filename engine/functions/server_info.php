@@ -42,9 +42,9 @@ class ServerInfo
         $status = @fsockopen($db_host, $db_gameport, $error_no, $error_str, 1);
         if ($status) {
             @fclose($status);
-            return 'Онлайн';
+            return 'Online';
         } else {
-            return 'Оффлайн';
+            return 'Offline';
         }
     }
   

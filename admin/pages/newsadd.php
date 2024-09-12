@@ -11,19 +11,17 @@ if (isset($_POST['edit-submit'])) {
 
 $news = new News();
 ?>
-
                             <div class="nk-content-body">
                                 <div class="nk-block-head nk-block-head-sm">
                                     <div class="nk-block-between">
                                         <div class="nk-block-head-content">
-                                            <h3 class="nk-block-title page-title">Новости</h3>
+                                            <h3 class="nk-block-title page-title"><?= $translations['news'] ?></h3>
                                             <div class="nk-block-des text-soft">
-                                                <p>Добавление новости.</p>
+                                                <p><?= $translations['add_new'] ?>.</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
     <!-- .nk-block -->
     <div class="nk-block">
         <div class="row g-gs">
@@ -31,21 +29,17 @@ $news = new News();
                 <div class="card card-bordered">
                     <div class="card-inner">
                         <form id="news-form" method="post" action="" enctype="multipart/form-data">
-
-
                             <!-- Tabs -->
                             <div class="row g-4">
                                 <div class="col-lg-12">
 
                                 </div>
                             </div>
-
                             <!-- Tab content -->
-                            
                                                 <div class="row g-4">
                                                     <div class="col-lg-12">
                                                         <div class="form-group">
-                                                            <label for="news-title" class="form-label">Заголовок</label>
+                                                            <label for="news-title" class="form-label"><?= $translations['head'] ?></label>
                                                             <div class="form-control-wrap">
                                                                 <input type="text" class="form-control" id="news-title" name="news-title">
                                                             </div>
@@ -55,7 +49,7 @@ $news = new News();
                                                 <div class="row g-4">
                                                     <div class="col-lg-12">
                                                         <div class="form-group">
-                                                            <label for="news-title" class="form-label">Ссылка</label>
+                                                            <label for="news-title" class="form-label"><?= $translations['url'] ?></label>
                                                             <div class="form-control-wrap">
                                                                 <input type="text" class="form-control" id="news-url" name="news-url">
                                                             </div>
@@ -67,7 +61,7 @@ $news = new News();
                                                         <div class="form-group">
                                                             <div class="form-control-wrap">
                                                             
-                                                            <label for="file" class="form-label">Картика</label>
+                                                            <label for="file" class="form-label"><?= $translations['image'] ?></label>
                                                             <input type="file" name="file" id="file"><br>
                                                             
                                                             </div>
@@ -77,7 +71,7 @@ $news = new News();
                                                 <div class="row g-4 col-description" >
                                                     <div class="col-lg-12">
                                                         <div class="form-group">
-                                                            <label for="news-title" class="form-label">Описание</label>
+                                                            <label for="news-title" class="form-label"><?= $translations['description'] ?></label>
                                                             <div class="form-control-wrap">
                                                                 <textarea type="text" class="form-control" id="news-content" name="news-content"></textarea>
                                                             </div>
@@ -88,7 +82,7 @@ $news = new News();
                             <div class="row g-4">
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-lg btn-primary ml-auto" form="news-form" id="submit" name="submit">Отправить</button>
+                                        <button type="submit" class="btn btn-lg btn-primary ml-auto" form="news-form" id="submit" name="submit"><?= $translations['send'] ?></button>
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +93,3 @@ $news = new News();
             </div>
         </div>
     </div>
-    <!-- .nk-block -->
-
-
-                <!-- content @e  -->

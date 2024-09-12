@@ -8,9 +8,9 @@ $accounts = $account->get_accounts($pageNum, $perPage);
                                 <div class="nk-block-head nk-block-head-sm">
                                     <div class="nk-block-between">
                                         <div class="nk-block-head-content">
-                                            <h3 class="nk-block-title page-title">Пользователи</h3>
+                                            <h3 class="nk-block-title page-title"><?= $translations['user'] ?></h3>
                                             <div class="nk-block-des text-soft">
-                                                <p>Список пользователей.</p>
+                                                <p><?= $translations['list_users'] ?>.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -24,12 +24,11 @@ $accounts = $account->get_accounts($pageNum, $perPage);
                         <div class="nk-tb-list nk-tb-ulist is-compact">
                             
                             <div class="nk-tb-item nk-tb-head">
-                                <div class="nk-tb-col"><span class="sub-text">Логин</span></div>
-                                <div class="nk-tb-col"><span class="sub-text">Бонусы</span></div>
-                                <div class="nk-tb-col"><span class="sub-text">E-mail</span></div>
-                                <div class="nk-tb-col"><span class="sub-text">Дата регистрации</span></div>
-                                <div class="nk-tb-col"><span class="sub-text">Последний вход</span></div>
-                                <div class="nk-tb-col"><span class="sub-text">Последний IP</span></div>
+                                <div class="nk-tb-col"><span class="sub-text"><?= $translations['username'] ?></span></div>
+                                <div class="nk-tb-col"><span class="sub-text"><?= $translations['email'] ?></span></div>
+                                <div class="nk-tb-col"><span class="sub-text"><?= $translations['joindate'] ?></span></div>
+                                <div class="nk-tb-col"><span class="sub-text"><?= $translations['last_login'] ?></span></div>
+                                <div class="nk-tb-col"><span class="sub-text"><?= $translations['last_ip'] ?></span></div>
                                 
                                 
                             </div>
@@ -47,7 +46,6 @@ $accounts = $account->get_accounts($pageNum, $perPage);
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="nk-tb-col"> <span><?php echo $user['bonuses']; ?></span> </div>
                                     <div class="nk-tb-col"> <span><?php echo $user['email']; ?></span> </div>
                                     <div class="nk-tb-col"> <span><?php echo $user['joindate']; ?></span> </div>
                                     <div class="nk-tb-col"> <span><?php echo $user['last_login']; ?></span> </div>

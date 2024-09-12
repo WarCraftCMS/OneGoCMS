@@ -34,8 +34,6 @@ if ($result->num_rows > 0) {
     $template = htmlspecialchars($row['template_name'], ENT_QUOTES, 'UTF-8');
 }
 
-$db->close(); 
-
 if (isset($_GET['template'])) {
     $template = preg_replace('/[^a-zA-Z0-9_-]/', '', $_GET['template']);
 }
@@ -52,8 +50,21 @@ if (isset($_SESSION['username'])) {
 $template_path = 'templates/' . $template . '/';
 $page_template_path = $template_path . 'pages/';
 
+$lang = 'en';
+
+$result = $db->query("SELECT lang_code FROM languages WHERE is_active = 1");
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $lang = htmlspecialchars($row['lang_code'], ENT_QUOTES, 'UTF-8');
+}
+
+$_SESSION['lang'] = $lang;
+
+$translations = require("lang/$lang.php");
+
 include $template_path . 'header.php';
 include $template_path . 'content.php';
 include $template_path . 'footer.php';
 
+$db->close();
 ?>

@@ -1,9 +1,3 @@
-<!-- 
-- Made By : PrivateDonut
-- Project Name : TinyCMS
-- Website : https://privatedonut.com
--->
-
 <?php
 require_once __DIR__ . '/../configs/db_config.php';
 
@@ -42,11 +36,12 @@ class Configuration
 
     public function __construct()
     {
-        global $db_host, $db_username, $db_password, $db_auth, $db_characters, $db_website;
+        global $db_host, $db_username, $db_password, $db_auth, $db_characters, $db_website, $db_world;
         $this->databases = array(
             'auth' => new DatabaseConnection($db_host, $db_username, $db_password, $db_auth),
             'website' => new DatabaseConnection($db_host, $db_username, $db_password, $db_website),
-            'characters' => new DatabaseConnection($db_host, $db_username, $db_password, $db_characters)
+            'characters' => new DatabaseConnection($db_host, $db_username, $db_password, $db_characters),
+			'world' => new DatabaseConnection($db_host, $db_username, $db_password, $db_world)
         );
     }
 

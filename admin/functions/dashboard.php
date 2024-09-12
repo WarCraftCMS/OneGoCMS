@@ -97,7 +97,42 @@ class Dashboard{
             return false;
         }
     }
+	
+	public function get_languages() {
+        $stmt = $this->website->prepare("SELECT * FROM languages");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $languages = [];
+    
+    while ($row = $result->fetch_assoc()) {
+        $languages[] = $row;
+    }
+    
+        $stmt->close();
+    return $languages;
+}
 
+    public function update_language_status($lang_code, $status) {
+        $stmt = $this->website->prepare("UPDATE languages SET is_active = 0 WHERE is_active = 1");
+    if (!$stmt->execute()) {
+        error_log("Не удалось деактивировать языки: " . $stmt->error);
+        $stmt->close();
+        return false;
+    }
+        $stmt->close();
+
+        $stmt = $this->website->prepare("UPDATE languages SET is_active = ? WHERE lang_code = ?");
+        $stmt->bind_param("is", $status, $lang_code);
+
+    if ($stmt->execute()) {
+        $stmt->close();
+        return true;
+    } else {
+        error_log("Обновление не удалось: " . $stmt->error);
+        $stmt->close();
+        return false;
+    }
+}
 
 }
 

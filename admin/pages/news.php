@@ -22,9 +22,9 @@ $news = new News();
                                 <div class="nk-block-head nk-block-head-sm">
                                     <div class="nk-block-between">
                                         <div class="nk-block-head-content">
-                                            <h3 class="nk-block-title page-title">Новости</h3>
+                                            <h3 class="nk-block-title page-title"><?= $translations['news'] ?></h3>
                                             <div class="nk-block-des text-soft">
-                                                <p>Редактирование новостей.</p>
+                                                <p><?= $translations['edit_news'] ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -37,7 +37,7 @@ $news = new News();
                         <div class="card-title-group">
                             <h5 class="card-title">
                                 <a href="/admin/?page=newsadd" class="btn btn-sm btn-primary">
-                                    <span class="d-none d-sm-inline" id="add-news-btn">Добавить запись</span>
+                                    <span class="d-none d-sm-inline" id="add-news-btn"><?= $translations['add_news'] ?></span>
                                 </a>
                             </h5>
                             <div class="card-tools d-none d-md-inline">
@@ -67,7 +67,7 @@ $news = new News();
                                             <ul class="link-list-plain">
                                                 <form method="POST" style="display:inline;">
                                                     <input type="hidden" name="news-id" value="<?php echo $newsItem['id']; ?>">
-                                                    <button type="submit" class="text-danger" name="delete-submit" onclick="return confirm('Вы уверены, что хотите удалить эту новость??')"><li>Удалить</li></button>
+                                                    <li><button type="submit" class="text-danger" name="delete-submit" onclick="return confirm('Вы уверены, что хотите удалить эту новость??')"><?= $translations['del_news'] ?></button></li>
                                                 </form>
                                             </ul>
                                         </div>
@@ -76,9 +76,6 @@ $news = new News();
                             </div>
                             <?php endforeach; ?>
                         </div>
-                    </div>
-                    <div class="card-inner">
-                        
                     </div>
                 </div>
             </div>
