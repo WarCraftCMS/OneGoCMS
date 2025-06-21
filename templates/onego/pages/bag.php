@@ -6,23 +6,6 @@ $store = new Store();
 $itemManager = new ItemManager();
 $bag_items = $store->get_user_bag_items($user_id);
 
-if (isset($_POST['submit_item_action'])) {
-    $item_id = intval($_POST['item_id']);
-    $action = $_POST['action'];
-    $character = isset($_POST['character']) ? trim($_POST['character']) : null;
-
-
-    
-    if ($itemManager->handleItemAction($user_id, $item_id, $action, $character)) {
-        header('Location: ?page=bag');
-        exit();
-    } else {
-        if (isset($_SESSION['error'])) {
-            echo "<div class='error'>" . htmlspecialchars($_SESSION['error']) . "</div>";
-        }
-    }
-}
-
 $characterManager = new Character();
 $characters = $characterManager->get_characters($user_id);
 ?>
