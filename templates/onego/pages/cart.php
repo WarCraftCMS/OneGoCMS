@@ -5,13 +5,6 @@ $account_id = $_SESSION['account_id'];
 $cart = $store->get_cart($account_id);
 $check = true;
 
-if (isset($_POST['remove_from_cart'])) {
-    $store->remove_from_cart($_POST['id']);
-
-    header("Location: ?page=cart");
-    exit();
-}
-
 if (isset($_POST['check-out'])) {
     $check = $store->check_cart($account_id);
 }
@@ -54,7 +47,6 @@ $characters = $character->get_characters($account->get_id());
                                 $total += $item_price[1] * $item['quantity'];
                             ?>
                                 <tr>
-                                    <!-- Displaying item name with a link -->
                                     <td>
                                         <a href="http://wotlk.cavernoftime.com/item=<?= $item['product_id'] ?>" class="item">
                                             <?= $item_name ?>
@@ -71,7 +63,6 @@ $characters = $character->get_characters($account->get_id());
                                         </select>
                                     </td>
                                     <td>
-                                        <!-- Form to remove the item from the cart -->
                                         <input type="hidden" name="id" value="<?= $item['id'] ?>">
                                         <input type="submit" name="remove_from_cart" value="Удалить" class="btn btn-danger">
                                     </td>
