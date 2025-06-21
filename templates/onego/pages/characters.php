@@ -3,18 +3,14 @@ $global->check_logged_in();
 $account = new Account($_SESSION['username']);
 $character = new Character();
 
-if (isset($_POST['change_password'])) {
-    header("Location: ?page=changepassword");
-    exit();
+if (isset($_SESSION['success_message'])) {
+    echo "<script>alert('" . htmlspecialchars($_SESSION['success_message']) . "');</script>";
+    unset($_SESSION['success_message']);
 }
 
-if (isset($_POST['unstick'])) {
-    $guid = $_POST['guid'];
-    if ($character->teleport_to_home($guid)) {
-        echo "<script>alert('Персонаж успешно телепортирован домой!');</script>";
-    } else {
-        echo "<script>alert('Не удалось телепортировать персонажа.');</script>";
-    }
+if (isset($_SESSION['error'])) {
+    echo "<script>alert('" . htmlspecialchars($_SESSION['error']) . "');</script>";
+    unset($_SESSION['error']);
 }
 ?>
 <div class="hero min-h-screen hero13">
