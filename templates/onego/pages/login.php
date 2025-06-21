@@ -1,13 +1,4 @@
 <?php
-   if (isset($_POST['submit'])) {
-       $login = new Login($_POST['username'], $_POST['password']);
-       //$login->login_checks();
-   
-       if ($login->login()) {
-           header("Location: ?page=account");
-           exit();
-       }
-   }
    
    if (isset($_SESSION['error'])) {
        echo "<div class='alert alert-danger text-center' role='alert'>" . $_SESSION['error'] . "</div>";
