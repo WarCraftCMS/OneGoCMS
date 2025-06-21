@@ -1,11 +1,6 @@
 <?php
 $global->check_logged_in();
 $account = new Account($_SESSION['username']);
-if (isset($_POST['change_password'])) 
-{
-   header("Location: ?page=changepassword");
-   exit();
-}
 ?>
 
     <div class="hero min-h-screen hero11">
