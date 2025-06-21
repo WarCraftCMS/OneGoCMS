@@ -24,15 +24,6 @@
        $account = new Account($_SESSION['username']);
    }
    
-   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-       $username = $_POST['username'];
-       $password = $_POST['password'];
-   
-       $login = new Login($username, $password);
-       $login->login_checks();
-       $login->login();
-   }
-   
    $config = new Configuration();
    $newsHome = new news_home();
    $latestNews = $newsHome->get_news();
