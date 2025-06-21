@@ -2,8 +2,18 @@
 require_once("functions/install.php");
 $install = new InstallOneGoCMS();
 
+$error_message = '';
+$success_message = '';
+
 if (isset($_POST['install'])) {
-    $install->install($_POST['web_title'], $_POST['realmlist'], $_POST['db_host'], $_POST['db_port'], $_POST['db_gameport'], $_POST['db_username'], $_POST['db_password'], $_POST['db_auth'], $_POST['db_characters'], $_POST['db_world'], $_POST['db_website'], $_POST['soap_url'], $_POST['soap_uri'], $_POST['soap_username'], $_POST['soap_password']);
+    $result = $install->install($_POST['web_title'], $_POST['realmlist'], $_POST['db_host'], $_POST['db_port'], $_POST['db_gameport'], $_POST['db_username'], $_POST['db_password'], $_POST['db_auth'], $_POST['db_characters'], $_POST['db_world'], $_POST['db_website'], $_POST['soap_url'], $_POST['soap_uri'], $_POST['soap_username'], $_POST['soap_password']);
+    
+    if (isset($result['error'])) {
+        $error_message = $result['error'];
+    } elseif (isset($result['success'])) {
+        $success_message = "Database created successfully! OneGoCMS has been installed successfully!";
+        header("refresh:2;url=/?page=home");
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -93,6 +103,20 @@ if (isset($_POST['install'])) {
             text-align: center;
             margin-top: auto;
         }
+        .alert {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        .alert-success {
+            background-color: rgba(40, 167, 69, 0.8);
+            color: white;
+        }
+        .alert-danger {
+            background-color: rgba(220, 53, 69, 0.8);
+            color: white;
+        }
     </style>
 </head>
 
@@ -102,6 +126,18 @@ if (isset($_POST['install'])) {
             <source src="./bg.mp4" type="video/mp4">
         </video>
         <div class="footer">
+            <?php if ($error_message): ?>
+                <div class="alert alert-danger">
+                    <?php echo htmlspecialchars($error_message); ?>
+                </div>
+            <?php endif; ?>
+            
+            <?php if ($success_message): ?>
+                <div class="alert alert-success">
+                    <?php echo htmlspecialchars($success_message); ?>
+                </div>
+            <?php endif; ?>
+            
             <form action="" method="post" class="mt-4">
                 <h4>Server name</h4>
                 <div class="form-group">
