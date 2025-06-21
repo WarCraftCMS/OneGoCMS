@@ -15,10 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['vote'])) {
     $vote_site = $_POST['vote_site'];
     $vote_result = $account->vote($vote_site);
 
-    if (is_array($vote_result) && isset($vote_result['url'])) {
-        header("Location: " . $vote_result['url']);
-        exit();
-    } else {
+    if (!is_array($vote_result) || !isset($vote_result['url'])) {
         $vote_result = $vote_result;
     }
 }
