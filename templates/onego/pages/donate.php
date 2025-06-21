@@ -1,10 +1,6 @@
 <?php
 $global->check_logged_in();
 $donation = new Donation($_SESSION['username']);
-if (isset($_POST['donate_now'])) {
-    $donation_amount = $_POST['donation_amount'];
-    $donation->createDonation($donation_amount);
-}
 ?>
 <div class="hero min-h-screen hero15">
     <div class="hero-overlay bg-opacity-70"></div>
