@@ -8,20 +8,6 @@ $store = new Store();
 $successMessage = '';
 $errorMessage = '';
 
-if (isset($_POST['buy_now'])) {
-    $character = $_POST['character'];
-    $product_id = $_POST['product_id'];
-    $quantity = 1;
-
-    if ($store->process_direct_purchase($account_id, $character, $product_id, $quantity)) {
-        $_SESSION['success_message'] = 'Вы успешно приобрели предмет!';
-    } else {
-        $errorMessage = $_SESSION['error'] ?? 'У вас недостаточно донат монет!';
-    }
-
-    header('Location: ?page=store');
-    exit();
-}
 
 if (isset($_SESSION['success_message'])) {
     $successMessage = $_SESSION['success_message'];
