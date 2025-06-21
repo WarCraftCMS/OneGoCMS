@@ -1,8 +1,4 @@
 <?php
-if (isset($_POST['submit'])) {
-    $reg = new Registration($_POST['username'], $_POST['email'], $_POST['password'], $_POST['password_confirmation']);
-    $reg->register_checks();
-}
 
 if (isset($_SESSION['error'])) {
     echo "<div class='alert alert-danger text-center' role='alert'>" . $_SESSION['error'] . "</div>";
